@@ -20,10 +20,11 @@
 | [github-pages-template/](github-pages-template/) | Starter theme for Lab E: `index.html`, `style.css`, `posts/first-post.html` |
 | [quiz/Knowledge_Check.md](quiz/Knowledge_Check.md) | Ungraded 12-question check for the wrap-up |
 | [quiz/Day3_Quiz_MarkdownMash.md](quiz/Day3_Quiz_MarkdownMash.md) | The same 12 questions in Markdown Mash format for the live game |
+| [quiz/Day3_Kickoff_DE_Fundamentals_Quiz.md](quiz/Day3_Kickoff_DE_Fundamentals_Quiz.md) | Optional 10-question kickoff/retrieval quiz if you want to reconnect to Day 1 data-engineering fundamentals before the developer-tools labs |
 | [GitHub Troubleshooting.md](GitHub%20Troubleshooting.md) | Common auth, Codespace, and Git errors with fixes |
 | [Student_Resources.md](Student_Resources.md) | VS Code, Codespaces budget, conda/venv/pip/uv, and Git references |
 | [data/hartford_claims_sample.csv](data/hartford_claims_sample.csv) | 12-row sample of Hartford-style claims data for Lab B |
-| [solutions/](solutions/) | Lab A, B, and C solution keys (instructor; shared after the labs) |
+| [solutions/](solutions/) | Lab A, B, and C solution keys for instructor review or post-lab release |
 
 ### Suggested timing
 
@@ -61,6 +62,8 @@
 **Lab D** (Fun Lab) turns everything into a **GitHub profile page** — a personal branding page students grow every week of the program.
 
 **Lab E** (Fun Lab) goes one step further: students publish a real **GitHub Pages website** — a themed welcome page plus a mini-blog — from a provided HTML/CSS template. Like the profile, it's a living portfolio they feed with one short post a week, all program long. Both fun labs reinforce today's repo/commit skills with zero Codespace cost.
+
+Use the optional kickoff quiz only if the class needs a short bridge back to Day 1 vocabulary. The main Day 3 assessment is the Git/environment knowledge check at the end.
 
 ## Troubleshooting
 

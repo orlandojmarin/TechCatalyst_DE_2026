@@ -27,6 +27,7 @@
 | [Activity_7_Bucket_Lock.md](Activity_7_Bucket_Lock.md) | Optional: retention policy, Bucket Lock, and holds (compliance) |
 | [Student_Resources.md](Student_Resources.md) | GCS, BigQuery, lifecycle, and S3 references, plus a Day 4 glossary |
 | [Lab Resources/](Lab%20Resources/) | `yellow_trip_sample.csv`, `coffee.jpg`, `hartford.jpeg`, `intro.docx` |
+| [quiz/Day4_Data_at_Rest_Quiz.md](quiz/Day4_Data_at_Rest_Quiz.md) | Balanced Markdown Mash quiz for storage, schema-on-read, query-in-place, GCS/S3 controls, Athena, Glue, and Bucket Lock |
 
 ### Required activity order
 
@@ -43,13 +44,15 @@ Optional extensions (only after the required work), in a sensible learning order
 | 1 | `day4_lab.md`: preflight evidence, commands, answers to Q1 to Q7, four Predict/Observe responses, lifecycle JSON, and both bucket screenshots (or fallback evidence) | Markdown | Landing-zone lab | End of day |
 | 2 | BigQuery query-in-place submission: concept answers, schema, Query A and B observations with bytes processed, limitations, and the two external-vs-loaded decisions | Markdown or form | Query-in-place lab | End of day |
 | 3 | Team storage-convention one-pager (required items 1 to 7) plus a 3-minute readout | One page | Team activity | End of day |
-| 4 | (Optional) Athena, Athena JOINs, or Bucket Lock extension notes appended to `day4_lab.md` | Markdown | Optional | End of day |
+| 4 | (Optional) S3, Athena, Athena JOINs, Glue Crawler, or Bucket Lock extension notes appended to `day4_lab.md` | Markdown | Optional | End of day |
 
 ---
 
 ## How the day fits together
 
 The day follows **Place → Organize → Protect → Query → Operate**. The landing-zone lab builds and secures the storage layer; the query-in-place lab shows how an engine reads files where they rest (schema-on-read); the team activity turns those ideas into a concrete storage contract that becomes the input to the Day 5 NYC Taxi pipeline. Branch-level architecture (ETL/ELT, dimensional modeling, lakehouse internals) is awareness-level today and gets its full treatment in Week 3.
+
+Use the Day 4 quiz early on Day 5 or as an end-of-day check if you want retrieval practice before students move from storage design into full pipeline architecture.
 
 ## Permissions and fallbacks
 
