@@ -149,8 +149,8 @@ Processed bucket (`techcatalyst-de-2026-orlando-processed`):
 - [x] Commands run or observed
 - [x] Q1 through Q7 answered
 - [x] All four Predict/Observe responses completed
-- [ ] Lifecycle JSON or screenshot included
-- [ ] Both bucket screenshots included
+- [x] Lifecycle JSON or screenshot included
+- [x] Both bucket screenshots included
 
 ### GCS to S3 Comparison
 
