@@ -15,7 +15,7 @@
 | What are the zones, left to right (ingest, store, transform, serve)? | Ingest → Store → Transform → Serve (with Orchestration coordinating the batch side). Ingest: user queries flow through API Gateway → OpenSearch → Kinesis → Firehose → Lambda compress → lands in S3. Store: S3 holds data at three stages (raw logs, Parquet, clustered output), with Glue Catalog making each stage queryable. Transform: Glue consolidates raw to Parquet, K-means clusters the queries, Athena pulls top-N per cluster, Bedrock classifies them. Serve: trending queries land in DynamoDB and get served back to users and analysts via Lambda + API Gateway. Orchestration: EventBridge triggers Step Functions daily to coordinate the batch workflow. |
 | Name the services in each zone | Ingest: Amazon OpenSearch, API Gateway, Kinesis Data Streams, Data Firehose, Lambda (compress). Store: S3 (three stages: raw, Parquet, clustered), Glue Catalog/crawlers. Transform: AWS Glue jobs, Athena, Lambda, Bedrock. Serve: DynamoDB, Lambda, API Gateway. Orchestration: EventBridge, Step Functions. |
 | Where does data quality get checked (if shown)? | Not explicitly shown as a quality gate. The Glue consolidation step (step 8, raw → Parquet) is where bad data would likely get caught or filtered out, and the crawlers (steps 7, 9, 11) enforce schema via the catalog. |
-| Where is sensitive data or access control handled (if shown)? | Not explicitly called out in the diagram. Access control would be handled by IAM policies on the services, but the architecture doesn't show specific PII handling or encryption. |
+| Where is sensitive data or access control handled (if shown)? | Not explicitly called out in the diagram, but it would logically sit at the ingestion layer, around the API Gateway/Cognito step where users are authenticated and queries first enter the system. That's where you'd want to filter or mask any sensitive content before it gets logged and flows downstream. |
 | What looks like the top cost driver? | Probably the AWS Glue jobs (steps 8 and 10, running daily transforms on all the query logs) and the Amazon Bedrock invocations (step 13, LLM calls to classify each cluster). |
 | Is it batch, streaming, or both? | Both. Streaming: steps 1-5, query logs flow through Kinesis in near-real-time (buffered every 15 min by Firehose). Batch: step 6 onward, a daily EventBridge scheduler triggers Step Functions which kicks off the Glue jobs, clustering, and Bedrock classification. |
 
@@ -23,13 +23,13 @@
 
 ## Part 3: Map It to Medallion
 
-**Bronze (raw, as-landed):** Raw compressed query logs in S3 (output from steps 4-5, Firehose/Lambda, before any transformation).
+**Bronze (raw, as-landed):** Steps 4-7. Firehose buffers the logs, Lambda compresses them, they land in S3 as raw logs, and the Glue crawler catalogs them. Nothing has been transformed yet.
 
-**Silver (cleaned, conformed):** Consolidated Parquet files in S3 (after step 8, the Glue consolidation job transforms and structures the raw logs).
+**Silver (cleaned, conformed):** Steps 8-9. The Glue consolidation job transforms raw logs into structured Parquet files in S3, and the crawler catalogs the Parquet output.
 
-**Gold (business-ready):** Clustered and classified trending queries stored in DynamoDB (output of steps 10-13, K-means clustering + Bedrock classification), ready to be served to users and analysts.
+**Gold (business-ready):** Steps 10-13. K-means clustering groups the queries, the crawler catalogs the clusters, Athena pulls the top-N per cluster, and Bedrock classifies them. The final trending queries land in DynamoDB, ready to be served to users and analysts.
 
-**Where would a malformed file go?** The architecture doesn't explicitly show a quarantine path. I would add a dead-letter or quarantine prefix in S3 where the Glue consolidation job could route malformed records instead of dropping them silently.
+**Where would a malformed file go?** The architecture doesn't explicitly show a quarantine path. It would likely get caught around step 8, when the Glue consolidation job tries to transform raw logs into Parquet. I would add a dead-letter or quarantine prefix in S3 at that step where the job could route malformed records instead of dropping them silently.
 
 **Q:** Does this architecture follow medallion thinking, a different layering, or no clear layering?
 
