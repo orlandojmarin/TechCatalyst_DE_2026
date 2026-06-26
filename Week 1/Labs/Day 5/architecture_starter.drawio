@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pipeline Architecture" id="arch1">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="z1" value="INGEST" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#B22222;fillColor=#FBFAF8;strokeColor=#DDD8D2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="240" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="z2" value="LAKE — MEDALLION (bronze / silver)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#B22222;fillColor=#FBFAF8;strokeColor=#DDD8D2;" vertex="1" parent="1">
+          <mxGeometry x="320" y="80" width="260" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="z3" value="TRANSFORM" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#B22222;fillColor=#FBFAF8;strokeColor=#DDD8D2;" vertex="1" parent="1">
+          <mxGeometry x="620" y="80" width="240" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="z4" value="WAREHOUSE (gold)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#B22222;fillColor=#FBFAF8;strokeColor=#DDD8D2;" vertex="1" parent="1">
+          <mxGeometry x="900" y="80" width="220" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="z5" value="SERVE" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#B22222;fillColor=#FBFAF8;strokeColor=#DDD8D2;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="80" width="200" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="ex1" value="TLC source&#10;(monthly parquet)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F4F0;strokeColor=#B22222;" vertex="1" parent="1">
+          <mxGeometry x="70" y="160" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="note1" value="Replace/extend these boxes. Label EVERY arrow with: what moves · format · cadence. Mark ⚠ quality checks and 🔒 PII handling." style="text;html=1;align=left;verticalAlign=top;fontColor=#6B6B6B;" vertex="1" parent="1">
+          <mxGeometry x="40" y="620" width="700" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

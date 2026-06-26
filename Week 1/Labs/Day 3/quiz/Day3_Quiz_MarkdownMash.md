@@ -66,3 +66,10 @@
 - [x] Stopping a Codespace when you are not using it
 - [ ] Deleting your repository
 ::time=25
+
+## Q12: Which two tools, used together, give you both an isolated environment and package management?
+- [ ] conda alone
+- [ ] uv alone
+- [x] venv plus pip
+- [ ] git plus pip
+::time=25
