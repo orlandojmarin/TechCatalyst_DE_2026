@@ -35,4 +35,4 @@
 
 - Data question: Why are all 5 store regions equally represented (3 orders each)? Is this expected, or could some orders be missing due to the pipeline errors?
 - Operations question: The source API timed out 4 times over ~20 minutes. Is there a retry limit, and should the pipeline fail fast instead of continuing when the API is unreachable?
-- Question for the business stakeholder: Are orders from all 5 stores expected to arrive in equal volumes, or should some regions have more activity than others?
+- Question for the business stakeholder: Do orders above $100 (like O1008 and O1012) require a different approval or fulfillment process, and should we flag them automatically?
