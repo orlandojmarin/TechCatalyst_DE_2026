@@ -1,0 +1,5 @@
+return_id,order_id,reason,status
+R9001,O1002,damaged,approved
+R9002,O1009,wrong_item,pending
+R9003,O1011,late_delivery,approved
+R9004,O1004,customer_changed_mind,rejected

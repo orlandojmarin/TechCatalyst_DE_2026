@@ -1,0 +1,16 @@
+2026-06-28T06:00:01 INFO  batch started
+2026-06-28T06:00:10 INFO  reading orders file
+2026-06-28T06:00:22 ERROR connection timeout to source api
+2026-06-28T06:01:03 INFO  retry started
+2026-06-28T06:01:24 ERROR connection timeout to source api
+2026-06-28T06:02:12 ERROR schema mismatch in column amount
+2026-06-28T06:03:45 INFO  validation retry started
+2026-06-28T06:04:18 ERROR schema mismatch in column amount
+2026-06-28T06:05:55 ERROR auth token expired
+2026-06-28T06:08:03 INFO  partial load written
+2026-06-28T06:10:44 ERROR connection timeout to source api
+2026-06-28T06:11:07 error auth token expired
+2026-06-28T06:13:21 ERROR permission denied writing archive
+2026-06-28T06:15:31 ERROR schema mismatch in column amount
+2026-06-28T06:18:45 ERROR connection timeout to source api
+2026-06-28T06:20:00 INFO  daily summary written

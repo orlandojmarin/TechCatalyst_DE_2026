@@ -1,0 +1,23 @@
+# Cron Schedule Practice
+
+Write each schedule in plain English. Then write one risk or logging note for the job.
+
+1. 0 6 * * * bash /home/student/check_orders.sh >> /home/student/check_orders.log 2>&1
+
+Plain English:
+Risk or logging note:
+
+2. */15 * * * * python /home/student/poll_api.py >> /home/student/poll_api.log 2>&1
+
+Plain English:
+Risk or logging note:
+
+3. 30 2 1 * * bash /home/student/monthly_archive.sh >> /home/student/monthly_archive.log 2>&1
+
+Plain English:
+Risk or logging note:
+
+4. 0 8 * * 1 bash /home/student/weekly_report.sh >> /home/student/weekly_report.log 2>&1
+
+Plain English:
+Risk or logging note:

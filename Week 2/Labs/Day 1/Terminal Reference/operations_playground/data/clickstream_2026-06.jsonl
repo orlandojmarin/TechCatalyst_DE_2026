@@ -1,0 +1,6 @@
+{"event_id":"E1","store":"NORTH","event":"view","ts":"2026-06-28T08:00:01"}
+{"event_id":"E2","store":"SOUTH","event":"cart","ts":"2026-06-28T08:00:15"}
+{"event_id":"E3","store":"EAST","event":"purchase","ts":"2026-06-28T08:01:05"}
+{"event_id":"E4","store":"WEST","event":"view","ts":"2026-06-28T08:01:45"}
+{"event_id":"E5","store":"CENTRAL","event":"view","ts":"2026-06-28T08:02:10"}
+{"event_id":"E6","store":"NORTH","event":"purchase","ts":"2026-06-28T08:04:22"}

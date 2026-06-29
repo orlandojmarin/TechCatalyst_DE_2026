@@ -1,0 +1,3 @@
+Orders file arrived before 6 AM.
+Returns file arrived after the first validation attempt.
+Archive write failed once and needs follow-up.
