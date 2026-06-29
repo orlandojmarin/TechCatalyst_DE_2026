@@ -18,7 +18,7 @@ Theme: what is data engineering, why cloud matters, and how we set up — ending
 | :--- | :--- | :--- |
 | 1 | DE foundations: data shapes, formats, batch vs streaming, modern data stack | Activities: Analytics in Action; Car Insurance case study |
 | 2 | Cloud fundamentals: IaaS/PaaS/SaaS, GCP↔AWS map, IAM, billing | Guided BigQuery Sandbox preview using Citi Bike public data; architect-scenarios synthesis |
-| 3 | Toolkit: VS Code, Codespaces, Python venv, Git first contact | Setup lab (pairs) — verified environment, first push |
+| 3 | Toolkit: VS Code, Linux terminal, UV (Python), Git and GitHub | Setup lab (pairs) — local project, environments, first push to GitHub |
 | 4 | Object storage: GCS deep dive, security, lifecycle, S3 comparison | Landing zone lab; team storage-layout design |
 | 5 | Architectures: Lambda, Kappa, Medallion; diagram grammar; Draw.io | **Week 1 deliverable:** team architecture + narrative |
 

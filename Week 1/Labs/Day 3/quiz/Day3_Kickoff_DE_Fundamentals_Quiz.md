@@ -1,4 +1,4 @@
-# Day 3 Kickoff: Data Engineering Fundamentals — Pipeline Warm-Up
+# Day 3 Kickoff: Data Engineering Fundamentals : Pipeline Warm-Up
 # Score 100
 
 ## Q1: In one sentence, a data engineer's main job is to…
@@ -9,16 +9,16 @@
 ::time=35
 
 ## Q2: Your team extracts raw data, dumps it into the warehouse first, and transforms it later inside the warehouse. What pattern is that?
-- [ ] ETL — transform before loading
-- [x] ELT — load first, transform later
-- [ ] FTP — file transfer pirate
-- [ ] LTE — load, then email
+- [ ] ETL : transform before loading
+- [x] ELT : load first, transform later
+- [ ] FTP : file transfer pirate
+- [ ] LTE : load, then email
 ::time=35
 
 ## Q3: A retailer wants a real-time fraud alert the instant a card is swiped. Batch or streaming?
-- [x] Streaming — process each event as it happens
-- [ ] Batch — wait until midnight and run it all at once
-- [ ] Neither — call the customer and ask
+- [x] Streaming : process each event as it happens
+- [ ] Batch : wait until midnight and run it all at once
+- [ ] Neither : call the customer and ask
 - [ ] Both, just to be safe
 ::time=35
 
@@ -59,7 +59,7 @@
 
 ## Q9: What does a schema describe?
 - [ ] The color theme of your dashboard
-- [x] The structure of the data — its fields, types, and how they're organized
+- [x] The structure of the data : its fields, types, and how they're organized
 - [ ] How fast the network is
 - [ ] The price of cloud storage
 ::time=35

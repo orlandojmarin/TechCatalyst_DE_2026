@@ -60,11 +60,11 @@
 - [ ] You need to restart the terminal
 - [ ] `.gitignore` deletes the file from disk
 ::time=25
-## Q11: On the GitHub free tier, what protects your Codespaces core-hours?
-- [ ] Nothing; they never run out
-- [ ] Committing more often
-- [x] Stopping a Codespace when you are not using it
-- [ ] Deleting your repository
+## Q11: What habit protects your local project from environment and secret mistakes?
+- [ ] Committing `.venv/` so GitHub stores the environment
+- [ ] Running `git init` again whenever something breaks
+- [x] Adding `.venv/`, `.env`, caches, and logs to `.gitignore`
+- [ ] Keeping all work in the Downloads folder
 ::time=25
 
 ## Q12: Which two tools, used together, give you both an isolated environment and package management?

@@ -69,7 +69,7 @@ Scope is the Day 3 solo workflow (environments and Git through the remote). Bran
 - C. Create a second unrelated history in the browser
 - D. Clone it before adding the remote
 
-**Answer:** A. An empty remote lets your existing local history push without an unrelated history getting in the way. (If you instead create the Codespace from a repo that has a README, you simply pull or add on top; that is also fine.)
+**Answer:** A. An empty remote lets your existing local history push without an unrelated history getting in the way.
 
 ### Q8. Your push is rejected because the remote has commits you do not have locally. Safest next step?
 
@@ -98,14 +98,14 @@ Scope is the Day 3 solo workflow (environments and Git through the remote). Bran
 
 **Answer:** B. `.gitignore` only affects untracked files. An already-committed secret stays in history; rotate it.
 
-### Q11. On the GitHub free tier, what protects your Codespaces core-hours?
+### Q11. What habit protects your local project from environment and secret mistakes?
 
-- A. Nothing; they never run out
-- B. Stopping a Codespace when you are not using it
-- C. Committing more often
-- D. Deleting your repository
+- A. Committing `.venv/` so GitHub stores the environment
+- B. Adding `.venv/`, `.env`, caches, and logs to `.gitignore`
+- C. Running `git init` again whenever something breaks
+- D. Keeping all work in the Downloads folder
 
-**Answer:** B. Core-hours bill on machine size times active time; stop idle Codespaces (push before deleting to free storage safely).
+**Answer:** B. Local project folders can accidentally include environments, secrets, caches, and logs. `.gitignore` keeps those out of commits when they are still untracked.
 
 ### Q12. Which two tools, used together, give you both an isolated environment and package management?
 
