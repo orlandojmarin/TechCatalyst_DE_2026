@@ -1,0 +1,11 @@
+claim_id,policy_type,reserve,paid
+CLM-7001,auto,5000,1200
+CLM-7002,property,12000,11800
+CLM-7003,auto,3000,500
+CLM-7004,liability,20000,4000
+CLM-7005,property,15000,16200
+CLM-7006,auto,4500,4500
+CLM-7007,liability,11000,9800
+CLM-7008,property,9000,2200
+CLM-7009,auto,6200,3100
+CLM-7010,liability,18000,2500

@@ -1,0 +1,7 @@
+[
+  {"claim_id": "CLM-8001", "policy_type": "auto", "payments": [{"kind": "medical", "amount": 800}, {"kind": "rental", "amount": 400}]},
+  {"claim_id": "CLM-8002", "policy_type": "property", "payments": [{"kind": "property", "amount": 5000}, {"kind": "property", "amount": 2500}]},
+  {"claim_id": "CLM-8003", "policy_type": "liability", "payments": []},
+  {"claim_id": "CLM-8004", "policy_type": "auto", "payments": [{"kind": "medical", "amount": 1500}]},
+  {"claim_id": "CLM-8005", "policy_type": "property", "payments": [{"kind": "property", "amount": 3200}, {"kind": "medical", "amount": 800}]}
+]
