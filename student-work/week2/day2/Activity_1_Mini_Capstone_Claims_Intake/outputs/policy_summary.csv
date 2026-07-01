@@ -1,0 +1,5 @@
+policy_type,count,total_reserve,total_paid,loss_ratio_pct
+auto,8,31500.0,17900.0,56.83
+liability,3,39000.0,12300.0,31.54
+property,4,69500.0,57200.5,82.3
+unknown,1,4000.0,500.0,12.5

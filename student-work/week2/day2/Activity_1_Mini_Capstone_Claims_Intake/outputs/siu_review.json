@@ -1,0 +1,16 @@
+[
+  {
+    "claim_id": "CLM-1009",
+    "reserve": 25000.0,
+    "total_paid": 26500.0,
+    "overage": 1500.0,
+    "payment_count": 2
+  },
+  {
+    "claim_id": "CLM-1016",
+    "reserve": 18000.0,
+    "total_paid": 19250.0,
+    "overage": 1250.0,
+    "payment_count": 2
+  }
+]
