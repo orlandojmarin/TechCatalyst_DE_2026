@@ -55,12 +55,13 @@ Instead of returning each loss ratio into a variable, append it to a global list
 named `loss_ratios`. Write this logic in a new function
 `calculate_loss_ratio_list`, then call it for all three years and print the list.
 
-## Hints
+## Hint
 
 * The `round_to=2` default means a caller can write
   `calculate_loss_ratio(2900, 4500)` and still get two decimals.
 * Refer to the official [`round()` documentation](https://docs.python.org/3/library/functions.html#round).
-* Expected output:
+
+## Expected Output
 
 ```text
 Loss Ratio for 2024: 64.44%
@@ -69,6 +70,15 @@ Loss Ratio for 2026: 84.0%
 Worst loss ratio: 84.0%
 Loss ratios: [64.44, 75.0, 84.0]
 ```
+
+## Success Criteria
+
+- `calculate_loss_ratio` returns a percentage rounded to `round_to` decimals,
+  and works with its default `round_to=2` when the caller omits it.
+- Your three printed loss ratios and the worst-ratio line match the Expected
+  Output exactly.
+- (Challenge) `loss_ratios` is built by a separate `calculate_loss_ratio_list`
+  function, not typed out by hand.
 
 ## Stretch: `*args`, `**kwargs`, and your own module
 

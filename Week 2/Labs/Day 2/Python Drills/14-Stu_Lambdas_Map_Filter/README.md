@@ -33,12 +33,17 @@ The `claims` list is provided.
 4. Use `filter` to keep only the open claims. Print their ids.
 5. Combine `filter` and `map` to get the ids of claims where `paid` exceeds
    `reserve`.
+6. Rewrite step 4 as a list comprehension:
+   `[c["claim_id"] for c in claims if c["status"] == "open"]`. Print it next to
+   the `filter` version and confirm they match. Comprehensions are the more
+   idiomatic, more readable choice in everyday Python; you still need `map` and
+   `filter` because they are the model PySpark uses (Week 5).
 
 ### Stretch
 
-6. Rewrite step 4 as a list comprehension (see Advanced Track A1). Comprehensions
-   are usually more readable in Python; `map`/`filter` matter because they are the
-   model PySpark uses.
+7. Write a dict comprehension mapping `claim_id` to `reserve` for only the open
+   claims: `{c["claim_id"]: c["reserve"] for c in claims if c["status"] ==
+   "open"}`. See `Advanced Track/A1-Stu_Comprehensions` for more practice.
 
 ## Expected Output
 
@@ -48,6 +53,7 @@ Ids: ['CLM-9001', 'CLM-9002', 'CLM-9003', 'CLM-9004', 'CLM-9005']
 Reserves +10%: [5500.0, 13200.0, 22000.0, 3300.0, 16500.0]
 Open claim ids: ['CLM-9001', 'CLM-9003', 'CLM-9004', 'CLM-9005']
 Reserve breaches: ['CLM-9005']
+Open claim ids (comprehension): ['CLM-9001', 'CLM-9003', 'CLM-9004', 'CLM-9005']
 ```
 
 ## Success Criteria
@@ -55,6 +61,8 @@ Reserve breaches: ['CLM-9005']
 - You use `lambda` as a sort key, and `map` and `filter` each at least once.
 - You wrap `map` and `filter` in `list(...)` to see the results (they return lazy
   iterators).
+- Your step 6 list comprehension produces the exact same ids as step 4's
+  `filter`, written without `filter` or `lambda`.
 - You can explain when a comprehension would read better than `map`/`filter`.
 
 ## Hint

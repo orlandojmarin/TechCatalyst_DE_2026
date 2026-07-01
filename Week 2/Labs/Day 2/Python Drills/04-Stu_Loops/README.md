@@ -57,6 +57,14 @@ Processing today's batch:
 Use `enumerate` so each batch line shows the index and a claim id from a list of
 claim ids, instead of a plain counter.
 
+## Success Criteria
+
+- Your first loop prints one "Give me a X!" / "X!" pair per letter in `stage`,
+  then a line confirming what the stage spells.
+- Your second loop prints exactly 5 "Claim N of 5 processed" lines.
+- (Challenge) Each batch line shows both the index and a real claim id, produced
+  with `enumerate`, not a manually incremented counter.
+
 ## Hint
 
 A `for` loop walks a string one character at a time. `range(1, 6)` gives you the

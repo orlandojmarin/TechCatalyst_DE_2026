@@ -46,3 +46,14 @@ audit adjuster accuracy.
 A dictionary that maps each level to a number (`{"low": 1, "medium": 2,
 "high": 3}`) lets you compare severities with `<` and `>` instead of writing every
 combination by hand.
+
+## Success Criteria
+
+- The result depends on `random.choice` and your own input, so there is no single
+  fixed "Expected Output." Instead, run the program at least four times and
+  confirm you can produce all four outcomes: invalid input, correct triage,
+  under-triage, and over-triage.
+- Invalid input (anything other than `low`, `medium`, or `high`) is handled and
+  does not crash the program.
+- (Challenge) Your five-round loop prints a final count of how many rounds you
+  triaged correctly.

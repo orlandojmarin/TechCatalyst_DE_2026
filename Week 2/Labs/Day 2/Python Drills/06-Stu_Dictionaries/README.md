@@ -59,9 +59,7 @@ Group claims by their reserve tier and report book-level metrics.
   - `moderate`: reserve greater than or equal to \$1,000 and less than \$5,000
   - `minor`: reserve less than \$1,000
 
-## Hint
-
-Your Challenge results should look like the following:
+## Expected Output
 
 ```text
 Total Reserve: $151,750
@@ -75,6 +73,14 @@ Major claims: ['CLM-2003', 'CLM-2004', 'CLM-2005', 'CLM-2006', 'CLM-2007', 'CLM-
 Moderate claims: ['CLM-2008', 'CLM-2009', 'CLM-2010']
 Minor claims: ['CLM-2011', 'CLM-2012', 'CLM-2014']
 ```
+
+## Success Criteria
+
+- `reserves` reflects the CLM-2003 update, the new CLM-2016, and the deleted
+  CLM-2013, for exactly 15 claims total.
+- Your Challenge totals, average, largest, and smallest match the Expected
+  Output exactly.
+- Every claim appears in exactly one tier list, and no claim is missing.
 
 ## Stretch: sets
 

@@ -39,16 +39,30 @@ Roll up the total amount paid for each claim into a `results` dictionary.
 
 * Round to two decimals and store it in `results` under the claim id.
 
-## Hint
-
-Your `results` should look like the following:
+## Expected Output
 
 ```text
 {'CLM-3001': 2750.0, 'CLM-3002': 5000.0, 'CLM-3003': 1400.0, 'CLM-3004': 5000.0}
 ```
 
+## Success Criteria
+
+- `claim_payments` contains every new payment appended to the correct claim's
+  list, in `[date, kind, amount]` order.
+- Your `results` dict matches the Expected Output exactly, amounts rounded to
+  two decimals.
+- You can explain why this nested shape (a dict of lists of records) is the
+  same shape a REST API returns tomorrow.
+
+## Hint
+
+<details>
+<summary>How do I sum the nested payment amounts?</summary>
+
 To sum one field across a list of records, use a generator:
 `sum(record[2] for record in records)`.
+
+</details>
 
 ## Bridge to Day 3 and the Mini-Capstone
 

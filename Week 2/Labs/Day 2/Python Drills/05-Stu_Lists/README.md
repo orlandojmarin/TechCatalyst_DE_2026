@@ -48,6 +48,36 @@ As the adjuster works the queue, help them update it.
 
 * The adjuster picks up the last claim in the queue, so remove the last item.
 
+## Expected Output
+
+```text
+First two: ['CLM-1001', 'CLM-1002']
+All except first two: ['CLM-1003', 'CLM-1004', 'CLM-1005', 'CLM-1006', 'CLM-1007']
+Every other (from 2nd): ['CLM-1002', 'CLM-1004', 'CLM-1006']
+After append CLM-1008: ['CLM-1001', 'CLM-1002', 'CLM-1003', 'CLM-1004', 'CLM-1005', 'CLM-1006', 'CLM-1007', 'CLM-1008']
+After reopening CLM-1004: ['CLM-1001', 'CLM-1002', 'CLM-1003', 'CLM-1004-REOPEN', 'CLM-1005', 'CLM-1006', 'CLM-1007', 'CLM-1008']
+Total claims: 8
+```
+
+Challenge:
+
+```text
+Index of CLM-1004-REOPEN: 3
+After removing CLM-1006 by value: ['CLM-1001', 'CLM-1002', 'CLM-1003', 'CLM-1004-REOPEN', 'CLM-1005', 'CLM-1007', 'CLM-1008']
+After removing CLM-1001 by index: ['CLM-1002', 'CLM-1003', 'CLM-1004-REOPEN', 'CLM-1005', 'CLM-1007', 'CLM-1008']
+After removing the last claim: ['CLM-1002', 'CLM-1003', 'CLM-1004-REOPEN', 'CLM-1005', 'CLM-1007']
+```
+
+## Success Criteria
+
+- Your slices for "first two," "all except first two," and "every other" match
+  the Expected Output exactly.
+- `CLM-1004` is updated in place to `CLM-1004-REOPEN` (still 8 items), not
+  appended as a new item.
+- (Challenge) Your queue ends with exactly 5 claims, in the order shown above.
+- You can explain the difference between removing by value (`.remove()`) and
+  removing by index (`del` or `.pop(i)`).
+
 ## Stretch: tuples
 
 A tuple is an immutable record (it cannot be changed after creation). Tuples are

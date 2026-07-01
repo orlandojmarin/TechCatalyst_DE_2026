@@ -41,6 +41,26 @@ Use a [format specifier](https://peps.python.org/pep-0498/#format-specifiers)
 with the f-string to print the percent change with two decimal places:
 `24.00%`. Print the variance as currency with a thousands separator: `$1,200.00`.
 
+## Expected Output
+
+```text
+5000.0 6200.0 24.0
+```
+
+Challenge (formatted):
+
+```text
+Variance: $1,200.00
+Percent change: 24.00%
+```
+
+## Success Criteria
+
+- Your script prints `reserve`, `settlement`, and `percent_change` without errors.
+- `percent_change` computes to exactly `24.0` before formatting.
+- The Challenge line uses a format specifier so the percent shows `24.00%` and the
+  variance shows `$1,200.00`, not the raw float.
+
 ## Hint
 
 For additional help with f-strings, visit

@@ -30,3 +30,13 @@ uv run python conditionals.py
 For any branch you predicted wrong, write one sentence explaining which operator
 or comparison you misread. Reading conditionals correctly is how you debug routing
 logic in a real pipeline.
+
+## Success Criteria
+
+- You wrote down a prediction for every branch before running the file (this is a
+  predict-then-verify drill, so there is no separate "Expected Output" to check
+  against; the file's own printed output is the answer key).
+- After running it, every prediction matches the actual output, or you can name
+  exactly which comparison or operator you misread.
+- You can explain, in your own words, the difference between `==` and `=`, and
+  between `and`/`or` short-circuiting.

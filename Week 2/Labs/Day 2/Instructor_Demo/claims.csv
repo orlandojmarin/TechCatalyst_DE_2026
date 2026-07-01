@@ -1,0 +1,9 @@
+claim_id,policy_type,status,reserve,paid
+CLM-D01,auto,open,5000,1200
+CLM-D02,property,closed,12000,11800
+CLM-D03,liability,open,20000,4000
+CLM-D04,auto,denied,3000,0
+CLM-D05,property,open,15000,16200
+CLM-D06,auto,open,4500,4500
+CLM-D07,liability,open,11000,9800
+CLM-D08,property,open,9000,2200

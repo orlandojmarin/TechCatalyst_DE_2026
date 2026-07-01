@@ -34,7 +34,10 @@ Copy `Unsolved/collections_demo.py` into your `student-work/week2/day2` project.
 
 ### Challenge
 
-4. Combine the count and the sum to print the **average** paid per policy type.
+4. Combine the count and the sum to print the **average** paid per policy type,
+   sorted alphabetically by policy type name (`sorted(paid_by_type)`). The
+   average line is the one place in this drill where the output is sorted
+   instead of shown in insertion order.
 
 ## Expected Output
 

@@ -25,3 +25,10 @@ claims = [
 
 
 # TODO 5: combine filter and map to get the ids of claims where paid > reserve
+
+
+# TODO 6: rewrite step 4 as a list comprehension, print it, and confirm it
+# matches step 4's output exactly
+
+
+# STRETCH: write a dict comprehension mapping claim_id to reserve, open claims only

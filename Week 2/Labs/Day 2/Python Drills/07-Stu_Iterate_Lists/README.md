@@ -36,7 +36,7 @@ Copy `Unsolved/claims_cashflow.py` to your project and complete the following:
   * Number and percentage of deficit days
   * The surplus days list and the deficit days list
 
-## Hints
+## Hint
 
 Use these formulas:
 
@@ -49,7 +49,7 @@ Use these formulas:
 * Best surplus = largest number in `surplus_days`
 * Percentage of surplus days = surplus days divided by total days, times 100
 
-Your results should look similar to the following:
+## Expected Output
 
 ```text
 ---------Summary Statistics----------
@@ -67,6 +67,14 @@ Daily Average: 56.95
 Worst Deficit: -650
 Best Surplus: 613
 ```
+
+## Success Criteria
+
+- Your `total`, `count`, and per-day surplus/deficit classification match the
+  Expected Output exactly.
+- Every day in `daily_net` appears in exactly one of `surplus_days` or
+  `deficit_days`.
+- (Stretch) Your walrus-operator loop stops at day 4 with cumulative `734`.
 
 ## Stretch (modern Python)
 
