@@ -1,6 +1,6 @@
 # Day 1 Instructor Answer Key
 
-Instructor-only. Do not distribute to students. This is the single answer key for every on-your-own and challenge task across Week 2 Day 1, with the answer plus a short teaching explanation you can read aloud. The detailed per-task files (`cli_hunt_answer_key.md`, `cron_schedule_answer_key.md`) remain in this folder as backups; everything is gathered here.
+Instructor-only. Do not distribute to students. This is the single answer key for every on-your-own and challenge task across Week 2 Day 1, with the answer plus a short teaching explanation you can read aloud. The detailed per-task files (`Activity_2_cli_hunt_answer_key.md`, `Activity_3_cron_answer_key.md`) remain in this folder as backups; everything is gathered here.
 
 Reveal timing:
 - Reveal Activity 3 Part B after pairs attempt all three metrics.
@@ -142,7 +142,7 @@ Top errors:
    2 auth token expired
 ```
 
-The complete runnable reference is `solutions/summarize_hunt_solution.sh`, which now includes Parts A, B, and C (the guardrail is wired in at the end).
+The complete runnable reference is `solutions/Activity_3_summarize_hunt_solution.sh`, which now includes Parts A, B, and C (the guardrail is wired in at the end).
 
 ---
 

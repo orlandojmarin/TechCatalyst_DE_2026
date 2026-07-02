@@ -1,0 +1,128 @@
+[
+  {
+    "policyholder_id": "PH101",
+    "name": "Maria Gomez",
+    "state": "VT",
+    "claims": [
+      {
+        "claim_id": "CLM2001",
+        "claim_type": "Renters",
+        "amount": 2847.1,
+        "date": "2025-01-20"
+      }
+    ]
+  },
+  {
+    "policyholder_id": "PH102",
+    "name": "Liam Chen",
+    "state": "NY",
+    "claims": []
+  },
+  {
+    "policyholder_id": "PH103",
+    "name": "Ava Patel",
+    "state": "CT",
+    "claims": []
+  },
+  {
+    "policyholder_id": "PH104",
+    "name": "Noah Johnson",
+    "state": "RI",
+    "claims": [
+      {
+        "claim_id": "CLM2002",
+        "claim_type": "Home",
+        "amount": 965.49,
+        "date": "2025-05-16"
+      },
+      {
+        "claim_id": "CLM2003",
+        "claim_type": "Auto",
+        "amount": 10260.71,
+        "date": "2025-01-23"
+      },
+      {
+        "claim_id": "CLM2004",
+        "claim_type": "Auto",
+        "amount": 8199.99,
+        "date": "2025-03-07"
+      }
+    ]
+  },
+  {
+    "policyholder_id": "PH105",
+    "name": "Emma Rossi",
+    "state": "VT",
+    "claims": []
+  },
+  {
+    "policyholder_id": "PH106",
+    "name": "Lucas Kim",
+    "state": "VT",
+    "claims": [
+      {
+        "claim_id": "CLM2005",
+        "claim_type": "Auto",
+        "amount": 7546.76,
+        "date": "2025-04-23"
+      }
+    ]
+  },
+  {
+    "policyholder_id": "PH107",
+    "name": "Sofia Rivera",
+    "state": "MA",
+    "claims": [
+      {
+        "claim_id": "CLM2006",
+        "claim_type": "Renters",
+        "amount": 2689.83,
+        "date": "2025-07-08"
+      },
+      {
+        "claim_id": "CLM2007",
+        "claim_type": "Renters",
+        "amount": 3092.63,
+        "date": "2025-04-17"
+      }
+    ]
+  },
+  {
+    "policyholder_id": "PH108",
+    "name": "Ethan Brooks",
+    "state": "VT",
+    "claims": [
+      {
+        "claim_id": "CLM2008",
+        "claim_type": "Umbrella",
+        "amount": 3999.27,
+        "date": "2025-07-17"
+      },
+      {
+        "claim_id": "CLM2009",
+        "claim_type": "Auto",
+        "amount": 408.99,
+        "date": "2025-06-14"
+      }
+    ]
+  },
+  {
+    "policyholder_id": "PH109",
+    "name": "Mia Nguyen",
+    "state": "CT",
+    "claims": []
+  },
+  {
+    "policyholder_id": "PH110",
+    "name": "Oliver Scott",
+    "state": "CT",
+    "claims": [
+      {
+        "claim_id": "CLM2010",
+        "claim_type": "Renters",
+        "amount": 1849.74,
+        "date": "2025-04-05"
+      }
+    ]
+  }
+]

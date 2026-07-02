@@ -37,9 +37,9 @@ By the end of this lab day, you will be able to:
 | `starter/summarize_hunt_starter.sh` | Starter Bash script for Activity 3 |
 | `starter/cron_schedule_practice.txt` | Cron expression practice for Activity 3 |
 | `solutions/Instructor_Answer_Key.md` | Single instructor answer key for the day: Activity 2 hunt, Activity 3 Parts B to D, and cron, with teaching explanations. Instructor-only. |
-| `solutions/summarize_hunt_solution.sh` | Runnable instructor solution script for Activity 3. Instructor-only. |
-| `solutions/cli_hunt_answer_key.md` | Detailed per-activity backup key for Activity 2 (folded into the consolidated key) |
-| `solutions/cron_schedule_answer_key.md` | Detailed per-activity backup key for cron practice (folded into the consolidated key) |
+| `solutions/Activity_3_summarize_hunt_solution.sh` | Runnable instructor solution script for Activity 3. Instructor-only. |
+| `solutions/Activity_2_cli_hunt_answer_key.md` | Detailed per-activity backup key for Activity 2 (folded into the consolidated key) |
+| `solutions/Activity_3_cron_answer_key.md` | Detailed per-activity backup key for cron practice (folded into the consolidated key) |
 | `Student_Resources.md` | Shell, cron, VS Code, Git, and GitHub references |
 | `Terminal Reference/terminal.md` | Extra terminal walkthrough rewritten for Linux terminal and VS Code |
 | `Terminal Reference/sales.csv` | Existing CSV for Activity 0 command warm-up |

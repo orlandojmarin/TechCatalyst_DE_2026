@@ -2,7 +2,7 @@
 
 For fast finishers. Do the core drills and the mini-capstone first. These drills
 add modern Python you will use constantly as a data engineer. They target the
-Python 3.13 on your VM.
+Python 3.13 environment used in class.
 
 Same workflow as the drills: copy the `Unsolved` file into your
 `student-work/week2/day2` project and write the logic yourself. Do not copy from

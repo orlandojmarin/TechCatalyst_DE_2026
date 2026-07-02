@@ -30,7 +30,7 @@ Team pipeline architecture diagram (Draw.io) + design narrative for the NYC Taxi
 
 - **AI-free zone (Weeks 1–4):** no Copilot/LLM code. Formalized Day 3.
 - Groups of 3–4; daily readouts; every member speaks.
-- Budget alerts before resources; stop Codespaces when done; clean up after every lab.
+- Budget alerts before resources; clean up after every lab.
 
 ## Companion resources
 

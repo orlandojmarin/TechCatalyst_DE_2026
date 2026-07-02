@@ -4,9 +4,11 @@ This is an 8-week Data Engineering Bootcamp curriculum for **TechCatalyst DE 202
 
 ![image-20240612110851319](images/image-20240612110851319.png)
 
-This hands-on program is designed for fresh graduates and junior data engineers (1–2 years of experience). The core objective is to prepare students for production-grade roles by modeling a single, continuous, real-world industry project—the **Large-Scale Data Ingestion & Analytics Pipeline**—thoughtfully mapped across the entire course. 
+This hands-on program is designed for fresh graduates and junior data engineers (1 to 2 years of experience). The core objective is to prepare students for production-grade roles by modeling a single, continuous, real-world industry project: the **Large-Scale Data Ingestion & Analytics Pipeline**, thoughtfully mapped across the entire course.
 
 The 2026 curriculum shifts primary cloud focus to **Google Cloud Platform (GCP)** (with AWS as a secondary conceptual overlay), introduces modern data stack standards with **Snowflake** and **dbt**, integrates **AI-native features** (Cortex AI, Gemini API, and Vertex AI), incorporates **Big Data processing with PySpark & Databricks**, and establishes a strict, scaffolded developer progression to teach solid coding practices before introducing AI coding assistants like **GitHub Copilot**.
+
+![outline](images/outline.png)
 
 ---
 
@@ -42,12 +44,12 @@ These platform facts were verified in June 2026 and supersede any earlier naming
 
 | Platform | What changed / what to teach |
 | :--- | :--- |
-| **GCP DE** | Dataplex renamed **Knowledge Catalog** (Apr 2026). BigQuery began restricting Legacy SQL availability after June 1, 2026 — teach **GoogleSQL only**. **BigQuery Data Engineering Agent** now GA (natural-language pipeline building). Dataflow lineage in Knowledge Catalog is GA. |
-| **GCP AI** | **Vertex AI** rebranded **Gemini Enterprise Agent Platform**; unified **google-genai SDK** replaces the deprecated `google-generativeai` package. Current models: Gemini 2.5 family (stable) and 3.x. Gemini callable from BigQuery SQL (`ML.GENERATE_TEXT` / AI functions) — DE-native GenAI pattern. |
+| **GCP DE** | **Knowledge Catalog** is the current governance catalog name. BigQuery began restricting Legacy SQL availability after June 1, 2026, so teach **GoogleSQL only**. **BigQuery Data Engineering Agent** now GA (natural-language pipeline building). Dataflow lineage in Knowledge Catalog is GA. |
+| **GCP AI** | **Vertex AI** rebranded **Gemini Enterprise Agent Platform**; use the unified **google-genai SDK**. Current models: Gemini 2.5 family (stable) and 3.x. Gemini callable from BigQuery SQL (`ML.GENERATE_TEXT` / AI functions), a DE-native GenAI pattern. |
 | **AWS DE** | Focus on **SageMaker Lakehouse + S3 Tables (managed Iceberg) + Glue**. EMR still valid for the Spark deployment day; **S3 Tables** for Apache Iceberg. |
 | **Snowflake** | **dbt Projects on Snowflake** runs dbt natively (incl. Fusion engine) . **Openflow** (managed NiFi) = ingestion. Cortex: **AISQL functions** (COMPLETE, CLASSIFY, SUMMARIZE…). Use current naming in slides. |
 | **dbt** | **Fusion engine** (Rust, 30× faster parse) + official **VS Code extension** (requires Fusion, free). Will cover dbt with Fusion + VS Code; concepts identical to Core. |
-| **Databricks** | Community Edition is retired → **Free Edition** (serverless which is what we will use in this class). Delta Lake, notebooks, SQL, basic Unity Catalog all work. Jobs/pipelines now branded **Lakeflow**. Certifications are out of scope for this cohort. |
+| **Databricks** | Use **Databricks Free Edition** (serverless), which is what we will use in this class. Delta Lake, notebooks, SQL, basic Unity Catalog all work. Jobs/pipelines now branded **Lakeflow**. Certifications are out of scope for this cohort. |
 
 ---
 
@@ -63,7 +65,7 @@ These platform facts were verified in June 2026 and supersede any earlier naming
 | :--- | :--- | :--- |
 | **Day 1** | Data Primer & DE Roles | Types of data (structured, semi-structured, unstructured), batch vs. streaming concepts, the Modern Data Stack, and roles in DE. |
 | **Day 2** | Cloud Fundamentals | Core concepts: IaaS vs. PaaS vs. SaaS. Conceptual comparison of GCP vs. AWS services. IAM basics and billing management. Guided BigQuery Sandbox preview using Citi Bike public data and the bytes-processed cost model. |
-| **Day 3** | Developer Foundations | VS Code & GitHub Codespaces (with free-tier budget discipline). Python environments: `venv`/`pip` baseline plus `conda` and `uv` awareness. Hands-on **Git/GitHub deep dive** — the solo cycle (init, status, add, commit, diff, log) through the remote (push, pull, clone, fetch). Two labs. |
+| **Day 3** | Developer Foundations | VS Code, Linux terminal, Python environments (`uv`, with `venv`/`pip` context), and Git/GitHub. Hands-on **Git/GitHub deep dive**: the solo cycle (init, status, add, commit, diff, log) through the remote (push, pull, clone, fetch). Two labs. |
 | **Day 4** | Data at Rest | Object-storage architectures (lake/lakehouse/warehouse/mart), storage–compute separation, file formats & physical layout, lifecycle & protection controls. **Labs:** secure GCS landing zone (console + CLI), query-in-place with a BigQuery external table, and a team NYC-Taxi storage-convention design. S3/Azure mappings throughout. |
 | **Day 5** | Data Architectures & Pipeline Thread | Think like an architect: translate business needs into system requirements and a data spec. Pipeline vocabulary, ETL/ELT/Reverse ETL, orchestration, data quality, and data contracts. Core patterns: batch/streaming, Lambda, Kappa, and Medallion (Bronze/Silver/Gold). Architecture diagramming grammar (Draw.io). **Pipeline kickoff:** NYC Taxi dataset introduction. Labs: read a reference architecture, then teams design and defend their end-to-end conceptual pipeline — the living document they revise in Weeks 3, 5, and 7. |
 
@@ -83,10 +85,10 @@ These platform facts were verified in June 2026 and supersede any earlier naming
 | **Day 1** | Linux CLI & Git Collaboration | Shell basics: filesystem commands, pipes (`\|`), searching (`grep`), cron. Git command line: `git init/clone/commit/push`, branching, PRs, and resolving conflicts. |
 | **Day 2** | Python Foundations for DE | Core Python coding: variables, standard data types, collections (lists, dicts, tuples, sets), control flow (loops, conditionals), and custom functions. |
 | **Day 3** | Intermediate Python & File I/O | Object-Oriented Programming (OOP) basics (classes/methods for data models), error handling, reading/writing CSV/JSON files, and making API requests using the `requests` library. |
-| **Day 4** | Pandas & Polars for DE | Intro to pandas DataFrames (reading files, cleaning, filtering, joins, aggregations). Lab: Pull API data, clean with pandas, and land in GCS. 30-min comparison of pandas vs. Polars (syntax and speed). |
+| **Day 4** | Python Drills and Pandas Review | Reinforce Python foundations through drills, then practice pandas DataFrame basics: reading files, cleaning, filtering, joins, and aggregations. The medallion ETL mini-capstone is deferred to Week 3 Day 1. |
 | **Day 5** | *July 3 — Holiday (observed July 4)* | *No class.* |
 
-**Weekly Deliverable:** A hand-written Python script that pulls mock metadata from a public API, performs basic cleaning in pandas, and uploads it to a GCP GCS bucket.
+**Week 2 Checkpoint:** Terminal, Python, API, and pandas practice. No final Week 2 mini-capstone is due on Thursday; the medallion ETL mini-capstone moves to Week 3 Day 1 after the long-weekend review.
 
 ---
 
@@ -96,13 +98,13 @@ These platform facts were verified in June 2026 and supersede any earlier naming
 
 | Day | Topic | Details / Labs |
 | :--- | :--- | :--- |
-| **Day 1** | Modern Data Warehousing | ETL vs. ELT, data lakes vs. data warehouses vs. lakehouses. Schema design: star schemas, snowflake schemas, and columnar storage. |
+| **Day 1** | Terminal, Python, Pandas Review + Medallion ETL Mini-Capstone | Review Week 2 terminal patterns, Python drills, and pandas drills after the break, then complete the deferred medallion ETL mini-capstone. |
 | **Day 2** | GCP BigQuery Foundations | BQ Architecture: storage vs. compute decoupling. Managing datasets and tables (internal vs. external), partitioning, clustering, and console query execution. |
 | **Day 3** | SQL Primer (BigQuery) | Writing queries *by hand* in **GoogleSQL only** (Legacy SQL availability is restricted for many projects after June 1, 2026): SELECT, WHERE, JOINs, GROUP BY, aggregations, and HAVING. Querying the high-volume data loaded into BigQuery. |
 | **Day 4** | Ingestion & Batch Pipelines | Event streaming vs. batch ingestion. Lab: Spin up GCP Pub/Sub topics. Introduction to Apache Beam concepts and running a GCP Dataflow batch pipeline (loading GCS files into BigQuery). |
-| **Day 5** | Orchestration & GCP Governance | Core orchestration concepts. Lab: Introduction to Cloud Composer (Airflow) DAGs. **GCP Security & Governance:** IAM roles, **Knowledge Catalog** (formerly Dataplex) data cataloging, and PII/PHI column-level masking in BigQuery. |
+| **Day 5** | Orchestration & GCP Governance | Core orchestration concepts. Lab: Introduction to Cloud Composer (Airflow) DAGs. **GCP Security & Governance:** IAM roles, **Knowledge Catalog** data cataloging, and PII/PHI column-level masking in BigQuery. |
 
-**Weekly Deliverable:** An end-to-end mini-pipeline: Pub/Sub → Dataflow (scaffolded) → BigQuery, with SQL queries summarizing the loaded dataset, and security policies applied.
+**Weekly Deliverable:** The deferred medallion ETL mini-capstone is completed on Day 1. The Week 3 pipeline deliverable remains Pub/Sub → Dataflow (scaffolded) → BigQuery, with SQL queries summarizing the loaded dataset, and security policies applied.
 
 ---
 
@@ -148,7 +150,7 @@ These platform facts were verified in June 2026 and supersede any earlier naming
 | Day | Topic | Details / Labs |
 | :--- | :--- | :--- |
 | **Day 1** | GenAI Foundations | Landscape: Generative AI ecosystem, Foundation Models, LLM architectures, tokenization, embeddings, and basic prompt engineering. |
-| **Day 2** | Python API Integration | Programmatic AI: accessing LLMs via REST APIs, **google-genai SDK** (unified; the deprecated `google-generativeai` package is not used), and LangChain high-level concepts. |
+| **Day 2** | Python API Integration | Programmatic AI: accessing LLMs via REST APIs, **google-genai SDK**, and LangChain high-level concepts. |
 | **Day 3** | Vertex AI / Gemini Enterprise Agent Platform (MLOps) | Platform overview (Vertex AI is now branded **Gemini Enterprise Agent Platform**). Tie to pipeline: DE's role in ML (feeding clean datasets to models, deploying AutoML models, and consuming predictive outputs, e.g., taxi demand forecasting). |
 | **Day 4** | Applied NLP on GCP | Gemini API for text generation, classification, and embeddings. Lab: Classify comments or notes and extract metadata using the Gemini API — and call Gemini from **BigQuery SQL (`ML.GENERATE_TEXT` / AI functions)** for the DE-native pattern. |
 | **Day 5** | GitHub Copilot for DE | **Introducing Copilot:** Setup, inline suggestions, Copilot Chat, and Agent Mode. Best practices: **Prompt/Context Engineering for DE** and **Rigorous Code Review/Validation workflows** (avoiding AI dependency bugs). Demo the **BigQuery Data Engineering Agent** (natural-language pipeline building, now GA). |

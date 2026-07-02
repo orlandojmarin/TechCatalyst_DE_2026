@@ -1,8 +1,8 @@
 # Week 1 · Day 3 · Lab
 
-**Theme:** Developer foundations: Linux terminal, VS Code, Python environments with UV, Git, and GitHub  
-**Format:** Guided labs in pairs (driver/navigator) with built-in breaks for pacing  
-**Environment:** Ubuntu VM (or any Linux terminal) + VS Code + Chrome + GitHub. UV is the primary Python tool.
+**Theme:** Developer foundations: Linux terminal, VS Code, Python environments with UV, Git, and GitHub
+**Format:** Guided labs in pairs (driver/navigator) with built-in breaks for pacing
+**Environment:** Linux terminal, VS Code, Chrome, GitHub. UV is the primary Python tool.
 
 > [!WARNING]
 > **AI-Free Zone (Weeks 1 to 4).** Type every command yourself. No Copilot, no LLM-generated code, SQL, or Git commands. Read the errors; debug first.
@@ -66,9 +66,9 @@ Times are a guide. Protect Lab A (UV focus). Labs B and C Section 1 are the core
 
 - Use the Linux terminal inside VS Code or a standalone terminal.
 - Run commands from the project folder you create (`~/techcatalyst-work/techcatalyst-2026-<yourname>`).
-- UV must be available (`uv --version`). The classroom VM setup provides it.
+- UV must be available (`uv --version`). The classroom Linux setup provides it.
 - GitHub authentication is required for Lab C (HTTPS or SSH as configured in class).
-- No GitHub Codespaces are used on this day. Everything runs locally on the VM or your Linux machine.
+- Everything runs in the local Linux terminal for this day.
 
 ## Troubleshooting
 

@@ -376,7 +376,7 @@ Required file check: PASS
 
 Then say: "Part B, the order rows, unique stores, and error lines, is yours to complete. Part C, the error patterns, top errors, and guardrail, is the challenge. I am not going to show those answers now."
 
-Instructor-only reference, do not project to the room: the full completed script is `solutions/summarize_hunt_solution.sh` and the per-task answers with explanations are in `solutions/Instructor_Answer_Key.md`. Reveal Part B after pairs attempt it. Reveal Part C after class.
+Instructor-only reference, do not project to the room: the full completed script is `solutions/Activity_3_summarize_hunt_solution.sh` and the per-task answers with explanations are in `solutions/Instructor_Answer_Key.md`. Reveal Part B after pairs attempt it. Reveal Part C after class.
 
 If running the demo script from `operations_playground` fails, check:
 
