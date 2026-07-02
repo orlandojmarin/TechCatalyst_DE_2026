@@ -38,7 +38,35 @@ new_payments = {
 
 # TODO: Loop through new_payments. For each claim, build a [date, kind, amount]
 # record and append it to that claim's list in claim_payments.
-
-
+for key in new_payments:
+    payment_list = []
+    payment_dictionary = new_payments[key]
+    for field in payment_dictionary:
+        payment_list.append(payment_dictionary[field])
+    # print(payment_list)
+    print()
+    claim_list = claim_payments[key]
+    claim_list.append(payment_list)
+    # print(claim_list)
+    
 # Print the modified claim_payments dictionary
 print(claim_payments)
+print()
+
+# Challenge
+# Roll up the total amount paid for each claim into a results dictionary
+# Loop through every key-value pair in claim_payments
+# For each claim, sum the amount field (index 2) across all of its records
+# Round to two decimals and store it in results under the claim id
+
+results = {}
+
+for claim in claim_payments:
+    total_amount = 0
+    claim_info_list = claim_payments[claim]
+    print(claim_info_list)
+    for list in claim_info_list:
+        total_amount += list[2]
+    results[claim] = round(total_amount, 2)
+
+print(results)
