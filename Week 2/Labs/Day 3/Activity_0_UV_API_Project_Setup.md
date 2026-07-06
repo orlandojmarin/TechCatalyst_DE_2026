@@ -69,7 +69,7 @@ Why one shared environment instead of a new one per day:
 3. Add today's packages, including `ipykernel`.
 
    ```bash
-   uv add requests httpx python-dotenv boto3 google-genai pandas polars ipykernel
+   uv add requests httpx python-dotenv boto3 google-genai pandas polars ipykernel pyarrow
    ```
 
    `ipykernel` is the one that makes notebooks work: without it, VS Code cannot

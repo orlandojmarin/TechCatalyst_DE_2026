@@ -70,36 +70,31 @@ a screenshot of your silver object.
 
 ## Setup for today's review
 
-Use a Day 4 UV project for drills and pandas practice. From the repo root:
+Use the repo-level `.venv` for drills and pandas practice. From the repo root:
 
 ```bash
 mkdir -p student-work/week2/day4
-cd student-work/week2/day4
-uv init
 uv add "pandas>=3.0" pyarrow
 ```
 
-Add `.venv/`, `__pycache__/`, `demo_outputs/`, and `*.parquet` to the `.gitignore`
-in `student-work/week2/day4/`. Select
-`student-work/week2/day4/.venv/bin/python` as the VS Code interpreter and notebook
-kernel. Copy only the drills or pandas activities you are using into this day
-project, then work there.
+Add `__pycache__/`, `demo_outputs/`, and `*.parquet` to the `.gitignore` in
+`student-work/week2/day4/`. Select the repo-root `.venv/bin/python` as the VS
+Code interpreter and notebook kernel. Copy only the drills or pandas activities
+you are using into this work folder, then work there.
 
 ## Setup for Monday's deferred mini-capstone
 
-On Week 3 Day 1, use a fresh day project:
+On Week 3 Day 1, keep using the repo-level `.venv`:
 
 ```bash
 mkdir -p student-work/week3/day1
-cd student-work/week3/day1
-uv init
 uv add "pandas>=3.0" polars pyarrow boto3 google-cloud-storage
 gcloud auth application-default login
 gcloud config set project YOUR_PROJECT_ID
 ```
 
-The `.venv` lives at `student-work/week3/day1/.venv`. Select that interpreter and
-notebook kernel in VS Code. Copy the medallion starter and `data/` from
+The `.venv` lives at the repo root. Select that interpreter and notebook kernel
+in VS Code. Copy the medallion starter and `data/` from
 `Week 2/Labs/Day 4/Mini_Project_Medallion_ETL/` into `student-work/week3/day1/`
 and build there. Run with `--local` first; switch to the cloud path once your GCS
 write works.

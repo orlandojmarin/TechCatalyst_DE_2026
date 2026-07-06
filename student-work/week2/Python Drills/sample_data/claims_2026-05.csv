@@ -1,0 +1,4 @@
+claim_id,state,line,amount,status,opened,closed
+CLM-1001,CT,auto,4200.0,open,2026-05-02,2026-05-20
+CLM-1002,CT,home,15800.0,open,2026-05-04,2026-05-26
+CLM-1003,MA,auto,2600.0,closed,2026-05-05,2026-05-08

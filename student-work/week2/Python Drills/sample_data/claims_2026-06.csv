@@ -1,0 +1,4 @@
+claim_id,state,line,amount,status,opened,closed
+CLM-1004,NY,auto,9100.0,open,2026-06-01,2026-06-15
+CLM-1005,MA,home,22300.0,closed,2026-06-03,2026-06-30
+CLM-1006,NY,home,530.0,open,2026-06-09,2026-06-12
