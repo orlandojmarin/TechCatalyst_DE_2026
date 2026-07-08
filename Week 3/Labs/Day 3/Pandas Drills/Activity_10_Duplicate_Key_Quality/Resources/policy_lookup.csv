@@ -1,0 +1,12 @@
+policy_id,region,customer_tier
+P-101,Northeast,Gold
+P-102,Northeast,Silver
+P-103,Midwest,Gold
+P-104,South,Platinum
+P-105,Northeast,Bronze
+P-105,Northeast,Bronze
+P-106,West,Silver
+P-107,West,Gold
+P-108,South,Silver
+P-109,Midwest,Bronze
+P-110,South,Platinum
