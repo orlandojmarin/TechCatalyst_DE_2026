@@ -1,0 +1,13 @@
+claim_id,region,claim_type,channel,status,claim_amount
+C2001,Northeast,auto,web,paid,1200
+C2002,Northeast,home,phone,review,4500
+C2003,Midwest,auto,agent,paid,800
+C2004,South,life,agent,review,15000
+C2005,West,auto,web,open,2200
+C2006,Northeast,life,phone,paid,9000
+C2007,South,home,web,open,3200
+C2008,West,home,agent,paid,2800
+C2009,Midwest,auto,web,review,1100
+C2010,South,auto,phone,paid,1750
+C2011,West,life,phone,review,12500
+C2012,Northeast,auto,agent,open,950

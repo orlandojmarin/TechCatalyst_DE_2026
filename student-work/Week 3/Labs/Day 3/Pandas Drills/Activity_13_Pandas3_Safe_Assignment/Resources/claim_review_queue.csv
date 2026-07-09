@@ -1,0 +1,9 @@
+claim_id,claim_type,claim_amount,status,review_score
+C3001,auto,1200,open,0.71
+C3002,home,5400,review,0.88
+C3003,auto,900,open,0.64
+C3004,life,16000,review,0.95
+C3005,auto,2600,paid,0.52
+C3006,home,3100,open,0.77
+C3007,life,9000,review,0.83
+C3008,auto,700,open,0.49
