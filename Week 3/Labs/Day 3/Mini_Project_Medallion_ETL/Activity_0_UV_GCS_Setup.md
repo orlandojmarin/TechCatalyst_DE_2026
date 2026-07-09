@@ -28,16 +28,22 @@ The required project is the local bronze-to-silver pipeline. Cloud upload is an 
 
 You may see `cloud.cfg` in the folder. Do not put credentials in it. It is intentionally a placeholder and is not needed for this lab.
 
-You work on copied files under `student-work/week3/day3/`, but you use the global `.venv` at the repo root. That keeps the course environment consistent while still preventing your work from colliding with instructor updates under `Week 3/Labs/...`.
+You work on copied files under `student-work/week3/day3/`, but you use the repo-root `.venv`. That keeps the course environment consistent while still preventing your work from colliding with instructor updates under `Week 3/Labs/...`.
 
 ## Instructions
 
-1. From the repo root, add the mini-project packages to the global environment.
+1. From the repo root, add the mini-project packages to the repo-root environment.
 
    ```bash
    uv add "pandas>=3.0" polars pyarrow boto3 google-cloud-storage
-   uv run python -c "import pandas, polars, boto3; from google.cloud import storage; print('imports OK')"
+   uv run python -c "import pandas, pyarrow, polars, boto3; from google.cloud import storage; print('imports OK')"
    ```
+
+   This installs packages for both the required local lab and the optional
+   extensions. You will complete the pandas local pipeline first. For that
+   required path, the important packages are pandas and pyarrow. The cloud
+   packages are only needed for the optional GCS/S3 extension, and Polars is
+   only needed for the optional comparison section.
 
    The `.venv` lives at the repo root. Run `uv add` from the repo root so UV updates
    the shared course environment instead of creating a second project somewhere else.

@@ -46,7 +46,7 @@ environment setup, file copying, ADC login, bucket checks, and troubleshooting.
 The commands below are a quick reminder only.
 
 On Week 3 Day 3, work under `student-work/week3/day3/`. Do not edit the
-provided files in place. Use the global `.venv` at the repo root for the
+provided files in place. Use the repo-root `.venv` for the
 notebook kernel and terminal commands.
 
 From the repo root:
@@ -56,6 +56,12 @@ uv add "pandas>=3.0" polars pyarrow boto3 google-cloud-storage
 gcloud auth application-default login
 gcloud config set project YOUR_PROJECT_ID
 ```
+
+This single install command prepares both the required local path and the
+optional extensions. For the required local pandas path, the important packages
+are pandas and pyarrow. The cloud packages are only needed for the optional
+GCS/S3 extension, and Polars is only needed for the optional comparison section.
+Complete the pandas local pipeline first.
 
 The `.venv` lives at the repo root. Select the repo-root `.venv/bin/python` in
 VS Code, and select the same `.venv` as the Jupyter kernel before opening the
@@ -130,7 +136,7 @@ temperatures). The optional Polars stretch should also give 14 if attempted.
 | After dropping missing dates | `19` rows |
 | After dropping duplicates | `17` rows |
 | After dropping missing temperatures | `14` rows |
-| Final silver | `14` rows, with BOS 5, PVD 3, NY 6 |
+| Final silver | `14` rows, with MA1BOS 5, RI1PVD 3, US1NY 6 |
 
 ## Success Criteria
 
