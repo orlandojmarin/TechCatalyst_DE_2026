@@ -1,0 +1,17 @@
+trip_id,vendor,pickup_borough,dropoff_borough,fare_amount,tip_amount,trip_distance,pickup_ts,payment_type
+T001,VTS,Manhattan,Queens,18.50,3.70,5.2,2026-07-06T08:15:00Z,card
+T002,CMT,Manhattan,Brooklyn,22.00,0.00,7.1,2026-07-06T08:40:00Z,cash
+T003,VTS,Queens,Manhattan,16.25,2.50,4.4,2026-07-06T09:05:00Z,card
+T004,CMT,Bronx,Manhattan,28.00,4.20,9.0,2026-07-06T09:20:00Z,card
+T005,VTS,Brooklyn,Queens,14.00,1.50,3.2,2026-07-06T10:00:00Z,card
+T006,CMT,Queens,Brooklyn,19.75,,6.3,2026-07-06T10:30:00Z,cash
+T007,VTS,Manhattan,Manhattan,9.50,1.00,1.4,not-a-date,card
+T008,CMT,Staten Island,Manhattan,35.00,5.00,12.2,2026-07-06T11:15:00Z,card
+T009,VTS,Brooklyn,Manhattan,abc,2.00,5.0,2026-07-06T11:40:00Z,card
+T010,CMT,Queens,Queens,11.00,-1.00,2.5,2026-07-06T12:00:00Z,cash
+T011,VTS,Manhattan,Bronx,24.50,3.00,-4.0,2026-07-06T12:30:00Z,card
+T012,CMT,Brooklyn,Brooklyn,8.75,0.75,1.8,2026-07-06T13:00:00Z,card
+T013,VTS,Bronx,Queens,21.25,2.25,6.1,2026-07-06T13:15:00Z,card
+T001,VTS,Manhattan,Queens,18.50,3.70,5.2,2026-07-06T08:15:00Z,card
+T014,CMT,Manhattan,Queens,17.00,2.00,4.9,2026-07-06T14:00:00Z,card
+T015,VTS,,Queens,17.00,2.00,4.9,2026-07-06T14:30:00Z,card
