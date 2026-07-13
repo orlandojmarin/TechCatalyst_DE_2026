@@ -6,37 +6,53 @@
 -- Not today: joins, CTEs, subqueries, window functions, DML.
 
 -- Activity 1, Q1: First Look
-SELECT
-  G,
-  Date,
-  Opp,
-  HomeAway,
-  PTS
+SELECT G, Date, Opp, HomeAway, PTS  
 FROM king_james
-LIMIT 15;
+LIMIT 15
 
 -- Activity 1, Q2: Away Games
 -- Write your query below.
-
+SELECT G, Date, Opp, HomeAway, PTS  
+FROM king_james
+WHERE HomeAway = "Away"
+LIMIT 15;
 
 -- Activity 1, Q3: High Scoring Games
 -- Write your query below.
+SELECT Date, Opp, HomeAway, PTS 
+FROM king_james
+WHERE PTS > 30
+ORDER BY PTS DESC;
 
 
 -- Activity 1, Q4: Opponent Filter
 -- Write your query below.
+SELECT Date, HomeAway, Opp, PTS, REBS, AST 
+FROM king_james
+WHERE Opp = "GSW";
 
 
 -- Activity 1, Q5: Missing Stat Lines
 -- Write your query below.
+SELECT G, Date, Opp, HomeAway, PTS
+FROM king_james
+WHERE PTS is NULL;
 
 
 -- Activity 1, Q6: Combined Conditions
 -- Write your query below.
+SELECT Date, Opp, HomeAway, PTS
+FROM king_james
+WHERE (HomeAway = "Home") and (PTS >= 25)
+ORDER BY Date ASC;
 
 
 -- Activity 1, Q7: Three Stat Columns
 -- Write your query below.
+SELECT Date, Opp, PTS, REBS, AST
+FROM king_james
+WHERE (PTS is not null) and (REBS is not null) and (AST is not null)
+LIMIT 20;
 
 
 -- Activity 2, Q1: Count Agents
