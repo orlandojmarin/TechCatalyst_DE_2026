@@ -57,40 +57,84 @@ LIMIT 20;
 
 -- Activity 2, Q1: Count Agents
 -- Switch DBeaver connection to call_center_database2.db before running this section.
-SELECT
-  COUNT(*) AS agent_count
+-- Answer: 11
+SELECT COUNT(AgentID) AS "AgentCount"
 FROM agent;
 
 -- Activity 2, Q2: Count Calls
--- Write your query below.
+-- Write your query below. 
+-- Answer: 9940
+SELECT COUNT(CallID) as "CallCount"
+from call;
 
 
 -- Activity 2, Q3: Answered Calls
 -- Write your query below.
+-- Answer: 6920
+SELECT COUNT(PickedUp) AS "AnsweredCalls"
+from call
+WHERE PickedUp = "1";
 
 
 -- Activity 2, Q4: Total Sales
 -- Write your query below.
+-- Answer: 2089
+SELECT SUM(ProductSold) as TotalProductsSold
+from call
+WHERE ProductSold = 1;
 
 
 -- Activity 2, Q5: Average Call Duration
 -- Write your query below.
+-- Answer: 125.15
+SELECT AVG(Duration) as "AvgCallDuration"
+from call;
 
 
 -- Activity 2, Q6: Calls By AgentID
 -- Write your query below.
+SELECT 
+	AgentID,
+	COUNT(CallID) AS "TotalCalls", 
+	SUM(ProductSold) AS "TotalSales", 
+	AVG(ProductSold) as "AvgProductSoldRate"
+FROM "call"
+GROUP BY AgentId
+ORDER BY AvgProductSoldRate DESC;
 
 
 -- Activity 2, Q7: Agents With Enough Calls
 -- Write your query below.
+SELECT 
+	AgentID,
+	COUNT(CallID) AS "TotalCalls", 
+	SUM(ProductSold) AS "TotalSales", 
+	AVG(ProductSold) as "AvgProductSoldRate"
+FROM "call"
+GROUP BY AgentId
+HAVING COUNT(CallID) > 900
+ORDER BY AvgProductSoldRate DESC;
 
 
 -- Activity 2, Q8: Picked Up Calls By AgentID
 -- Write your query below.
+SELECT AgentID, sum(PickedUp) as PickedUpCalls
+FROM "call"
+WHERE PickedUp = 1
+GROUP BY AgentId
+ORDER BY PickedUpCalls DESC;
 
 
 -- Activity 2, Q9: Customer Age Groups
 -- Write your query below.
+SELECT COUNT(CustomerID) as "CustomerCount",
+	CASE 	
+		WHEN Age < 18 THEN "Under 18"
+		WHEN Age between 18 and 34 THEN "18 to 34"
+		WHEN Age > 35 THEN "35 and older"
+	END as AgeGroup
+from customer
+Group by AgeGroup;
 
 
 -- Activity 3, Q1: Inspect Crime Scenes
