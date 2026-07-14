@@ -139,41 +139,66 @@ Group by AgeGroup;
 
 -- Activity 3, Q1: Inspect Crime Scenes
 -- Switch DBeaver connection to crime_database.db before running this section.
-SELECT
-  date,
-  type,
-  city,
-  country,
-  description
+SELECT date, type, city, country, description 
 FROM crime_scene
 LIMIT 10;
 
 -- Activity 3, Q2: Murder Reports
 -- Write your query below.
+SELECT date, city, country, description 
+FROM crime_scene
+WHERE "type" = "murder";
 
 
 -- Activity 3, Q3: Incident Counts
 -- Write your query below.
+SELECT type ,COUNT(type) as type_count
+FROM crime_scene
+GROUP BY "type"
+ORDER BY type_count DESC;
 
 
 -- Activity 3, Q4: City Counts
 -- Write your query below.
+SELECT city, COUNT(*) as incident_count
+FROM crime_scene
+GROUP BY city
+HAVING incident_count > 2
+ORDER BY incident_count DESC;
 
 
 -- Activity 3, Q5: Driver Profile Filter
 -- Write your query below.
+SELECT id, age, gender, height, hair_color, eye_color, plate
+FROM drivers
+WHERE hair_color = "white";
 
 
 -- Activity 3, Q6: Vehicle Filter
 -- Write your query below.
+SELECT id, age, gender, plate, car_make, car_model, car_model_year 
+FROM drivers
+WHERE car_make = "Maserati";
 
 
 -- Activity 3, Q7: Income Categories
 -- Write your query below.
+SELECT 
+	CASE
+		WHEN income < 35000 THEN "Low"
+		WHEN income between 35000 and 50000 THEN "Medium"
+		WHEN income > 50000 THEN "High"
+	END as income_group,
+	COUNT(*) as total_individuals
+FROM individual
+GROUP BY income_group
+ORDER by total_individuals DESC;
 
 
 -- Activity 3, Q8: Existing Suspect View
 -- Write your query below.
+SELECT name, age, gender, hair_color, eye_color, car_make, car_model
+FROM v_suspects;
 
 
 -- Reflection
