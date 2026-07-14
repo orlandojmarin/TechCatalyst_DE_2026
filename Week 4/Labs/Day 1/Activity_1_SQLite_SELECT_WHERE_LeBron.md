@@ -182,8 +182,3 @@ At the bottom of your SQL file, add comments answering:
 - You use `ORDER BY` only when the question asks for sorted results.
 - You do not use joins, CTEs, subqueries, or window functions.
 
-## Instructor Notes
-
-- This is a friendly first database because it has one table and familiar sports columns.
-- Use the missing stat rows to teach `NULL` gently before joins create nulls on Day 2.
-- Keep students from trying to interpret the whole season. The skill is answering the question in front of them.

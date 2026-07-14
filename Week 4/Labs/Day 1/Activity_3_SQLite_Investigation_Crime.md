@@ -160,9 +160,4 @@ At the bottom of your SQL file, add comments answering:
 - You can explain the difference between reading records and summarizing records.
 - You do not create views, use CTEs, write subqueries, or use window functions.
 
-## Instructor Notes
 
-- The source material includes CTEs and views, but those are intentionally not today's focus.
-- The existing `v_suspects` view is safe to query as a table-like object. Do not ask students to create it.
-- This activity is meant to create curiosity for Day 2 joins and later advanced SQL.
-- Do not reveal the culprit on Day 1. The case closes in the Day 2 join activity.

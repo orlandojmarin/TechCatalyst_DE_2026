@@ -159,8 +159,4 @@ At the bottom of your SQL file, add comments answering:
 - You use `HAVING` after grouping to filter groups.
 - You do not use joins, CTEs, subqueries, or window functions in this activity.
 
-## Instructor Notes
 
-- `ProductSold` and `PickedUp` are stored as text-like values in the schema, but SQLite will still coerce 0 and 1 for these simple aggregates.
-- Do not introduce joins yet. Let Day 2 own the join mental model.
-- Q9 is the only `CASE` exposure. Keep it as readable categorization, not a deep expression lesson.
