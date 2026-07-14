@@ -34,7 +34,7 @@ Useful tables:
 | `gym_record` | Gym check-ins |
 | `facebook_event` | Event attendance records |
 
-## Instructor Demo: Find Murder Reports
+## Guided Demo: Find Murder Reports
 
 Run this together:
 
@@ -55,7 +55,7 @@ Discuss:
 - Which rows did `WHERE type = 'murder'` keep?
 - Why should we read descriptions carefully before writing more filters?
 
-## Instructor Demo: Count By Category
+## Guided Demo: Count By Category
 
 Run this together:
 
@@ -159,5 +159,4 @@ At the bottom of your SQL file, add comments answering:
 - You use `GROUP BY` and `HAVING` to summarize categories.
 - You can explain the difference between reading records and summarizing records.
 - You do not create views, use CTEs, write subqueries, or use window functions.
-
 

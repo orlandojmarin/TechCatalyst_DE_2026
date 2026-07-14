@@ -3,7 +3,7 @@
 **Module:** Week 4 Day 1
 **Estimated Time:** 60 to 75 minutes
 **Difficulty:** Beginner
-**Format:** Instructor show, then student practice
+**Format:** Guided examples, then student practice
 **Prerequisites:** Activity 1 or equivalent `SELECT` and `WHERE` practice
 
 ## Objective
@@ -38,7 +38,7 @@ Important columns:
 | `call` | `CallID`, `AgentID`, `CustomerID`, `PickedUp`, `Duration`, `ProductSold` |
 | `customer` | `CustomerID`, `Name`, `Occupation`, `Age` |
 
-## Instructor Demo: Whole Table Summary
+## Guided Demo: Whole Table Summary
 
 Run this together:
 
@@ -56,7 +56,7 @@ Discuss:
 - Why does `SUM(ProductSold)` count sales?
 - Why does `AVG(ProductSold)` behave like a sales rate when values are 0 and 1?
 
-## Instructor Demo: Grouped Summary
+## Guided Demo: Grouped Summary
 
 Run this together:
 
@@ -158,5 +158,4 @@ At the bottom of your SQL file, add comments answering:
 - You use `WHERE` before grouping to filter rows.
 - You use `HAVING` after grouping to filter groups.
 - You do not use joins, CTEs, subqueries, or window functions in this activity.
-
 

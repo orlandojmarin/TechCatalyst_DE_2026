@@ -3,7 +3,7 @@
 **Module:** Week 4 Day 1
 **Estimated Time:** 45 to 60 minutes
 **Difficulty:** Beginner
-**Format:** Instructor show, then student practice
+**Format:** Guided examples, then student practice
 **Prerequisites:** DBeaver connected to `bron.db`
 
 ## Objective
@@ -42,7 +42,7 @@ Important columns:
 | `AST` | Assists |
 | `PTS` | Points |
 
-## Instructor Demo: Read The Table
+## Guided Demo: Read The Table
 
 Run this together:
 
@@ -63,7 +63,7 @@ Discuss:
 - Why did we avoid `SELECT *`?
 - What does `LIMIT` control?
 
-## Instructor Demo: Filter Rows
+## Guided Demo: Filter Rows
 
 Run this together:
 
@@ -181,4 +181,3 @@ At the bottom of your SQL file, add comments answering:
 - You use `IS NULL` for missing values, not `= NULL`.
 - You use `ORDER BY` only when the question asks for sorted results.
 - You do not use joins, CTEs, subqueries, or window functions.
-

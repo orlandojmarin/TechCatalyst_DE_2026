@@ -98,9 +98,3 @@ Do not edit the provided files in `Week 4/Labs/Day 1/` directly.
 - You can run a `SELECT` query in DBeaver.
 - You know where to save your own SQL answers.
 - You do not use AI assistants to write SQL. Weeks 1 to 4 are still an AI-Free Zone.
-
-## Instructor Notes
-
-- Some students may double-click the `.db` file from Finder or the file browser. Redirect them to DBeaver's database connection flow.
-- If the driver download fails, use the instructor machine for the first demo while students continue with BigQuery later.
-- Keep the setup focused. The first win is a successful query result grid.

@@ -38,7 +38,7 @@ Do not use these yet (each has its day this week):
 |---|---|---|
 | 1 | Kickoff Markdown Mash | Weeks 1 to 3 recap, quiz-show style |
 | 2 | Warmup, Parts 1 and 2 (notebook) | Solve six business questions in pandas, then export the DataFrame to a SQLite database you create |
-| 3 | SQL kickoff | Concepts and instructor demo: query anatomy, execution order, the pandas dictionary |
+| 3 | SQL kickoff | Concepts and guided demo: query anatomy, execution order, the pandas dictionary |
 | 4 | Activity 0 | Connect DBeaver to SQLite (your `warmup_claims.db` first, then `bron.db`) and run a first query |
 | 5 | Warmup, Part 3 (DBeaver) | Answer the same six questions in SQL against your own database and compare |
 | 6 | Activity 1 | Basketball game log: `SELECT`, `WHERE`, `ORDER BY`, `LIMIT`, nulls |
