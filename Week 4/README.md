@@ -4,6 +4,21 @@
 
 Theme: the SQL week. Monday opens with a fun Markdown Mash recap of Weeks 1 to 3, then SQL starts small and local (SQLite in DBeaver), grows relational (joins), learns to organize logic (subqueries and CTEs) at cloud scale (BigQuery Sandbox, plus DuckDB as a local query engine), and lands on Snowflake, the focus platform for the rest of the course. Everything is written by hand: the AI-Free Zone still applies this week.
 
+## Python environment rule
+
+Week 4 uses the existing repository-root Python project:
+
+- `.venv` is always at the repository root.
+- `pyproject.toml` and `uv.lock` stay at the repository root.
+- Run `uv sync`, `uv add`, `uv run`, or `uv pip install` from the repository root.
+- Use `uv add <package>` when the package should be recorded in your root `pyproject.toml`.
+- Use `uv pip install --python .venv/bin/python <package>` only when an activity explicitly calls for a temporary install that should not change `pyproject.toml`.
+- Do not run `uv init` or create another default `.venv`, `pyproject.toml`, `uv.lock`, or `.gitignore` inside `student-work/`.
+- Student-authored notebooks, SQL, databases, screenshots, and other work still belong under `student-work/week4/dayX/`.
+- Activity-specific `.env` or `.cfg` files belong beside the activity files under `student-work/` and are ignored by the one repository-root `.gitignore`.
+
+If a future activity has a real dependency-version conflict, its instructions will explicitly offer a named root environment or a local activity environment and explain why the exception is needed.
+
 ## Day map
 
 | Day | Topic | Hands-on |

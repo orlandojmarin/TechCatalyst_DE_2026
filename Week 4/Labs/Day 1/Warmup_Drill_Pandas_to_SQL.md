@@ -17,10 +17,10 @@ Everything happens in `Warmup_Pandas_to_SQL.ipynb`, which you copy into your own
 ```bash
 mkdir -p student-work/week4/day1
 cp "Week 4/Labs/Day 1/Warmup_Pandas_to_SQL.ipynb" student-work/week4/day1/
-cd student-work/week4/day1
+uv sync
 ```
 
-The `.venv` lands in `student-work/week4/day1/.venv`. Select it as the notebook kernel in VS Code (Select Kernel, Python Environments). If you see a `VIRTUAL_ENV does not match` warning, run `deactivate` first, and keep `.venv/` gitignored.
+Run these commands from the repository root. Select `<repo-root>/.venv/bin/python` as the notebook kernel in VS Code (Select Kernel, Python Environments). If you see a `VIRTUAL_ENV does not match` warning, run `deactivate`, return to the repository root, and rerun `uv sync`. Do not create another `.venv`, `pyproject.toml`, or `.gitignore` in the Day 1 folder.
 
 ## The Three Parts
 
@@ -49,7 +49,7 @@ The `.venv` lands in `student-work/week4/day1/.venv`. Select it as the notebook 
 
 ## Success Criteria
 
-- The notebook runs top to bottom in your day 1 `.venv`.
+- The notebook runs top to bottom with the repository-root `.venv`.
 - `warmup_claims.db` exists in `student-work/week4/day1/` and DBeaver can open it.
 - All six pandas answers run, and all six SQL twins run in DBeaver and match them.
 - You can name at least three pandas operations and their SQL twins from memory.

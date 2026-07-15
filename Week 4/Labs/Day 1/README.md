@@ -92,10 +92,10 @@ Keep your work in your personal student folder, never inside this provided lab f
 
 ```bash
 mkdir -p student-work/week4/day1
-cd student-work/week4/day1
+uv sync
 ```
 
-The warmup notebook walks you through creating the UV project here (`uv init`, `uv add pandas ipykernel`; the `.venv` lands in this folder). Copy `Warmup_Pandas_to_SQL.ipynb` and `starter/w4d1_sqlite_drills.sql` into this folder and complete your answers there. After the warmup, DBeaver does the rest of the day's work.
+Run `uv sync` from the repository root. It uses the root `pyproject.toml` and creates or refreshes the one root `.venv`. Do not run `uv init` in the Day 1 folder. Copy `Warmup_Pandas_to_SQL.ipynb` and `starter/w4d1_sqlite_drills.sql` into `student-work/week4/day1/` and complete your answers there. In VS Code and Jupyter, select `<repo-root>/.venv/bin/python`. After the warmup, DBeaver does the rest of the day's work.
 
 ## Check Yourself Culture
 

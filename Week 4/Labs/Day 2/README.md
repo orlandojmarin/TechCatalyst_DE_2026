@@ -73,7 +73,7 @@ Do not use these yet:
 | Starter | `starter/w4d2_bikeshare_join_drills.sql` | GoogleSQL query scaffold |
 | Starter | `starter/w4d2_snowflake_tpch_transfer.sql` | Answer-free Snowflake scaffold with 15 ordered drill sections |
 | Quiz | `quiz/W4D2_Pre_Quiz.md` | Day 1 retrieval practice |
-| Quiz | `quiz/W4D2_Post_Quiz.md` | Keys, joins, nulls, and fan-out check |
+| Quiz | `quiz/Post_quiz_v2.md` | Dataset-neutral joins, grouping, filtering, aliases, aggregates, and SQL translation check |
 
 ### Deliverables
 
@@ -101,17 +101,16 @@ cp "Week 4/Labs/Day 2/SQLite_Python_Pandas_Companion.ipynb" student-work/week4/d
 cp "Week 4/Labs/Day 2/starter/w4d2_murder_mystery_joins.sql" student-work/week4/day2/
 cp "Week 4/Labs/Day 2/starter/w4d2_bikeshare_join_drills.sql" student-work/week4/day2/
 cp "Week 4/Labs/Day 2/starter/w4d2_snowflake_tpch_transfer.sql" student-work/week4/day2/
-cd student-work/week4/day2
-uv init
-uv add pandas ipykernel
+uv sync
 uv run python --version
+cd student-work/week4/day2
 ```
 
-`uv init`, `uv add`, and `uv run` must happen after you enter `student-work/week4/day2`. `uv add pandas ipykernel` creates or updates this day's `.venv` in this folder and records the notebook dependencies. Running those commands from the repository root would place the project files in the wrong location and cause interpreter or kernel confusion. `uv run` uses this `.venv` automatically. Keep `.venv`, `__pycache__`, and generated local files gitignored.
+Run `uv sync` and `uv run` from the repository root. They use the root `pyproject.toml` and root `.venv`. The Day 2 directory is a work folder, not another Python project. Do not run `uv init` there, and do not create another `.venv`, `pyproject.toml`, `uv.lock`, or `.gitignore`.
 
 Optional: if `student-work/week4/day1/warmup_claims.db` still exists, copy it into `student-work/week4/day2/`. The companion notebook will detect it and open the six Day 1 warmup SQL slots. The notebook works without this optional file.
 
-In VS Code, select `student-work/week4/day2/.venv/bin/python` as the interpreter. Open your copied `SQLite_Python_Pandas_Companion.ipynb` and select the same `.venv` as its Jupyter kernel. If you see `VIRTUAL_ENV does not match the project environment`, run `deactivate`, then run the command again. You may optionally activate the correct environment with `source .venv/bin/activate`.
+In VS Code, select `<repo-root>/.venv/bin/python` as the interpreter. Open your copied `SQLite_Python_Pandas_Companion.ipynb` and select the same root `.venv` as its Jupyter kernel. If you see `VIRTUAL_ENV does not match the project environment`, run `deactivate`, return to the repository root, and rerun `uv sync`. You may optionally activate the root environment with `source .venv/bin/activate` from the repository root.
 
 Complete the copied starter files in this folder. For local SQLite, you may open `crime_database.db` in DBeaver or send the same SQL through the companion notebook. The notebook also includes sections for replaying the Day 1 basketball, call-center, and investigation queries. In BigQuery, paste or upload only your personal `w4d2_bikeshare_join_drills.sql`; do not edit the provided starter in place. If your instructor opens the Snowflake extension, use only your copied `w4d2_snowflake_tpch_transfer.sql` file.
 

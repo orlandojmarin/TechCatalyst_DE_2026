@@ -80,7 +80,7 @@ SHOW TABLES;
 | Symptom | Likely cause | What to do |
 |---|---|---|
 | `no such table` in DBeaver | You opened the wrong SQLite file | Reconnect to your copy in `student-work/week4/day2/` |
-| `ModuleNotFoundError: pandas` in the notebook | VS Code selected the wrong Jupyter kernel | Select `student-work/week4/day2/.venv/bin/python` as the kernel |
+| `ModuleNotFoundError: pandas` in the notebook | VS Code selected the wrong Jupyter kernel, or the root project was not synchronized | From the repository root run `uv sync`, then select `<repo-root>/.venv/bin/python` as the kernel |
 | Notebook cannot find a database | One or more `.db` files were not copied into the Day 2 workspace | Copy all three databases using the README commands |
 | `no such table` in the notebook | The query was sent to the wrong database key | Check the notebook section's database key and table list |
 | `Column name ... is ambiguous` | Both tables have a column with that name | Qualify it with an alias, such as `trips.trip_id` |
@@ -99,7 +99,7 @@ SHOW TABLES;
 | [ ] | Pre-class quiz completed |
 | [ ] | Day 2 workspace created under `student-work/week4/day2/` |
 | [ ] | Three SQLite databases, the companion notebook, and the three starter files copied into the workspace |
-| [ ] | `pandas` and `ipykernel` added to the Day 2 UV project; the Day 2 `.venv` selected as the notebook kernel |
+| [ ] | Repository-root dependencies synchronized and `<repo-root>/.venv/bin/python` selected as the notebook kernel |
 | [ ] | Activity 0 queries completed and 4, 1,000, 1,002 left-join, 4 to 3 to 1 checkpoints explained |
 | [ ] | Companion notebook connection tests passed and at least one query from each Day 1 activity transferred |
 | [ ] | Day 2 join queries run or replayed through the companion notebook; four reflection responses completed |
