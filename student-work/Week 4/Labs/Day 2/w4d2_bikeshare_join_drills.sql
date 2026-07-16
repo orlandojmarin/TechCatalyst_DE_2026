@@ -87,4 +87,9 @@ GROUP BY t.start_station_name, s.number_of_docks
 ORDER BY trip_count DESC;
 
 -- Q6: Subscriber Type by Start Station
+select t.start_station_name, t.subscriber_type, count(t.start_station_id) as trip_count
+from bigquery-public-data.austin_bikeshare.bikeshare_trips as t
+GROUP BY t.start_station_name, t.subscriber_type
+HAVING trip_count > 1000
+ORDER BY trip_count DESC;
 
