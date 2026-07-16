@@ -16,6 +16,13 @@
 -- BigQuery byte estimate:
 
 -- Write the complete query below.
+WITH 
+SELECT trip_total
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE DATE(trip_start_timestamp) BETWEEN DATE "2023-12-25" AND DATE "2023-12-31" AND fare > 0
+),
+company_metrics AS
+
 
 
 -- Output validation:
