@@ -28,9 +28,18 @@
 -- Round avg_trip_total to 2 decimals.
 -- Expected: 78,715 trips and 26.77 average trip total.
 
--- Write Drill 1 below:
+Write Drill 1 below:
 
+WITH base_trips AS (
+SELECT unique_key, trip_total
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND 
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+)
 
+SELECT COUNT(unique_key) AS trip_count, ROUND(AVG(trip_total), 2) AS avg_trip_total
+FROM base_trips
 
 -- Drill 2: Five companies with the most trips
 -- Create TWO CTEs in this order: base_trips, company_metrics.
@@ -44,7 +53,29 @@
 
 -- Write Drill 2 below:
 
+WITH base_trips AS (
+SELECT unique_key, trip_total
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND 
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+),
+company_metrics AS (
+SELECT unique_key, company
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND
+company IS NOT NULL AND TRIM(company) != '' AND
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+)
 
+SELECT c.company, COUNT(b.unique_key) as trip_count, round(AVG(b.trip_total), 2) as avg_trip_total
+FROM base_trips as b
+JOIN company_metrics as c 
+ON b.unique_key = c.unique_key
+GROUP BY company
+ORDER BY trip_count DESC, c.company ASC
+LIMIT 5;
 
 -- Drill 3: Companies above the weekly benchmark
 -- Create THREE CTEs in this order:
@@ -62,7 +93,38 @@
 -- Final grain:
 
 -- Write Drill 3 below:
+WITH base_trips AS (
+SELECT unique_key, trip_total
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND 
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+),
+company_metrics AS (
+SELECT unique_key, company
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND
+company IS NOT NULL AND TRIM(company) != '' AND
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+),
+weekly_average AS (
+SELECT AVG(trip_total) as selected_week_avg_total
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE
+fare > 0 AND
+company IS NOT NULL AND TRIM(company) != '' AND
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+)
 
+SELECT c.company, COUNT(b.unique_key) as trip_count, round(AVG(b.trip_total), 2) as avg_trip_total, round(selected_week_avg_total, 2) as selected_week_avg_total
+FROM base_trips as b
+INNER JOIN company_metrics as c 
+ON b.unique_key = c.unique_key
+CROSS JOIN weekly_average as w 
+GROUP BY company, selected_week_avg_total
+HAVING avg_trip_total > selected_week_avg_total
+ORDER BY avg_trip_total DESC, company ASC;
 
 
 -- Drill 4: Company ranking after distance cleanup
@@ -79,7 +141,40 @@
 -- Final grain:
 
 -- Write Drill 4 below:
+WITH base_trips AS (
+SELECT unique_key, trip_total
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND 
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+),
+company_metrics AS (
+SELECT unique_key, company
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND
+company IS NOT NULL AND TRIM(company) != '' AND
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+),
+outlier_free_trips AS (
+SELECT unique_key, company, trip_miles
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE
+fare > 0 AND
+trip_miles BETWEEN 0 AND 50 AND
+company IS NOT NULL AND TRIM(company) != '' AND
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+)
 
+SELECT c.company, count(b.unique_key) as trip_count, round(avg(b.trip_total), 2) as avg_trip_total
+FROM base_trips as b
+INNER JOIN company_metrics as c 
+ON b.unique_key = c.unique_key
+INNER JOIN outlier_free_trips as o
+ON b.unique_key = o.unique_key
+GROUP BY c.company
+ORDER BY trip_count DESC, company ASC
+LIMIT 5;
 
 
 -- Drill 5: Payment-type metrics
@@ -95,6 +190,27 @@
 -- Final grain:
 
 -- Write Drill 5 below:
+WITH base_trips AS (
+SELECT unique_key, trip_total
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND 
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+),
+payment_metrics AS (
+SELECT unique_key, payment_type, fare, tips
+FROM bigquery-public-data.chicago_taxi_trips.taxi_trips
+WHERE 
+fare > 0 AND
+DATE(trip_start_timestamp) BETWEEN DATE '2023-12-25' AND DATE '2023-12-31'
+)
+
+SELECT p.payment_type, count(b.unique_key) as trip_count, ROUND(sum(b.trip_total), 2) as total_revenue, ROUND((SUM(p.tips) / SUM(p.fare) * 100), 2) as safe_tip_rate_percent
+FROM base_trips as b
+INNER JOIN payment_metrics as p
+ON b.unique_key = p.unique_key
+GROUP BY p.payment_type
+ORDER BY trip_count DESC, p.payment_type ASC;
 
 
 
