@@ -70,7 +70,7 @@ INSERT INTO claims (claim_id, policyholder_id, claim_type, amount, status, filed
 3. Write the query. Run it.
 4. Compare with the expected result. If it differs, the gap is the lesson.
 
-Solutions live in `solutions/w4d4_ddl_practice_solutions.sql`. Try each problem before opening them.
+Solutions live in `solutions/Lesson_2_SQL_Practice_Solution.md`. Try each problem before opening them.
 
 ## Part A: Read and filter (SELECT, WHERE, ORDER BY)
 
