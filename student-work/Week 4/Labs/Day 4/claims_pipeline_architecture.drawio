@@ -1,0 +1,186 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Claims Pipeline Architecture" id="claims-prod-arch">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="Claims Data Pipeline: Production Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=28;fontStyle=1;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="From PoC to Production | Bronze - Silver - Gold Medallion on AWS + Snowflake" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontStyle=2;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="400" y="60" width="1000" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Zone backgrounds -->
+        <mxCell id="z_ingest" value="INGEST" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#1E3A8A;fillColor=#EFF6FF;strokeColor=#93C5FD;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="30" y="110" width="200" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="z_bronze" value="BRONZE (S3 Raw)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#EA580C;fillColor=#FFF7ED;strokeColor=#FDBA74;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="260" y="110" width="220" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="z_process" value="TRANSFORM (AWS Glue)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#2563EB;fillColor=#EFF6FF;strokeColor=#93C5FD;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="510" y="110" width="220" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="z_silver" value="SILVER (S3 Clean)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#64748B;fillColor=#F8FAFC;strokeColor=#CBD5E1;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="760" y="110" width="220" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="z_integrate" value="INTEGRATE (Snowflake)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#6D28D9;fillColor=#F5F3FF;strokeColor=#C4B5FD;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="110" width="250" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="z_gold" value="GOLD (Snowflake)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#D97706;fillColor=#FFFBEB;strokeColor=#FCD34D;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="110" width="220" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="z_serve" value="SERVE" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontColor=#15803D;fillColor=#F0FDF4;strokeColor=#86EFAC;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="1540" y="110" width="220" height="560" as="geometry" />
+        </mxCell>
+
+        <!-- Sources -->
+        <mxCell id="src1" value="Telematics Devices&#10;(CSV, real-time)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#1E3A8A;fontColor=#111827;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="160" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="src2" value="Claims Intake Systems&#10;(CSV, batch daily)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#1E3A8A;fontColor=#111827;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="240" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="src3" value="Partner Insurers&#10;(CSV, daily drop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#1E3A8A;fontColor=#111827;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="320" width="160" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Bronze layer -->
+        <mxCell id="bronze_raw" value="S3 Bronze Bucket&#10;techcatalyst-raw/&#10;&#10;2,400 CSV files/day&#10;Immutable landing zone&#10;Partitioned by source + date" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FED7AA;strokeColor=#EA580C;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="275" y="170" width="190" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="bronze_hist" value="Historical Archive&#10;~200+ TB&#10;(lifecycle to Glacier&#10;after 90 days)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#111827;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="275" y="340" width="190" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Transform (Glue) -->
+        <mxCell id="glue_job" value="AWS Glue Spark Jobs&#10;&#10;- Schema validation&#10;- NULL handling&#10;- Type casting&#10;- Standardize columns&#10;- Write Snappy Parquet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BFDBFE;strokeColor=#2563EB;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="525" y="170" width="190" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="contract_gate" value="Data Contract Gate&#10;&#10;Schema check&#10;Row count threshold&#10;Freshness validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9D5FF;strokeColor=#6D28D9;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="525" y="350" width="190" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="quarantine" value="Quarantine&#10;(failed files)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontColor=#111827;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="555" y="500" width="130" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Silver layer -->
+        <mxCell id="silver_bucket" value="S3 Silver Bucket&#10;techcatalyst-processed/&#10;&#10;Snappy Parquet&#10;Cleaned, typed, deduped&#10;Partitioned by date" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#64748B;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="775" y="170" width="190" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Integration (Snowflake) -->
+        <mxCell id="sf_stage" value="External Stage&#10;(S3 Storage Integration)&#10;&#10;COPY INTO with&#10;file-load tracking&#10;(idempotent)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#6D28D9;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="170" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="sf_integrate" value="Integration SQL&#10;&#10;JOIN on policy + incident keys&#10;DEDUPLICATE across partners&#10;STANDARDIZE to one schema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDD6FE;strokeColor=#6D28D9;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="330" width="220" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Gold layer -->
+        <mxCell id="gold_hist" value="CLAIMS_HISTORY&#10;(Permanent table)&#10;&#10;Clustered by claim_date&#10;Micro-partition pruning&#10;Time Travel + Fail-safe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE68A;strokeColor=#D97706;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1305" y="170" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="gold_today" value="CLAIMS_TODAY&#10;(Transient table)&#10;&#10;Truncate + reload daily&#10;Fast dashboard serving" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE68A;strokeColor=#D97706;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1305" y="330" width="190" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="gold_agg" value="Analytical Tables&#10;SEVERITY_ANALYSIS&#10;FATAL_TEMPORAL&#10;QUARTERLY_HOTSPOT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE68A;strokeColor=#D97706;fontColor=#111827;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1305" y="470" width="190" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- Serve -->
+        <mxCell id="dashboard" value="Claims Leadership&#10;Dashboard&#10;&#10;(Tableau / Streamlit)&#10;200 opens/day&#10;40 users" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBF7D0;strokeColor=#15803D;fontColor=#111827;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="170" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="analysts" value="Claims Analysts&#10;(ad-hoc SQL)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBF7D0;strokeColor=#15803D;fontColor=#111827;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="330" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Orchestration and Governance (bottom) -->
+        <mxCell id="orchestration" value="Orchestration: Glue Workflows (future: Apache Airflow)&#10;Schedule daily at 04:00 UTC | Retry with exponential backoff | Alert on failure | Backfill by date range" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;align=center;verticalAlign=middle;fontSize=12;fillColor=#DBEAFE;strokeColor=#1D4ED8;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="30" y="720" width="860" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="governance" value="Governance: IAM roles (Glue service role) | Snowflake RBAC (DE role, COMPUTE_WH) | Storage Integration (no keys in code) | PII masking policies" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;align=center;verticalAlign=middle;fontSize=12;fillColor=#EDE9FE;strokeColor=#6D28D9;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="920" y="720" width="840" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Arrows: Sources to Bronze -->
+        <mxCell id="e_s1_b" value="CSV daily&#10;~800 files" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="src1" target="bronze_raw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s2_b" value="CSV daily&#10;~800 files" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="src2" target="bronze_raw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s3_b" value="CSV daily&#10;~800 files" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="src3" target="bronze_raw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Bronze to Glue -->
+        <mxCell id="e_b_glue" value="raw CSV&#10;as landed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="bronze_raw" target="glue_job">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Glue to Contract Gate -->
+        <mxCell id="e_glue_cg" value="cleaned records" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="glue_job" target="contract_gate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Contract Gate to Silver (pass) -->
+        <mxCell id="e_cg_silver" value="valid Parquet&#10;(Snappy)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;strokeColor=#15803D;fontColor=#15803D;" edge="1" parent="1" source="contract_gate" target="silver_bucket">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Contract Gate to Quarantine (fail) -->
+        <mxCell id="e_cg_q" value="rejected" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;strokeColor=#DC2626;fontColor=#DC2626;" edge="1" parent="1" source="contract_gate" target="quarantine">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Silver to Snowflake Stage -->
+        <mxCell id="e_silver_sf" value="bulk load&#10;from S3 stage" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="silver_bucket" target="sf_stage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Stage to Integration -->
+        <mxCell id="e_stage_int" value="COPY INTO&#10;(idempotent)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="sf_stage" target="sf_integrate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Integration to Gold -->
+        <mxCell id="e_int_gold" value="integrated&#10;tables" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="sf_integrate" target="gold_hist">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_int_today" value="today's slice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="sf_integrate" target="gold_today">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Gold to Dashboard -->
+        <mxCell id="e_gold_dash" value="SQL queries&#10;(result cached)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="gold_today" target="dashboard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gold_analysts" value="ad-hoc SQL&#10;(clustered scan)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="gold_hist" target="analysts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Orchestration arrows (dashed) -->
+        <mxCell id="oe1" value="triggers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;fontSize=10;strokeWidth=1;strokeColor=#2563EB;fontColor=#1D4ED8;" edge="1" parent="1" source="orchestration" target="glue_job">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oe2" value="triggers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;fontSize=10;strokeWidth=1;strokeColor=#2563EB;fontColor=#1D4ED8;" edge="1" parent="1" source="orchestration" target="sf_stage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Quality check marker -->
+        <mxCell id="qc_marker" value="⚠ Quality Gate" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#6D28D9;" vertex="1" parent="1">
+          <mxGeometry x="550" y="470" width="120" height="25" as="geometry" />
+        </mxCell>
+        <!-- PII marker -->
+        <mxCell id="pii_marker" value="🔒 PII: Masking policy applied at Gold layer" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#6D28D9;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="590" width="280" height="25" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
