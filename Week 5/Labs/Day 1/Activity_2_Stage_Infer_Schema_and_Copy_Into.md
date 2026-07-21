@@ -47,7 +47,7 @@ Use the instructor-provided storage integration. Do not add AWS keys, passwords,
 
 ### Part C: Both CSV files
 
-12. Create a CSV file format with `SKIP_HEADER = 1` and `FIELD_OPTIONALLY_ENCLOSED_BY = '"'`.
+12. Create a CSV file format with `PARSE_HEADER = TRUE` (do not use `SKIP_HEADER = 1`) and `FIELD_OPTIONALLY_ENCLOSED_BY = '"'`.
 13. Create `raw_yellow_tripdata_csv` as a TRANSIENT table using the same DDL (or inference) you used for the Parquet table. The columns are identical across formats.
 14. Run `COPY INTO` using `PATTERN = '.*yellow_tripdata_2026-.*\\.csv'` to load both CSV files in one statement. Use `MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE`.
 15. Record the `COPY INTO` result and run `SELECT COUNT(*)`.
@@ -99,7 +99,7 @@ Snowflake tracks successfully loaded files for a target table and avoids loading
 <details>
 <summary>My CSV load returned errors or fewer rows than expected.</summary>
 
-Check your file format: `SKIP_HEADER = 1` must be set (otherwise the header row loads as data), and `FIELD_OPTIONALLY_ENCLOSED_BY = '"'` handles quoted fields. Also confirm `MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE` is present so columns align by name, not position.
+Check your file format: `PARSE_HEADER = TRUE` must be set (otherwise CSVs don't expose headers to `MATCH_BY_COLUMN_NAME`), and `FIELD_OPTIONALLY_ENCLOSED_BY = '"'` handles quoted fields. Also confirm `MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE` is present so columns align by name, not position.
 
 </details>
 
@@ -202,7 +202,7 @@ USE SCHEMA TECHCATALYST.<YOUR_NAME>;
 -- ============================================================
 
 -- 12. TODO: Create yellow_tripdata_csv_ff with TYPE = CSV,
---     SKIP_HEADER = 1, FIELD_OPTIONALLY_ENCLOSED_BY = '"'.
+--     PARSE_HEADER = TRUE, FIELD_OPTIONALLY_ENCLOSED_BY = '"'.
 
 -- 13. TODO: Create raw_yellow_tripdata_csv as a TRANSIENT table.
 --     Use the same column definitions as the Parquet table.
@@ -214,7 +214,7 @@ USE SCHEMA TECHCATALYST.<YOUR_NAME>;
 
 -- 15. TODO: Record the COPY result, then validate:
 --     SELECT COUNT(*) FROM raw_yellow_tripdata_csv;
---     Expected: 7,232,642
+--     Expected: 7,124,755
 
 -- ============================================================
 -- PART D: Cross-format validation
