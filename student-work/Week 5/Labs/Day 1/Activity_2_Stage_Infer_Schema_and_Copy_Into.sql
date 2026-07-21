@@ -56,7 +56,8 @@ CREATE OR REPLACE TRANSIENT TABLE raw_yellow_tripdata_parquet (
   improvement_surcharge FLOAT,
   total_amount          FLOAT,
   congestion_surcharge  FLOAT,
-  airport_fee           FLOAT
+  airport_fee           FLOAT,
+  cbd_congestion_fee    FLOAT
 );
 
 DESCRIBE TABLE raw_yellow_tripdata_parquet;
@@ -97,8 +98,9 @@ SELECT COUNT(*) AS after_count FROM raw_yellow_tripdata_parquet;
 -- Step 12: Create CSV file format
 CREATE OR REPLACE FILE FORMAT yellow_tripdata_csv_orlando
   TYPE = 'CSV'
-  SKIP_HEADER = 1
-  FIELD_OPTIONALLY_ENCLOSED_BY = '"';
+  PARSE_HEADER = TRUE
+  FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+  ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE;
 
 -- Step 13: Create the CSV target table (same columns as Parquet table)
 CREATE OR REPLACE TRANSIENT TABLE raw_yellow_tripdata_csv (
@@ -120,7 +122,8 @@ CREATE OR REPLACE TRANSIENT TABLE raw_yellow_tripdata_csv (
   improvement_surcharge FLOAT,
   total_amount          FLOAT,
   congestion_surcharge  FLOAT,
-  airport_fee           FLOAT
+  airport_fee           FLOAT,
+  cbd_congestion_fee    FLOAT
 );
 
 -- Step 14: COPY INTO using PATTERN (loads both CSV files at once)
@@ -131,6 +134,7 @@ FILE_FORMAT = 'yellow_tripdata_csv_orlando'
 MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 
 -- Step 15: Validate - expect 7,232,642 rows
+-- Answer: 7,124,755
 SELECT COUNT(*) FROM raw_yellow_tripdata_csv;
 
 -- ============================================================
@@ -138,26 +142,33 @@ SELECT COUNT(*) FROM raw_yellow_tripdata_csv;
 -- ============================================================
 
 -- Step 16: Compare totals (should match exactly)
+-- Answer: both have 7,124,755 rows
 SELECT 'parquet' AS source, COUNT(*) AS row_count FROM raw_yellow_tripdata_parquet
 UNION ALL
 SELECT 'csv'     AS source, COUNT(*) AS row_count FROM raw_yellow_tripdata_csv;
 
 -- Step 17a: Date range for Parquet table
+-- Earliest pickup: 2025-12-31
+-- Latest pickup: 2026-03-01
 SELECT MIN(tpep_pickup_datetime) AS earliest_pickup,
        MAX(tpep_pickup_datetime) AS latest_pickup
 FROM raw_yellow_tripdata_parquet;
 
 -- Step 17a: Date range for CSV table
+-- Earliest pickup: 2025-12-31
+-- Latest pickup: 2026-03-01
 SELECT MIN(tpep_pickup_datetime) AS earliest_pickup,
        MAX(tpep_pickup_datetime) AS latest_pickup
 FROM raw_yellow_tripdata_csv;
 
 -- Step 17b: Negative trip distances - Parquet
+-- Answer: 0
 SELECT COUNT(*) AS negative_distance_count
 FROM raw_yellow_tripdata_parquet
 WHERE trip_distance < 0;
 
 -- Step 17b: Negative trip distances - CSV
+-- Answer: 0
 SELECT COUNT(*) AS negative_distance_count
 FROM raw_yellow_tripdata_csv
 WHERE trip_distance < 0;
