@@ -1,0 +1,48 @@
+{
+  "logs": {
+    "bytes": 4111859,
+    "fields": [
+      "_source_file",
+      "artist",
+      "auth",
+      "firstName",
+      "gender",
+      "itemInSession",
+      "lastName",
+      "length",
+      "level",
+      "location",
+      "method",
+      "page",
+      "registration",
+      "sessionId",
+      "song",
+      "status",
+      "ts",
+      "userAgent",
+      "userId"
+    ],
+    "file": "logs_compact.jsonl",
+    "rows": 8056,
+    "sha256": "3fd2eb0688207b293412d092eb54b4e168b41de632ad3986fa373379ef6709a5"
+  },
+  "songs": {
+    "bytes": 4430660,
+    "fields": [
+      "_source_file",
+      "artist_id",
+      "artist_latitude",
+      "artist_location",
+      "artist_longitude",
+      "artist_name",
+      "duration",
+      "num_songs",
+      "song_id",
+      "title",
+      "year"
+    ],
+    "file": "songs_compact.jsonl",
+    "rows": 14896,
+    "sha256": "4b8f14562ed6c8ce3bbbaa66a51ac331316cfce0c65e0dde2afd8ac1b65549d6"
+  }
+}
