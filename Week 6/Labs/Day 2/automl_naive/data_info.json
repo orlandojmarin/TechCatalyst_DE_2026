@@ -1,0 +1,210 @@
+{
+    "columns": [
+        "id",
+        "status",
+        "duration",
+        "credit_history",
+        "purpose",
+        "amount",
+        "savings",
+        "employment_duration",
+        "installment_rate",
+        "other_debtors",
+        "present_residence",
+        "property",
+        "age",
+        "other_installment_plans",
+        "housing",
+        "number_credits",
+        "job",
+        "people_liable",
+        "telephone",
+        "foreign_worker"
+    ],
+    "rows": 796,
+    "cols": 20,
+    "target_is_numeric": false,
+    "columns_info": {
+        "id": [
+            "scale"
+        ],
+        "status": [
+            "categorical",
+            "few_categories"
+        ],
+        "duration": [
+            "scale"
+        ],
+        "credit_history": [
+            "categorical",
+            "few_categories"
+        ],
+        "purpose": [
+            "categorical",
+            "few_categories"
+        ],
+        "amount": [
+            "scale"
+        ],
+        "savings": [
+            "categorical",
+            "few_categories"
+        ],
+        "employment_duration": [
+            "categorical",
+            "few_categories"
+        ],
+        "installment_rate": [
+            "categorical",
+            "few_categories"
+        ],
+        "other_debtors": [
+            "categorical",
+            "few_categories"
+        ],
+        "present_residence": [
+            "categorical",
+            "few_categories"
+        ],
+        "property": [
+            "categorical",
+            "few_categories"
+        ],
+        "age": [
+            "scale"
+        ],
+        "other_installment_plans": [
+            "categorical",
+            "few_categories"
+        ],
+        "housing": [
+            "categorical",
+            "few_categories"
+        ],
+        "number_credits": [
+            "categorical",
+            "few_categories"
+        ],
+        "job": [
+            "categorical",
+            "few_categories"
+        ],
+        "people_liable": [
+            "categorical",
+            "few_categories"
+        ],
+        "telephone": [
+            "categorical",
+            "few_categories"
+        ],
+        "foreign_worker": [
+            "categorical",
+            "few_categories"
+        ]
+    },
+    "columns_values": {
+        "status": [
+            "no checking account",
+            "... < 0 DM",
+            "... >= 200 DM / salary for at least 1 year",
+            "0<= ... < 200 DM"
+        ],
+        "credit_history": [
+            "no credits taken/all credits paid back duly",
+            "existing credits paid back duly till now",
+            "all credits at this bank paid back duly",
+            "critical account/other credits elsewhere",
+            "delay in paying off in the past"
+        ],
+        "purpose": [
+            "car (used)",
+            "furniture/equipment",
+            "retraining",
+            "car (new)",
+            "repairs",
+            "others",
+            "domestic appliances",
+            "business",
+            "vacation",
+            "radio/television"
+        ],
+        "savings": [
+            "unknown/no savings account",
+            "... >= 1000 DM",
+            "100 <= ... <  500 DM",
+            "500 <= ... < 1000 DM",
+            "... <  100 DM"
+        ],
+        "employment_duration": [
+            "< 1 yr",
+            "4 <= ... < 7 yrs",
+            ">= 7 yrs",
+            "1 <= ... < 4 yrs",
+            "unemployed"
+        ],
+        "installment_rate": [
+            "< 20",
+            "25 <= ... < 35",
+            "20 <= ... < 25",
+            ">= 35"
+        ],
+        "other_debtors": [
+            "none",
+            "guarantor",
+            "co-applicant"
+        ],
+        "present_residence": [
+            "< 1 yr",
+            "1 <= ... < 4 yrs",
+            "4 <= ... < 7 yrs",
+            ">= 7 yrs"
+        ],
+        "property": [
+            "real estate",
+            "unknown / no property",
+            "car or other",
+            "building soc. savings agr./life insurance"
+        ],
+        "other_installment_plans": [
+            "bank",
+            "none",
+            "stores"
+        ],
+        "housing": [
+            "own",
+            "rent",
+            "for free"
+        ],
+        "number_credits": [
+            "1",
+            "2-3",
+            ">= 6",
+            "4-5"
+        ],
+        "job": [
+            "skilled employee/official",
+            "unskilled - resident",
+            "manager/self-empl./highly qualif. employee",
+            "unemployed/unskilled - non-resident"
+        ],
+        "people_liable": [
+            "0 to 2",
+            "3 or more"
+        ],
+        "telephone": [
+            "no",
+            "yes (under customer name)"
+        ],
+        "foreign_worker": [
+            "no",
+            "yes"
+        ]
+    },
+    "target_info": [
+        "convert_0_1"
+    ],
+    "n_features": 20,
+    "is_sample_weighted": false,
+    "is_fairness_applied": false,
+    "n_classes": 2
+}
