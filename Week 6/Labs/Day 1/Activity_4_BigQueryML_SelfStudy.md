@@ -255,7 +255,7 @@ BQML's default is `data_split_method = 'AUTO_SPLIT'`, and here is what that actu
 
 Read the first row again. **On a small table, `ML.EVALUATE` reports training-set metrics**, and nothing in the output warns you. Your Section 5 model had 30 rows, so its 0.96 was a training score.
 
-This is why several datasets in Activity 5 need an explicit split: `mpg` has 397 rows, `loans` has 100, and `cereal` has 73. All three are below the threshold.
+This is why several datasets in Activity 5 need an explicit split: `mpg` has 398 rows, `loans` has 100, and `cereal` has 74. All three are below the threshold.
 
 `employee_data` has 1,470 rows, so AUTO_SPLIT gives you a genuine 20 percent holdout. Let us use it and see the difference for real.
 
