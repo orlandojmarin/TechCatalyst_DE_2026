@@ -8,17 +8,19 @@
 
 ## Objective
 
-Today builds interactive visualizations with hvPlot and Plotly, then wraps them into a small Streamlit app. This activity adds the five packages the day needs to your shared environment and gets your work folder ready.
+Today builds interactive visualizations with hvPlot and Plotly, then wraps them into a small Streamlit app. This activity adds the six packages the day needs to your shared environment and gets your work folder ready.
 
 ## Install the visualization packages
 
 Run this from the repository root:
 
 ```bash
-uv add hvplot streamlit plotly yfinance statsmodels
+uv add hvplot streamlit plotly yfinance statsmodels jupyter-bokeh
 ```
 
-This records the five packages in the root `pyproject.toml`, the same file every other week has been using. There is one UV project for the whole class, so everyone installs into the same `pyproject.toml` and the same `.venv`, and `uv sync` reproduces it for anyone who pulls the repo.
+This records the six packages in the root `pyproject.toml`, the same file every other week has been using. There is one UV project for the whole class, so everyone installs into the same `pyproject.toml` and the same `.venv`, and `uv sync` reproduces it for anyone who pulls the repo.
+
+`jupyter-bokeh` is the one that is not obvious. hvPlot draws with Bokeh, and Bokeh needs that package to render inside Jupyter. Without it your hvPlot charts come out blank in Activity 2, with no error to tell you why.
 
 ## Create your work folder
 
@@ -89,7 +91,7 @@ Your exact version numbers may differ slightly if packages have updated since th
 
 ## Success Criteria
 
-- `uv add hvplot streamlit plotly yfinance statsmodels` completed with no errors, run from the repository root.
+- `uv add hvplot streamlit plotly yfinance statsmodels jupyter-bokeh` completed with no errors, run from the repository root.
 - The import check above runs cleanly and pandas starts with `3.`.
 - `student-work/week7/day1/data/` contains `hospital_claims.parquet`, `closing_price.csv`, and `nyc_taxi.csv`.
 - Your notebooks and scripts use the repo-root `.venv` interpreter, not a different environment.
