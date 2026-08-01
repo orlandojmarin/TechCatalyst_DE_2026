@@ -1,6 +1,6 @@
 # Group Activity: Chart Clinic
 
-**Time:** 50 minutes
+**Estimated Time:** 50 minutes
 **Team size:** two or three
 **Deliverable:** a five-minute presented and defended dashboard redesign
 
