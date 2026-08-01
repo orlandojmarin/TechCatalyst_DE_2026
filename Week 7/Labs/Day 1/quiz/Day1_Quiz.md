@@ -112,12 +112,12 @@
     Answer: c
     Explanation: This is one of two failure modes observed while building this activity, alongside a separate draft that silently omitted 2014-09-01 entirely. Both numbers, -3.93 and -4.75, are correct and present in the facts block; the error is which date the paragraph called the largest.
 
-## Exit Ticket
+## Reflection
 
 Answer in a few sentences each. There is no single correct answer for these three.
 
 1. What is one thing from today that clicked for you (a moment where something finally made sense)?
 
-2. What is one thing that is still murky, that you would want explained again?
+2. What is one thing that is still unclear, that you would want explained again?
 
 3. Of every chart you built today, which one would you put in front of a business audience, and why?
