@@ -78,5 +78,5 @@ c.metric("Peak", f"{series.max():,.0f}")
 chart = pd.DataFrame({label: series, f"{window}-day average": smoothed})
 st.plotly_chart(
     px.line(chart, title=f"{label}, smoothed over {window} days"),
-    use_container_width=True,
+    width="stretch",
 )

@@ -87,6 +87,6 @@ c.metric("Peak", f"{series.max():,.0f}")
 
 chart = pd.DataFrame({label: series, f"{window}-day average": smoothed})
 # TODO: call st.plotly_chart(...) passing a px.line(chart, title=f"{label},
-# smoothed over {window} days") figure, with use_container_width=True.
+# smoothed over {window} days") figure, with width="stretch".
 # Result: a Plotly line chart with two series, the raw values and the
 # smoothed average.
