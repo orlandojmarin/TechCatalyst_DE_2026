@@ -2,6 +2,8 @@
 
 > **AI coding tools note:** AI allowed, review required. Week 7 is past the AI-Free Zone that applied to Weeks 1 through 4. You can use an AI assistant while building today's charts and Streamlit apps, but you must be able to explain every line you submit, including why a chart type was chosen, why a caching decorator sits where it does, and why the anomaly detector uses a trailing window instead of a centered one. If you cannot explain a line, do not submit it.
 
+> **Before each of Activities 4 through 7:** run that activity's Concepts notebook first, then open the matching `.py` starter. You will have already seen every new function work, with its real output, before you have to write it yourself.
+
 ---
 
 ## Core Documentation

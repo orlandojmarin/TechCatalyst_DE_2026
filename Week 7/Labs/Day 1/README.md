@@ -13,10 +13,10 @@ By the end of the day you will have shipped a small, real Streamlit app, not jus
 | Block 1 | Pandas Plot Fundamentals | Static charts straight off `.plot`, no new import, on hospital claims and closing price data ([Activity 1](./Activity_1_Pandas_Plot_Fundamentals.ipynb)) |
 | Block 2 | Interactive Charts with hvPlot | The one-line upgrade from `.plot` to `.hvplot`, and what hover, zoom, and a linked dropdown add ([Activity 2](./Activity_2_Interactive_With_hvPlot.ipynb)) |
 | Block 3 | Charts That Argue | Chart-choice rules, label titles versus conclusion titles, and the six-step decision arc, all against the same claims data ([Activity 3](./Activity_3_Charts_That_Argue.ipynb)) |
-| Block 4 | Your First Streamlit App | A small NYC taxi app with metrics, a line chart, and a direct look at the Streamlit rerun model and `@st.cache_data` ([Activity 4](./Activity_4_First_Streamlit_App.md)) |
-| Block 5 | The Demand Explorer | A switchable data source (bundled CSV or a live `yfinance` ticker), a smoothing control, and graceful handling of a bad ticker ([Activity 5](./Activity_5_Demand_Explorer.md)) |
-| Block 6 | Forecast and Anomalies | A Holt-Winters forecast and a rolling z-score anomaly detector, including a centered-window bug you are meant to hit before you fix it ([Activity 6](./Activity_6_Forecast_and_Anomalies.md)) |
-| Block 7 | Narrate With an LLM | A button that asks an LLM to draft an analyst paragraph from computed facts only, then a required fact-check and correction ([Activity 7](./Activity_7_Narrate_With_LLM.md)) |
+| Block 4 | Your First Streamlit App | Run-and-read first: resampling and metric formatting worked in a notebook with visible output ([Concepts notebook](./Activity_4_Concepts_Resampling_and_Metrics.ipynb)). Then build a small NYC taxi app with metrics, a line chart, and a direct look at the Streamlit rerun model and `@st.cache_data` ([Activity 4](./Activity_4_First_Streamlit_App.md)) |
+| Block 5 | The Demand Explorer | Run-and-read first: the `yfinance` MultiIndex trap and rolling smoothing worked in a notebook with visible output ([Concepts notebook](./Activity_5_Concepts_yfinance_and_Smoothing.ipynb)). Then build a switchable data source (bundled CSV or a live `yfinance` ticker), a smoothing control, and graceful handling of a bad ticker ([Activity 5](./Activity_5_Demand_Explorer.md)) |
+| Block 6 | Forecast and Anomalies | Run-and-read first: `.fit()` and `.forecast()` on a Holt-Winters model worked in a notebook with visible output ([Concepts notebook](./Activity_6_Concepts_Holt_Winters.ipynb)). Then build a Holt-Winters forecast and a rolling z-score anomaly detector, including a centered-window bug you are meant to hit before you fix it ([Activity 6](./Activity_6_Forecast_and_Anomalies.md)) |
+| Block 7 | Narrate With an LLM | Run-and-read first: `max_tokens` and `temperature` worked against a real LLM call with visible output ([Concepts notebook](./Activity_7_Concepts_Tokens_and_Temperature.ipynb)). Then build a button that asks an LLM to draft an analyst paragraph from computed facts only, then a required fact-check and correction ([Activity 7](./Activity_7_Narrate_With_LLM.md)) |
 | Block 8 | Chart Clinic | Diagnosing a bad claims dashboard, redesigning it, and presenting and defending the redesign in teams ([Group Activity](./Group_Activity_Chart_Clinic.md)) |
 
 Students who finish early can continue with the optional [Deploy Stretch](./Deploy_Stretch_Streamlit_Cloud.md), which puts a finished app on a public URL.
@@ -51,9 +51,13 @@ Start with [Activity 0](./Activity_0_UV_Viz_Setup.md). It adds six packages to t
 | `Activity_1_Pandas_Plot_Fundamentals.ipynb` | Static charts with `.plot` on hospital claims and closing price data |
 | `Activity_2_Interactive_With_hvPlot.ipynb` | The same charts rebuilt with `.hvplot`, hover, zoom, and a linked dropdown |
 | `Activity_3_Charts_That_Argue.ipynb` | Chart-choice rules and title rewrites (label versus conclusion) on the same claims data |
+| `Activity_4_Concepts_Resampling_and_Metrics.ipynb` | Run-and-read: `.resample()`, `.max()`/`.idxmax()`, and f-string number formatting, fully worked before you open Activity 4's `.py` |
 | `Activity_4_First_Streamlit_App.md` | A first Streamlit app on NYC taxi data, plus the rerun-model experiment with `@st.cache_data` |
+| `Activity_5_Concepts_yfinance_and_Smoothing.ipynb` | Run-and-read: the `yfinance` MultiIndex-versus-flat-columns trap and rolling-window smoothing, fully worked before you open Activity 5's `.py` |
 | `Activity_5_Demand_Explorer.md` | Switchable data source (bundled CSV or live `yfinance` ticker), a smoothing slider, and bad-ticker handling |
+| `Activity_6_Concepts_Holt_Winters.ipynb` | Run-and-read: exponential smoothing, `.fit()` versus `.forecast()`, fully worked before you open Activity 6's `.py` |
 | `Activity_6_Forecast_and_Anomalies.md` | Holt-Winters forecasting and a rolling z-score anomaly detector, including the centered-window trap |
+| `Activity_7_Concepts_Tokens_and_Temperature.ipynb` | Run-and-read: `max_tokens` and `temperature` against a real LLM call, fully worked before you open Activity 7's `.py` |
 | `Activity_7_Narrate_With_LLM.md` | An LLM narration button fed computed facts only, plus a required fact-check and correction |
 | `Deploy_Stretch_Streamlit_Cloud.md` | Optional: deploying a finished app to Streamlit Community Cloud with a public URL |
 | `Group_Activity_Chart_Clinic.md` | Diagnosing and redesigning a bad claims dashboard, presented and defended in teams |
@@ -68,6 +72,8 @@ Start with [Activity 0](./Activity_0_UV_Viz_Setup.md). It adds six packages to t
 | `solutions/` | Completed notebooks and scripts for Activities 1 through 7, for instructor and self-check use |
 
 ### Deliverables
+
+The four Concepts notebooks for Activities 4 through 7 are run-and-read references, not deliverables. Run each one before opening the matching `.py` starter, but do not submit it and do not expect a checkbox for it below; only the app file for each activity is graded.
 
 | Deliverable File | Target Location | Purpose |
 | :--- | :--- | :--- |
