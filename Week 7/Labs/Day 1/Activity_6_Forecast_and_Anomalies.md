@@ -10,6 +10,12 @@
 
 In this activity, you will add two new capabilities to the Demand Explorer: a Holt-Winters forecast that projects demand forward, and an anomaly detector that flags days where demand broke sharply from its recent pattern. You will also debug a rolling-window design that looks correct, boots without errors, and silently gives the wrong answer.
 
+![image-20260801152015367](images/image-20260801152015367.png)
+
+![image-20260801152032740](images/image-20260801152032740.png)
+
+![image-20260801152047140](images/image-20260801152047140.png)
+
 ## Background
 
 ### Forecasting with Holt-Winters
@@ -47,7 +53,8 @@ flags = series[z.abs() > threshold]
 
 2. Open `student-work/week7/day1/activity_6_forecast_anomalies.py` in VS Code. Read the whole file before changing anything. Everything through the smoothing chart is the finished Activity 5 app: the path resolver, `load_taxi`, `load_prices`, the source radio, the KPI tiles, and the smoothed chart are already done. Below that are two new sections, Forecast and Anomalies, each with `# TODO` blocks:
    - the `ExponentialSmoothing` fit and the `.forecast(horizon)` call
-   - the trailing baseline and the z-score computation
+   - the trailing baseline that replaces the centered window
+   - the z-score computation and the anomaly flags
    - the scatter trace that marks the flagged anomalies on the chart
 
    Each `# TODO` comment tells you exactly what to write. Replace the placeholder code with your own.
@@ -120,9 +127,9 @@ from pathlib import Path
 s = pd.read_csv('Week 7/Labs/Day 1/data/nyc_taxi.csv', parse_dates=['timestamp'], index_col='timestamp')['value'].resample('D').sum()
 b = s.shift(1).rolling(28)
 z = (s - b.mean()) / b.std()
-f = z[z.abs() > 3].dropna()
-print(len(f))
-print(f.round(2).to_string())
+flags = pd.DataFrame({'value': s, 'z': z})[z.abs() > 3].dropna()
+print(len(flags))
+print(flags.round(2).to_string())
 "
 ```
 
@@ -153,7 +160,7 @@ One date that does **not** appear on this list, even though most students expect
 
 ## Success Criteria
 
-- All three `# TODO` blanks are filled in and the placeholder values (`series.tail(horizon)` for the forecast, the zero-filled `z` and empty `flags` for anomalies) are gone.
+- All four `# TODO` blanks are filled in and the placeholder values (`series.tail(horizon)` for the forecast, the zero-filled `z` and empty `flags` for anomalies) are gone.
 - The app runs with `uv run streamlit run student-work/week7/day1/activity_6_forecast_anomalies.py` and shows a Forecast section and an Anomalies section below the Activity 5 chart.
 - Your standalone Holt-Winters check (Step 4) matches the three forecast values in the table above.
 - You ran the anomaly detector with the centered window first, and can explain in your own words why it misses the January 2015 blizzard.

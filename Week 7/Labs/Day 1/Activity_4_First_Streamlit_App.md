@@ -10,6 +10,8 @@
 
 In this activity, you will complete a small Streamlit app that turns the NYC taxi CSV into a title, two metric tiles, a line chart, and a table, and you will observe how Streamlit reruns your script.
 
+![image-20260801151549821](images/image-20260801151549821.png)
+
 ## Background
 
 Every notebook you have used so far runs cell by cell, and you choose when a cell executes. A Streamlit app is different: it is a single Python script that Streamlit reads from top to bottom and turns into a web page. There are no callbacks to register and no event handlers to write. You just write plain Python, and functions like `st.title(...)` or `st.line_chart(...)` draw something on the page in the order they appear.
@@ -66,7 +68,15 @@ This is the part that makes the rerun model click instead of staying an abstract
 
 3. Click to open the "See the raw daily numbers" expander at the bottom of the page. Watch the timestamp at the top. It changes, even though all you did was open an expander. That is the whole idea: any interaction on the page reruns your entire script from the top, including the line that prints that timestamp.
 
-4. Now comment out or delete the `@st.cache_data` line above `load_taxi`, save, and interact with the app again (open and close the expander a few times). Notice the app feels slower to respond. Without the cache, every rerun re-reads and re-resamples the whole CSV from scratch. With the cache, that expensive work only happens once, and reruns reuse the cached Series. Put `@st.cache_data` back before moving on.
+4. Now make the cache hit visible instead of trying to feel it. Add one line as the first line inside the body of `load_taxi`, right after its docstring:
+
+   ```python
+   st.write("load_taxi actually ran")
+   ```
+
+   Save. Open and close the "See the raw daily numbers" expander a few times. Notice the marker prints once and then stops reappearing, even though the timestamp above it keeps changing on every interaction. That is `@st.cache_data` at work: the decorator returns the cached Series without executing the function body again, so the line inside that body only runs the first time.
+
+5. Now comment out or delete the `@st.cache_data` line above `load_taxi`, save, and interact with the app again (open and close the expander a few times). Notice "load_taxi actually ran" now prints on every single interaction. Without the cache, the function body runs in full on every rerun; with it, the body runs once and every later rerun reuses the cached result. Put `@st.cache_data` back and remove the marker line before moving on.
 
 ## Success Criteria
 
@@ -74,4 +84,4 @@ This is the part that makes the rerun model click instead of staying an abstract
 - The app runs with `uv run streamlit run student-work/week7/day1/activity_4_first_app.py` and shows the exact line `215 days, 2014-07-01 to 2015-01-31`.
 - Both metric tiles show a value and a date on hover.
 - The line chart renders and the raw numbers table expands.
-- You completed the rerun experiment: you saw the timestamp change on interaction, and you saw the app slow down without `@st.cache_data`, then restored the decorator.
+- You completed the rerun experiment: you saw the timestamp change on interaction, you saw the "load_taxi actually ran" marker print once and then stop reappearing with `@st.cache_data` in place, and you saw it print on every interaction once you removed the decorator. You restored the decorator and removed the marker line afterward.

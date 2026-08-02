@@ -129,5 +129,6 @@ not against what you expect to see.
 
 st.text_area(
     "Your corrected paragraph, plus the list of what the draft got wrong (or confirmation it held up):",
+    value="TODO: replace with your corrected paragraph and fact-check notes.",
     height=200,
 )

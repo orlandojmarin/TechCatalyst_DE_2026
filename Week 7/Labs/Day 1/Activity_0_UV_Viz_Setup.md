@@ -40,6 +40,21 @@ cp -R "Week 7/Labs/Day 1/data" student-work/week7/day1/
 
 The reason: the instructor pushes new files to `Week 7/Labs/...` over the rest of the course. If you edit a provided file directly, your next `git pull` can conflict with that update. Working only inside `student-work/` keeps your changes out of the instructor's path.
 
+## Copy the notebooks
+
+Copy all seven provided notebooks into your work folder too. You will edit and rerun cells in every one of them today, and the same conflict rule applies: never edit a provided notebook in place.
+
+```bash
+cp "Week 7/Labs/Day 1/Activity_1_Pandas_Plot_Fundamentals.ipynb" \
+   "Week 7/Labs/Day 1/Activity_2_Interactive_With_hvPlot.ipynb" \
+   "Week 7/Labs/Day 1/Activity_3_Charts_That_Argue.ipynb" \
+   "Week 7/Labs/Day 1/Activity_4_Concepts_Resampling_and_Metrics.ipynb" \
+   "Week 7/Labs/Day 1/Activity_5_Concepts_yfinance_and_Smoothing.ipynb" \
+   "Week 7/Labs/Day 1/Activity_6_Concepts_Holt_Winters.ipynb" \
+   "Week 7/Labs/Day 1/Activity_7_Concepts_Tokens_and_Temperature.ipynb" \
+   student-work/week7/day1/
+```
+
 ## Select the interpreter
 
 In VS Code and in Jupyter, select `<repo-root>/.venv/bin/python` as the interpreter or kernel:
@@ -94,5 +109,6 @@ Your exact version numbers may differ slightly if packages have updated since th
 - `uv add hvplot streamlit plotly yfinance statsmodels jupyter-bokeh` completed with no errors, run from the repository root.
 - The import check above runs cleanly and pandas starts with `3.`.
 - `student-work/week7/day1/data/` contains `hospital_claims.parquet`, `closing_price.csv`, and `nyc_taxi.csv`.
+- `student-work/week7/day1/` contains all seven copied notebooks (`Activity_1_Pandas_Plot_Fundamentals.ipynb` through `Activity_7_Concepts_Tokens_and_Temperature.ipynb`).
 - Your notebooks and scripts use the repo-root `.venv` interpreter, not a different environment.
 - No new `.venv` or `pyproject.toml` exists inside `student-work/`.
