@@ -10,6 +10,10 @@
 
 In this activity, you will extend the single-source app from Activity 4 into an app with a switchable data source: the bundled NYC taxi CSV, or a live stock ticker pulled with `yfinance`. You will add a smoothing control and three KPI tiles, and you will handle a bad ticker without crashing the app.
 
+![image-20260801151718603](images/image-20260801151718603.png)
+
+![image-20260801151743537](images/image-20260801151743537.png)
+
 ## Background
 
 Activity 4 only ever read one file. Real dashboards usually need to read from more than one place, and the data does not always cooperate: an API can time out, a ticker symbol can be wrong, or a date range can return nothing. This activity is about building an app that switches sources cleanly and fails gracefully when the second source misbehaves.

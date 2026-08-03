@@ -10,6 +10,8 @@
 
 In this activity, you will add a feature to the anomaly detector from Activity 6: a button that asks an LLM to draft a short analyst paragraph about the flagged dates. The model never sees the raw taxi data. It only receives a plain-text block of facts your code already computed. Your job is not to admire the paragraph. It is to fact-check it, correct it, and hand in the corrected version.
 
+![image-20260801152322495](images/image-20260801152322495.png)
+
 ## Background
 
 ### The model narrates, it does not analyze
