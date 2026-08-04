@@ -1,0 +1,26 @@
+if (status <= 2.5) and (status > 0.5) and (purpose <= 6.5) and (job <= 2.5) then class: good (proba: 93.33%) | based on 180 samples
+
+if (status <= 2.5) and (status <= 0.5) and (amount <= 9908.5) and (housing > 1.5) then class: good (proba: 75.44%) | based on 114 samples
+
+if (status > 2.5) and (duration <= 47.5) and (credit_history > 0.5) and (other_debtors > 1.5) then class: bad (proba: 59.05%) | based on 105 samples
+
+if (status <= 2.5) and (status > 0.5) and (purpose <= 6.5) and (job > 2.5) then class: good (proba: 76.92%) | based on 39 samples
+
+if (status <= 2.5) and (status <= 0.5) and (amount <= 9908.5) and (housing <= 1.5) then class: bad (proba: 50.0%) | based on 38 samples
+
+if (status > 2.5) and (duration <= 47.5) and (credit_history <= 0.5) and (purpose > 1.5) then class: good (proba: 73.33%) | based on 30 samples
+
+if (status <= 2.5) and (status > 0.5) and (purpose > 6.5) and (amount > 1708.0) then class: good (proba: 59.26%) | based on 27 samples
+
+if (status <= 2.5) and (status > 0.5) and (purpose > 6.5) and (amount <= 1708.0) then class: good (proba: 94.12%) | based on 17 samples
+
+if (status > 2.5) and (duration <= 47.5) and (credit_history > 0.5) and (other_debtors <= 1.5) then class: good (proba: 80.0%) | based on 15 samples
+
+if (status > 2.5) and (duration > 47.5) then class: bad (proba: 100.0%) | based on 13 samples
+
+if (status <= 2.5) and (status <= 0.5) and (amount > 9908.5) and (savings > 2.0) then class: bad (proba: 100.0%) | based on 10 samples
+
+if (status > 2.5) and (duration <= 47.5) and (credit_history <= 0.5) and (purpose <= 1.5) then class: good (proba: 100.0%) | based on 7 samples
+
+if (status <= 2.5) and (status <= 0.5) and (amount > 9908.5) and (savings <= 2.0) then class: bad (proba: 50.0%) | based on 2 samples
+
