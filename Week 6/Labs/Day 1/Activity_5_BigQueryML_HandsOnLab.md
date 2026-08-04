@@ -64,7 +64,7 @@ GROUP BY horsepower;
 
 > **What you should find:** 6 rows where `horsepower` is the literal string `?`.
 
-Six bad values out of 398 changed the type of the entire column. This is Decision 2 from Activity 4 Step 3.5, happening for real.
+Six bad values out of 398 changed the type of the entire column, about 1.5 percent of it. This is Decision 2 from Activity 4 Step 3.5, happening for real.
 
 **Why this would wreck the model if you missed it:** a `STRING` feature is treated as **categorical**, not numeric. `LINEAR_REG` would one-hot encode roughly 94 distinct horsepower values into 94 indicator columns, learn a separate meaningless weight for each, and report `NULL` in the `weight` column of `ML.WEIGHTS`. You would get a model, no error message, and a nonsense answer to the business question.
 
@@ -78,13 +78,13 @@ Three requirements:
 2. **Set an explicit split:** `data_split_method = 'RANDOM'` and `data_split_eval_fraction = 0.2`.
 3. Do not select any other columns.
 
-**Why requirement 2 is mandatory here:** this table has 397 data rows, which is below the 500-row threshold. Leaving the default `AUTO_SPLIT` means **no holdout at all**, and `ML.EVALUATE` would report training-set metrics while looking completely normal (Activity 4 Step 6.2).
+**Why requirement 2 is mandatory here:** this table has 398 data rows, which is below the 500-row threshold. Leaving the default `AUTO_SPLIT` means **no holdout at all**, and `ML.EVALUATE` would report training-set metrics while looking completely normal (Activity 4 Step 6.2).
 
 ### Step 1.3: Evaluate
 
 Run `ML.EVALUATE` and report `r2_score` and `mean_absolute_error`.
 
-> **What you should see:** `r2_score` roughly **0.65 to 0.78**, `mean_absolute_error` roughly **3 to 4**.
+> **What you should see:** `r2_score` roughly **0.61 to 0.75**, `mean_absolute_error` roughly **2.9 to 3.7**.
 >
 > Because MAE is in real units, read it as: "our mpg estimate is typically off by about 3.5 mpg." Decide for yourself whether that is good enough to put on a car sticker.
 >
@@ -118,13 +118,15 @@ Write down the top feature again.
 >
 > | Ranking | Default weights | Standardized weights |
 > |---------|----------------|---------------------|
-> | 1 | `cylinders` (about -0.40) | **`weight`** (about -4.4) |
-> | 2 | `horsepower` (about -0.045) | `horsepower` (about -1.7) |
-> | 3 | `acceleration` (about -0.029) | `cylinders` (about -0.68) |
-> | 4 | **`weight`** (about -0.005) | `acceleration` (about -0.08) |
-> | 5 | `displacement` (about -0.0001) | `displacement` (about -0.01) |
+> | 1 | `cylinders` (about -0.36) | **`weight`** (about -4.5) |
+> | 2 | `horsepower` (about -0.039) | `horsepower` (about -1.5) |
+> | 3 | `acceleration` (about -0.007) | `cylinders` (about -0.61) |
+> | 4 | `displacement` (about -0.0014) | `displacement` (about -0.15) |
+> | 5 | **`weight`** (about -0.0054) | `acceleration` (about -0.02) |
 >
 > **Vehicle weight ranks last by default and first when standardized.** The two queries give opposite answers to the same question, from the same model.
+>
+> Only the top three of the standardized list are stable. `displacement` and `acceleration` are both near zero, and which of them comes fourth depends on whether you imputed or dropped the six `?` rows. Report the top three; do not build an argument on the bottom two.
 
 **Explain why in your write-up.** The reasoning: the default weight for `weight` is "mpg lost per **one pound**," and one pound is a trivial change across a range spanning 1,613 to 5,140. The default weight for `cylinders` is "mpg lost per **one cylinder**," and cylinders only span 3 to 8, so one unit is a huge change. Ranking raw weights ranks units, not importance. Standardizing converts every weight to "mpg lost per one standard deviation," which is the fair comparison.
 
@@ -134,7 +136,9 @@ Write down the top feature again.
 
 Use `ML.PREDICT` on 10 rows, selecting `predicted_mpg` alongside the actual `mpg` and the features. Remember to apply the same `SAFE_CAST` repair to the prediction input that you used in training.
 
-> **What you should see:** predictions in the same ballpark as actuals, off by a few mpg in either direction. If predictions are wildly wrong, check that your prediction input applies the same `SAFE_CAST`. **Features must be prepared identically at training and prediction time**, and forgetting this is one of the most common production ML bugs.
+> **What you should see:** predictions in the same ballpark as actuals, off by a few mpg in either direction.
+>
+> If you omit the `SAFE_CAST` from the prediction input, the query fails rather than returning bad numbers: the model expects a numeric `horsepower` and GoogleSQL will not implicitly convert your `STRING` column to `FLOAT64`. **Features must be prepared identically at training and prediction time**, and forgetting this is one of the most common production ML bugs. Here the type system catches it for you. In a real pipeline the mismatch is usually subtler and silent.
 
 ### Stretch: does regularization help?
 
@@ -177,7 +181,7 @@ Build `ml.loan_approval_model` as `LOGISTIC_REG`, label `status`, features `asse
 
 Run `ML.EVALUATE` and record `roc_auc`, `accuracy`, `precision`, `recall`, and `f1_score`.
 
-> **What you should see:** `roc_auc` somewhere around **0.55 to 0.70**, and `accuracy` around **0.55 to 0.65**.
+> **What you should see:** `roc_auc` somewhere around **0.60 to 0.70**, and `accuracy` around **0.55 to 0.70**.
 >
 > Now put those next to what you know:
 >
@@ -197,11 +201,17 @@ FROM ML.WEIGHTS(MODEL `ml.loan_approval_model`, STRUCT(TRUE AS standardize))
 ORDER BY weight DESC;
 ```
 
-> **What you should see:** the signs are backwards from anything a lender would accept. Expect **`liabilities` and `mortgage` to push toward approval**, and **`income` and `credit_score` to push toward denial**.
+> **What you should see:** the three largest weights all have the wrong sign for lending, and the two features a lender would actually underwrite on carry almost no weight at all.
 >
-> Read that as a sentence: *"the more debt you carry and the worse your credit, the more likely you are to be approved."*
+> Expect **`liabilities` to be the single largest weight, pushing toward approval** (around +0.5), with `mortgage` and `assets` behind it. Expect **`income` and `credit_score` to sit near zero** (roughly ±0.06), which is a different finding from "negative."
+>
+> Read the top of the list as a sentence: *"the more debt an applicant carries, the more likely we approve them, and income and credit score barely matter."*
 
-**No responsible lender behaves this way.** The model is not describing lending, it is describing random variation in 100 rows. This is what a weights table looks like when there is no signal to find, and the important lesson is that **it looks exactly as authoritative as a real one.** Nothing in the output is flagged, colored, or starred. The only thing standing between this table and a bad business decision is an engineer who checked the baseline and the AUC first.
+**No responsible lender behaves this way.** The model is not describing lending, it is describing random variation in 100 rows.
+
+Be precise about the near-zero weights, because this is a trap in its own right. A weight of -0.03 is not a small negative effect you can report as "credit score pushes toward denial." **The sign of a near-zero weight is not reproducible**, and if you refit this model on resampled versions of the same 100 rows, those two signs flip roughly a third of the time. The defensible claim is that `income` and `credit_score` carry no weight, while the strongest predictor of approval is debt.
+
+This is what a weights table looks like when there is no signal to find, and the important lesson is that **it looks exactly as authoritative as a real one.** Nothing in the output is flagged, colored, or starred. The only thing standing between this table and a bad business decision is an engineer who checked the baseline and the AUC first.
 
 Also note the features are anonymized values between 0 and 1 with no stated units, so even a good model here could not tell you what "assets of 0.44" means in dollars.
 
@@ -209,7 +219,7 @@ Also note the features are anonymized values between 0 and 1 with no stated unit
 
 Run `ML.PREDICT` on 10 applicants, showing `predicted_status`, actual `status`, and the probability for the predicted class. Recall from Activity 4 Step 7.5 that `predicted_status_probs` is an array of structs, so `UNNEST` it.
 
-> **What you should see:** several confident predictions that are simply wrong, and probabilities clustered near 0.5, which is the model saying "I do not know."
+> **What you should see:** two to four of the ten predictions wrong, and probabilities clustered between about 0.52 and 0.72, which is the model saying "I do not know." Across all 100 applicants no probability lands outside roughly 0.28 to 0.68, so the model is not confident about anyone.
 
 **Now write your recommendation.** Answer, in three or four sentences: would you deploy this model to score real loan applications? Support it with the baseline comparison, the ROC AUC, and the weight signs. State one thing that would have to change before you would revisit the decision, such as more rows, features with real units, or a genuine holdout evaluation.
 
@@ -223,7 +233,7 @@ Run `ML.ROC_CURVE` and inspect `recall` against `false_positive_rate` across thr
 
 ## Task 3: Clustering, and Naming What You Find
 
-**Table:** `ml.cereal_nutrition`, 73 rows. **Goal:** group breakfast cereals by nutrition, then describe the groups in language a shopper would understand.
+**Table:** `ml.cereal_nutrition`, 74 rows. **Goal:** group breakfast cereals by nutrition, then describe the groups in language a shopper would understand.
 
 ### Step 3.1: Get the real column names
 
@@ -270,7 +280,7 @@ Two decisions to justify in your write-up:
 
 Use `ML.CENTROIDS`. The pivoted form from Activity 4 Step 8.3 is much easier to read across clusters than the default long output.
 
-> **What you should see:** three columns of real nutritional values. Expect one high-sugar, low-protein group, one high-fiber or high-protein group with low sugar, and one heavily fortified group with high vitamins and minerals.
+> **What you should see:** three columns of real nutritional values, and your model trained on 73 rows (74 minus the sentinel). Expect one high-sugar, low-protein group, one low-sugar group with the highest protein and lowest calories, and one small heavily fortified group sitting at 100 on vitamins and minerals.
 
 **Give each cluster a plain-English name**, something a shopper would recognize, such as "kids' sugar cereals," "adult health cereals," "fortified brands." Record the name and the two or three centroid values that justify it.
 
