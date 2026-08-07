@@ -9,26 +9,26 @@ Read this before you write any code. It will save you a day.
 All raw files are in the capstone RAW bucket, in Parquet format, partitioned by taxi type and month.
 
 ```
-s3://capstone-techcatalyst-raw/yellow_taxi/yellow_tripdata_2025-01.parquet
-s3://capstone-techcatalyst-raw/yellow_taxi/yellow_tripdata_2025-02.parquet
+s3://techcatalyst-de-2026/raw/yellow_taxi/yellow_tripdata_2025-01.parquet
+s3://techcatalyst-de-2026/raw/yellow_taxi/yellow_tripdata_2025-02.parquet
 ...
-s3://capstone-techcatalyst-raw/yellow_taxi/yellow_tripdata_2026-06.parquet
+s3://techcatalyst-de-2026/raw/yellow_taxi/yellow_tripdata_2026-06.parquet
 
-s3://capstone-techcatalyst-raw/green_taxi/green_tripdata_2025-01.parquet
+s3://techcatalyst-de-2026/raw/green_taxi/green_tripdata_2025-01.parquet
 ...
-s3://capstone-techcatalyst-raw/green_taxi/green_tripdata_2026-06.parquet
+s3://techcatalyst-de-2026/raw/green_taxi/green_tripdata_2026-06.parquet
 
-s3://capstone-techcatalyst-raw/lookup/taxi_zone_lookup.csv
-s3://capstone-techcatalyst-raw/lookup/taxi_zones.zip          (shapefiles, optional)
-s3://capstone-techcatalyst-raw/reference/trip_record_user_guide.pdf
-s3://capstone-techcatalyst-raw/reference/data_dictionary_trip_records_yellow.pdf
-s3://capstone-techcatalyst-raw/reference/data_dictionary_trip_records_green.pdf
+s3://techcatalyst-de-2026/raw/taxi_lookup/taxi_zone_lookup.csv
+s3://techcatalyst-de-2026/raw/taxi_lookup/taxi_zones.zip          (shapefiles, optional)
+s3://techcatalyst-de-2026/raw/tax_references/trip_record_user_guide.pdf
+s3://techcatalyst-de-2026/raw/tax_references/data_dictionary_trip_records_yellow.pdf
+s3://techcatalyst-de-2026/raw/tax_references/data_dictionary_trip_records_green.pdf
 ```
 
 | Dataset | Files | Approximate rows | Approximate size |
 | :--- | :--- | :--- | :--- |
-| Yellow taxi | 12 (Jan to Jun 2025, Jan to Jun 2026) | ~40 million | ~700 MB |
-| Green taxi | 12 (same months) | ~600 thousand | ~16 MB |
+| Yellow taxi | 10 (Jan to May 2025, Jan to May 2026) | ~33 million | ~600 MB |
+| Green taxi | 10 (same months) | ~600 thousand | ~16 MB |
 | Taxi zone lookup | 1 | 265 | ~12 KB |
 
 Green is tiny compared to Yellow. That is not an error in the data, it reflects the actual size of the two fleets. Plan your joins accordingly, and be careful about drawing conclusions from Green in low-volume zones.
