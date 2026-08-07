@@ -1,0 +1,8 @@
+Your mart models go here.
+
+Name them for what they answer, not for what they contain. A model called
+`monthly_zone_demand` tells a reader what it is for. A model called
+`trips_agg_2` does not.
+
+Build only the marts your analytical question needs. A mart nobody queries is
+a maintenance cost with no benefit, and it will not earn you points.

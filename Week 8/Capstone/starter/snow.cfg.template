@@ -1,0 +1,11 @@
+; Copy this file to snow.cfg and fill in your values.
+; Do NOT commit snow.cfg. Add it to your team repository's .gitignore.
+
+[DEV]
+account =
+user =
+password =
+role =
+warehouse =
+database = TECHCATALYST
+schema =

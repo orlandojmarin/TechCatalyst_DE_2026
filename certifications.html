@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certification Explorer | TechCatalyst DE 2026</title>
+  <meta name="description" content="Interactive guide to data engineering certifications mapped to the TechCatalyst DE 2026 bootcamp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-card: #161f38;
+      --bg-card-hover: #1c2744;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(148, 163, 184, 0.28);
+      --text: #e8eefc;
+      --text-muted: #9aabcb;
+      --text-soft: #6f83a8;
+      --accent: #5b8cff;
+      --accent-2: #22d3a6;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --font: "DM Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --aws: #ff9900;
+      --gcp: #4285f4;
+      --snow: #29b5e8;
+      --dbx: #ff3621;
+      --dbt: #ff694b;
+      --genai: #e879f9;
+      --multi: #a78bfa;
+      --bi: #34d399;
+      --lvl-foundational: #34d399;
+      --lvl-associate: #60a5fa;
+      --lvl-intermediate: #fbbf24;
+      --lvl-professional: #c084fc;
+      --lvl-specialty: #f472b6;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(91, 140, 255, 0.18), transparent 55%),
+        radial-gradient(900px 500px at 90% 0%, rgba(34, 211, 166, 0.12), transparent 50%),
+        radial-gradient(700px 400px at 50% 100%, rgba(232, 121, 249, 0.08), transparent 45%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .shell {
+      width: min(1200px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header.hero { padding: 2.25rem 0 1.5rem; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: -0.03em;
+      box-shadow: 0 8px 24px rgba(91, 140, 255, 0.35);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text span {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border-strong);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.55rem 1rem;
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f7fff, #3b82f6);
+      border-color: transparent;
+      box-shadow: 0 10px 28px rgba(59, 130, 246, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #5b8cff, #4f7fff);
+    }
+
+    .btn-ghost { background: transparent; }
+
+    .btn-sm {
+      padding: 0.38rem 0.75rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+      align-items: stretch;
+    }
+
+    .hero-copy h1 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(1.85rem, 4vw, 2.75rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #8eb2ff, #5eead4, #f0abfc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 52ch;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.35rem;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 0.9rem;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+      font-family: var(--mono);
+      letter-spacing: -0.03em;
+    }
+
+    .stat span {
+      color: var(--text-soft);
+      font-size: 0.78rem;
+    }
+
+    .path-finder {
+      background: linear-gradient(160deg, rgba(22, 31, 56, 0.95), rgba(18, 26, 47, 0.92));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .path-finder::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(91, 140, 255, 0.08), transparent 40%),
+        linear-gradient(225deg, rgba(232, 121, 249, 0.08), transparent 40%);
+      pointer-events: none;
+    }
+
+    .path-finder-toggle {
+      width: 100%;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      padding: 1rem 1.1rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.35rem 0.75rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .path-finder-toggle:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .path-finder-toggle .toggle-title {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .path-finder-toggle .toggle-hint {
+      grid-column: 1;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      margin: 0;
+    }
+
+    .path-finder-toggle .chevron {
+      grid-row: 1 / span 2;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: transform 0.18s ease, background 0.15s ease;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .path-finder.open .path-finder-toggle .chevron {
+      transform: rotate(45deg);
+      background: rgba(91, 140, 255, 0.15);
+      color: #c7d8ff;
+    }
+
+    .path-finder-body {
+      display: none;
+      padding: 0 1.1rem 1.15rem;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+    }
+
+    .path-finder.open .path-finder-body {
+      display: block;
+      animation: rise 0.18s ease;
+    }
+
+    .path-finder-body > p.lead {
+      margin: 0.85rem 0 0.85rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .path-finder-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0.35rem;
+    }
+
+    .quiz-steps {
+      display: grid;
+      gap: 0.55rem;
+      position: relative;
+    }
+
+    .quiz-q {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .chip {
+      border: 1px solid var(--border-strong);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      border-radius: 999px;
+      padding: 0.38rem 0.72rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .chip:hover { color: var(--text); border-color: rgba(255,255,255,0.28); }
+    .chip.active {
+      color: #0b1020;
+      background: linear-gradient(135deg, #8eb2ff, #5eead4);
+      border-color: transparent;
+    }
+
+    .quiz-result {
+      margin-top: 0.9rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+      min-height: 3.2rem;
+    }
+
+    .quiz-result .empty {
+      color: var(--text-soft);
+      font-size: 0.85rem;
+    }
+
+    .recommend-list {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .recommend-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.55rem 0.7rem;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .recommend-item:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .recommend-item strong { font-size: 0.82rem; }
+    .recommend-item span {
+      font-size: 0.72rem;
+      color: var(--accent-2);
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+
+    /* App layout: left filter rail + main content */
+    .app-shell {
+      width: min(1440px, calc(100% - 2rem));
+      margin: 0 auto 2rem;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .filter-rail {
+      position: sticky;
+      top: 0.85rem;
+      max-height: calc(100vh - 1.7rem);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(22, 31, 56, 0.96), rgba(18, 26, 47, 0.94));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      z-index: 30;
+    }
+
+    .filter-rail-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-shrink: 0;
+      padding: 0.9rem 0.85rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(24, 34, 60, 0.99), rgba(20, 29, 52, 0.98));
+      z-index: 3;
+    }
+
+    .filter-rail-body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      overscroll-behavior: contain;
+      padding: 0.85rem 0.85rem 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148,163,184,0.35) transparent;
+    }
+
+    .filter-rail-head h2 {
+      margin: 0;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+    }
+
+    .filter-rail-head p {
+      margin: 0.2rem 0 0;
+      color: var(--text-soft);
+      font-size: 0.74rem;
+      line-height: 1.35;
+    }
+
+    .filter-rail-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      align-items: stretch;
+      flex-shrink: 0;
+    }
+
+    .filter-rail-actions .btn {
+      padding: 0.35rem 0.55rem;
+      font-size: 0.72rem;
+      justify-content: center;
+    }
+
+    .org-note {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      line-height: 1.4;
+    }
+
+    .org-note strong { color: var(--text); }
+
+    .filter-groups {
+      display: grid;
+      gap: 0.4rem;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .filter-groups:last-of-type {
+      border-bottom: 0;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0;
+    }
+
+    .filter-label {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
+      font-weight: 700;
+      margin-bottom: 0.1rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .filter-pill {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text-muted);
+      border-radius: 999px;
+      padding: 0.28rem 0.58rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s ease;
+      text-align: left;
+    }
+
+    .filter-pill:hover { color: var(--text); border-color: rgba(255,255,255,0.22); }
+    .filter-pill.active {
+      color: var(--text);
+      border-color: transparent;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .filter-pill[data-vendor="aws"].active { background: rgba(255, 153, 0, 0.22); color: #ffc266; }
+    .filter-pill[data-vendor="gcp"].active { background: rgba(66, 133, 244, 0.22); color: #8ab4f8; }
+    .filter-pill[data-vendor="snowflake"].active { background: rgba(41, 181, 232, 0.2); color: #7dd3fc; }
+    .filter-pill[data-vendor="databricks"].active { background: rgba(255, 54, 33, 0.2); color: #fb9185; }
+    .filter-pill[data-vendor="dbt"].active { background: rgba(255, 105, 75, 0.2); color: #fdbaa4; }
+    .filter-pill[data-vendor="tableau"].active { background: rgba(52, 211, 153, 0.18); color: #6ee7b7; }
+    .filter-pill[data-vendor="astronomer"].active { background: rgba(167, 139, 250, 0.2); color: #c4b5fd; }
+    .filter-pill[data-level].active { background: rgba(91, 140, 255, 0.2); color: #a5c0ff; }
+    .filter-pill[data-match].active { background: rgba(34, 211, 166, 0.18); color: #5eead4; }
+    .filter-pill[data-week].active { background: rgba(91, 140, 255, 0.22); color: #c7d8ff; }
+    .filter-pill[data-category].active { background: rgba(91,140,255,0.2); color:#a5c0ff; }
+    .filter-pill[data-function].active { background: rgba(232,121,249,0.18); color:#f0abfc; }
+    .filter-pill[data-match="tarek"].active {
+      background: linear-gradient(135deg, rgba(251,191,36,0.28), rgba(251,113,133,0.22));
+      color: #fde68a;
+    }
+
+    .rail-meta {
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 0.35rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .results-count {
+      color: var(--text-soft);
+      font-size: 0.76rem;
+      line-height: 1.35;
+    }
+
+    .compare-toggle {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+
+    .compare-toggle input { margin-top: 0.15rem; }
+
+    .content-pane {
+      min-width: 0;
+      padding-bottom: 4rem;
+    }
+
+    .content-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.9rem;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+    }
+
+    .mobile-filter-btn {
+      display: none;
+    }
+
+    .filter-backdrop {
+      display: none;
+    }
+
+    main { padding-bottom: 0; }
+
+    .domain-section {
+      margin-bottom: 1.75rem;
+      scroll-margin-top: 1rem;
+    }
+
+    @media (max-width: 980px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+        width: min(1200px, calc(100% - 2rem));
+      }
+
+      .mobile-filter-btn { display: inline-flex; }
+
+      .filter-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(4, 8, 18, 0.55);
+        z-index: 80;
+      }
+
+      .filter-backdrop.open { display: block; }
+
+      .filter-rail {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(320px, 88vw);
+        max-height: 100vh;
+        border-radius: 0 18px 18px 0;
+        transform: translateX(-105%);
+        transition: transform 0.22s ease;
+        z-index: 90;
+      }
+
+      .filter-rail-body {
+        max-height: none;
+      }
+
+      .filter-rail.open { transform: translateX(0); }
+    }
+
+    .domain-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .domain-title {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .domain-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      flex-shrink: 0;
+    }
+
+    .domain-title h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .domain-title p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+    }
+
+    .count-badge {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%), var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      cursor: pointer;
+      transition: 0.18s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 270px;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+      width: 100%;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 3px;
+      background: var(--domain-color, var(--accent));
+      opacity: 0.75;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-3px);
+      background: var(--bg-card-hover);
+      border-color: rgba(255,255,255,0.2);
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+
+    .card.compare-selected {
+      border-color: rgba(91, 140, 255, 0.7);
+      box-shadow: 0 0 0 2px rgba(91, 140, 255, 0.25);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+    }
+
+    .logo-badge svg { width: 28px; height: 28px; }
+
+    .badge-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.3rem;
+    }
+
+    .level-pill,
+    .match-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 0.26rem 0.55rem;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .level-foundational {
+      background: rgba(52, 211, 153, 0.16);
+      color: #6ee7b7;
+      border-color: rgba(52, 211, 153, 0.28);
+    }
+    .level-associate {
+      background: rgba(96, 165, 250, 0.16);
+      color: #93c5fd;
+      border-color: rgba(96, 165, 250, 0.28);
+    }
+    .level-intermediate {
+      background: rgba(251, 191, 36, 0.16);
+      color: #fcd34d;
+      border-color: rgba(251, 191, 36, 0.28);
+    }
+    .level-professional {
+      background: rgba(192, 132, 252, 0.16);
+      color: #d8b4fe;
+      border-color: rgba(192, 132, 252, 0.28);
+    }
+    .level-specialty {
+      background: rgba(244, 114, 182, 0.16);
+      color: #f9a8d4;
+      border-color: rgba(244, 114, 182, 0.28);
+    }
+
+    .match-high { background: rgba(34, 211, 166, 0.14); color: #5eead4; }
+    .match-medium { background: rgba(245, 185, 66, 0.14); color: #fbbf24; }
+    .match-stretch { background: rgba(167, 139, 250, 0.14); color: #c4b5fd; }
+
+    .rec-pill {
+      font-size: 0.68rem;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 0.26rem 0.55rem;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      color: #0b1020;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b 45%, #fb7185);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 6px 16px rgba(251, 191, 36, 0.28);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+    }
+
+    .rec-pill::before {
+      content: "★";
+      font-size: 0.72rem;
+      line-height: 1;
+    }
+
+    .card.recommended {
+      border-color: rgba(251, 191, 36, 0.35);
+    }
+
+    .card.recommended::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, #fbbf24, #fb7185, #8eb2ff);
+      opacity: 0.9;
+    }
+
+    .card h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.02rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .issuer {
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .card p.summary {
+      margin: 0 0 0.9rem;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+
+    .meta-chip {
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.28rem 0.45rem;
+    }
+
+    .week-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.65rem;
+    }
+
+    .week-tag {
+      font-size: 0.68rem;
+      color: #b7c9ef;
+      border: 1px solid rgba(91, 140, 255, 0.28);
+      background: rgba(91, 140, 255, 0.1);
+      border-radius: 6px;
+      padding: 0.15rem 0.4rem;
+      font-weight: 600;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 8, 18, 0.72);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    @media (min-width: 760px) {
+      .modal-backdrop { align-items: center; }
+    }
+
+    .modal {
+      width: min(760px, 100%);
+      max-height: min(88vh, 900px);
+      overflow: auto;
+      background: linear-gradient(180deg, #1a2440, #121a2f);
+      border: 1px solid var(--border-strong);
+      border-radius: 22px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      animation: rise 0.22s ease;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: rgba(18, 26, 47, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .modal-header h2 {
+      margin: 0 0 0.35rem;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-header .issuer { margin: 0 0 0.45rem; }
+
+    .modal-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .icon-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .icon-btn:hover { background: rgba(255,255,255,0.08); }
+
+    .modal-body {
+      padding: 1.15rem 1.2rem 1.4rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.6rem;
+    }
+
+    .detail-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.7rem 0.75rem;
+    }
+
+    .detail-box label {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-soft);
+      margin-bottom: 0.2rem;
+    }
+
+    .detail-box strong {
+      font-size: 0.92rem;
+      font-family: var(--mono);
+      font-weight: 600;
+    }
+
+    .section-block h3 {
+      margin: 0 0 0.45rem;
+      font-size: 0.95rem;
+    }
+
+    .section-block p,
+    .section-block li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .section-block ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .topic-tag {
+      font-size: 0.75rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(91, 140, 255, 0.12);
+      color: #b4c9ff;
+      border: 1px solid rgba(91, 140, 255, 0.2);
+    }
+
+    .skill-tag {
+      font-size: 0.75rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(34, 211, 166, 0.1);
+      color: #99f6e4;
+      border: 1px solid rgba(34, 211, 166, 0.22);
+    }
+
+    .bootcamp-box {
+      border: 1px solid rgba(34, 211, 166, 0.25);
+      background: rgba(34, 211, 166, 0.08);
+      border-radius: 14px;
+      padding: 0.85rem 0.95rem;
+    }
+
+    .bootcamp-box h3 { color: #5eead4; }
+
+    .note-box {
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      background: rgba(251, 191, 36, 0.08);
+      border-radius: 14px;
+      padding: 0.85rem 0.95rem;
+    }
+
+    .note-box h3 { color: #fbbf24; margin: 0 0 0.45rem; font-size: 0.95rem; }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.25rem;
+    }
+
+    .compare-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 1rem;
+      transform: translateX(-50%) translateY(calc(100% + 2rem));
+      width: min(900px, calc(100% - 1.5rem));
+      background: rgba(18, 26, 47, 0.98);
+      border: 1px solid rgba(91, 140, 255, 0.35);
+      border-radius: 16px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255,255,255,0.04);
+      padding: 0.8rem 0.95rem;
+      z-index: 120;
+      transition: transform 0.22s ease, opacity 0.18s ease, visibility 0.18s ease;
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .compare-bar.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .compare-bar[hidden] {
+      display: none !important;
+    }
+
+    .compare-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .compare-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      flex: 1;
+    }
+
+    .compare-chip {
+      font-size: 0.75rem;
+      background: rgba(91, 140, 255, 0.14);
+      border: 1px solid rgba(91, 140, 255, 0.28);
+      color: #c7d8ff;
+      border-radius: 999px;
+      padding: 0.3rem 0.55rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .compare-chip button {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font-size: 0.9rem;
+      line-height: 1;
+      padding: 0;
+    }
+
+    .compare-panel {
+      display: none;
+      margin-top: 0.75rem;
+      overflow-x: auto;
+    }
+
+    .compare-panel.open { display: block; }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 520px;
+      font-size: 0.82rem;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 0 2.5rem;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+    }
+
+    footer .shell { display: grid; gap: 0.5rem; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.35rem;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+
+    .cat-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 0.22rem 0.5rem;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+    .cat-cloud-platform { background: rgba(96,165,250,0.14); color:#93c5fd; border-color: rgba(96,165,250,0.28); }
+    .cat-data-platform { background: rgba(41,181,232,0.14); color:#7dd3fc; border-color: rgba(41,181,232,0.28); }
+    .cat-transformation { background: rgba(255,105,75,0.14); color:#fdbaa4; border-color: rgba(255,105,75,0.28); }
+    .cat-orchestration { background: rgba(167,139,250,0.14); color:#c4b5fd; border-color: rgba(167,139,250,0.28); }
+    .cat-genai { background: rgba(232,121,249,0.14); color:#f0abfc; border-color: rgba(232,121,249,0.28); }
+    .cat-bi { background: rgba(52,211,153,0.14); color:#6ee7b7; border-color: rgba(52,211,153,0.28); }
+
+    .fn-tag {
+      font-size: 0.66rem;
+      font-weight: 600;
+      border-radius: 6px;
+      padding: 0.14rem 0.4rem;
+      color: var(--text-soft);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .filter-pill[data-category].active { background: rgba(91,140,255,0.2); color:#a5c0ff; }
+    .filter-pill[data-function].active { background: rgba(232,121,249,0.18); color:#f0abfc; }
+    .filter-pill[data-vendor].active { background: rgba(255,255,255,0.08); color:#e8eefc; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">TC</div>
+          <div class="brand-text">
+            <strong>TechCatalyst DE 2026</strong>
+            <span>Certification Explorer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Pick your next cert like a <em>data engineer</em>, not a guesser.</h1>
+          <p>
+            Organized the way the market talks about careers:
+            <strong style="color:var(--text)">Category</strong> (Cloud Platforms · Data Platforms · Tools · GenAI · BI),
+            plus <strong style="color:var(--text)">Function</strong> tags for the layer of the stack.
+            Each card also maps to bootcamp weeks and Credly-style levels.
+          </p>
+          <div class="hero-stats" aria-label="Explorer stats">
+            <div class="stat">
+              <strong id="statCount">0</strong>
+              <span>certifications</span>
+            </div>
+            <div class="stat">
+              <strong>6</strong>
+              <span>categories</span>
+            </div>
+            <div class="stat">
+              <strong>W1 to W7</strong>
+              <span>week mapped</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="path-finder" id="quizPanel" aria-labelledby="quizToggleTitle">
+          <button class="path-finder-toggle" type="button" id="quizToggle" aria-expanded="false" aria-controls="quizBody">
+            <span class="toggle-title" id="quizToggleTitle">Not sure where to start?</span>
+            <span class="chevron" aria-hidden="true">+</span>
+            <p class="toggle-hint">Open the 30-second path finder. We match interest, your background, and timeline.</p>
+          </button>
+
+          <div class="path-finder-body" id="quizBody" hidden>
+            <div class="path-finder-toolbar">
+              <button class="btn btn-sm btn-ghost" type="button" id="btnQuizReset">Reset answers</button>
+            </div>
+            <p class="lead">Answer three short questions. Recommendations get stricter when you want a fast win.</p>
+
+            <div class="quiz-steps">
+              <div>
+                <div class="quiz-q">1. What do you want to deepen first?</div>
+                <div class="chip-row" id="quizInterest" role="group" aria-label="Interest">
+                  <button class="chip" type="button" data-value="cloud">Cloud platform depth</button>
+                  <button class="chip" type="button" data-value="warehouse">Warehouse / lakehouse</button>
+                  <button class="chip" type="button" data-value="transform">Transformations / dbt</button>
+                  <button class="chip" type="button" data-value="spark">Spark / Databricks</button>
+                  <button class="chip" type="button" data-value="genai">GenAI / applied AI</button>
+                  <button class="chip" type="button" data-value="analytics">Analytics / BI</button>
+                </div>
+              </div>
+              <div>
+                <div class="quiz-q">2. What experience are you building on?</div>
+                <div class="chip-row" id="quizExperience" role="group" aria-label="Experience">
+                  <button class="chip" type="button" data-value="bootcamp">Mostly this bootcamp</button>
+                  <button class="chip" type="button" data-value="aws">Already know AWS</button>
+                  <button class="chip" type="button" data-value="gcp">Already know GCP</button>
+                  <button class="chip" type="button" data-value="coding">Strong coding (Python / SQL)</button>
+                  <button class="chip" type="button" data-value="multi">Multi-cloud / multi-tool already</button>
+                </div>
+              </div>
+              <div>
+                <div class="quiz-q">3. How aggressive is your timeline?</div>
+                <div class="chip-row" id="quizTimeline" role="group" aria-label="Timeline">
+                  <button class="chip" type="button" data-value="fast">Fast win (4-8 weeks)</button>
+                  <button class="chip" type="button" data-value="steady">Steady (2-3 months)</button>
+                  <button class="chip" type="button" data-value="stretch">Stretch goal (3-6 months)</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="quiz-result" id="quizResult" aria-live="polite">
+              <div class="empty">Select all three to unlock recommendations.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <div class="filter-backdrop" id="filterBackdrop" hidden></div>
+
+  <div class="app-shell">
+    <aside class="filter-rail" id="filterRail" aria-label="Certification filters">
+      <div class="filter-rail-head">
+        <div>
+          <h2>Filters</h2>
+          <p>Scroll the list. This header stays put.</p>
+        </div>
+        <div class="filter-rail-actions">
+          <button class="btn btn-ghost" type="button" id="btnReset">Reset</button>
+          <button class="btn btn-ghost mobile-filter-btn" type="button" id="btnCloseFilters">Close</button>
+        </div>
+      </div>
+
+      <div class="filter-rail-body">
+      <div class="org-note">
+        <strong>Layout:</strong> sections = Category.
+        Function tags = stack layer. Vendor is optional.
+      </div>
+
+      <div class="filter-groups" id="categoryFilters">
+        <span class="filter-label">Category</span>
+        <div class="filter-pills">
+          <button class="filter-pill active" type="button" data-category="all">All</button>
+          <button class="filter-pill" type="button" data-category="cloud-platform">Cloud Platforms</button>
+          <button class="filter-pill" type="button" data-category="data-platform">Data Platforms</button>
+          <button class="filter-pill" type="button" data-category="transformation">Transformation</button>
+          <button class="filter-pill" type="button" data-category="orchestration">Orchestration</button>
+          <button class="filter-pill" type="button" data-category="genai">GenAI</button>
+          <button class="filter-pill" type="button" data-category="bi">BI &amp; Analytics</button>
+        </div>
+      </div>
+
+      <div class="filter-groups" id="functionFilters">
+        <span class="filter-label">Function</span>
+        <div class="filter-pills">
+          <button class="filter-pill active" type="button" data-function="all">All</button>
+          <button class="filter-pill" type="button" data-function="infrastructure">Infrastructure</button>
+          <button class="filter-pill" type="button" data-function="data-engineering">Data engineering</button>
+          <button class="filter-pill" type="button" data-function="analytics-engineering">Analytics engineering</button>
+          <button class="filter-pill" type="button" data-function="orchestration">Orchestration</button>
+          <button class="filter-pill" type="button" data-function="genai">GenAI / AI</button>
+          <button class="filter-pill" type="button" data-function="visualization">Visualization</button>
+        </div>
+      </div>
+
+      <div class="filter-groups" id="vendorFilters">
+        <span class="filter-label">Vendor</span>
+        <div class="filter-pills">
+          <button class="filter-pill active" type="button" data-vendor="all">All</button>
+          <button class="filter-pill" type="button" data-vendor="aws">AWS</button>
+          <button class="filter-pill" type="button" data-vendor="gcp">GCP</button>
+          <button class="filter-pill" type="button" data-vendor="snowflake">Snowflake</button>
+          <button class="filter-pill" type="button" data-vendor="databricks">Databricks</button>
+          <button class="filter-pill" type="button" data-vendor="dbt">dbt</button>
+          <button class="filter-pill" type="button" data-vendor="tableau">Tableau</button>
+          <button class="filter-pill" type="button" data-vendor="astronomer">Astronomer</button>
+        </div>
+      </div>
+
+      <div class="filter-groups" id="weekFilters">
+        <span class="filter-label">Week</span>
+        <div class="filter-pills">
+          <button class="filter-pill active" type="button" data-week="all">All weeks</button>
+          <button class="filter-pill" type="button" data-week="1">W1 Cloud</button>
+          <button class="filter-pill" type="button" data-week="2">W2 Python</button>
+          <button class="filter-pill" type="button" data-week="3">W3 ETL / Glue</button>
+          <button class="filter-pill" type="button" data-week="4">W4 SQL</button>
+          <button class="filter-pill" type="button" data-week="5">W5 Spark · dbt</button>
+          <button class="filter-pill" type="button" data-week="6">W6 ML · GenAI</button>
+          <button class="filter-pill" type="button" data-week="7">W7 BI · Apps</button>
+        </div>
+      </div>
+
+      <div class="filter-groups" id="levelFilters">
+        <span class="filter-label">Level</span>
+        <div class="filter-pills">
+          <button class="filter-pill active" type="button" data-level="all">All</button>
+          <button class="filter-pill" type="button" data-level="foundational">Foundational</button>
+          <button class="filter-pill" type="button" data-level="associate">Associate</button>
+          <button class="filter-pill" type="button" data-level="intermediate">Intermediate</button>
+          <button class="filter-pill" type="button" data-level="professional">Pro / Advanced</button>
+          <button class="filter-pill" type="button" data-level="specialty">Specialty</button>
+        </div>
+      </div>
+
+      <div class="filter-groups" id="matchFilters">
+        <span class="filter-label">Bootcamp fit</span>
+        <div class="filter-pills">
+          <button class="filter-pill active" type="button" data-match="all">All</button>
+          <button class="filter-pill" type="button" data-match="high">High match</button>
+          <button class="filter-pill" type="button" data-match="medium">Medium</button>
+          <button class="filter-pill" type="button" data-match="stretch">Stretch</button>
+          <button class="filter-pill" type="button" data-match="tarek">Tarek's picks</button>
+        </div>
+      </div>
+
+      <div class="rail-meta">
+        <div class="results-count" id="resultsMeta">Showing all certifications</div>
+        <label class="compare-toggle">
+          <input type="checkbox" id="compareMode" />
+          <span>Compare mode (select up to 3 cards)</span>
+        </label>
+      </div>
+      </div>
+    </aside>
+
+    <div class="content-pane">
+      <div class="content-toolbar">
+        <div id="contentMeta">Browse by category</div>
+        <button class="btn mobile-filter-btn" type="button" id="btnOpenFilters">Filters</button>
+      </div>
+      <main id="mainContent"></main>
+    </div>
+  </div>
+
+  <div class="compare-bar" id="compareBar" hidden aria-hidden="true" aria-live="polite">
+    <div class="compare-bar-inner">
+      <div class="compare-chips" id="compareChips"></div>
+      <div class="top-actions">
+        <button class="btn" type="button" id="btnClearCompare">Clear</button>
+        <button class="btn btn-primary" type="button" id="btnOpenCompare">Compare</button>
+      </div>
+    </div>
+    <div class="compare-panel" id="comparePanel"></div>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalTitle">Certification</h2>
+          <p class="issuer" id="modalIssuer"></p>
+          <div class="modal-badges" id="modalBadges"></div>
+        </div>
+        <button class="icon-btn" type="button" id="modalClose" aria-label="Close details">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="shell">
+      <strong style="color: var(--text-muted);">How to use this page</strong>
+      <div>
+        Browse by <strong>Category</strong> (Cloud Platforms, Data Platforms, Transformation, Orchestration, GenAI, BI).
+        Filter by <strong>Function</strong> (stack layer), vendor, week, level, or bootcamp fit.
+        Click any card for exam details, skills, and honest week mapping from published cohort materials.
+        Prices and formats change; confirm on the vendor page before scheduling.
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="background:#6ee7b7"></i> Foundational (beginner)</span>
+        <span><i class="dot" style="background:#93c5fd"></i> Associate</span>
+        <span><i class="dot" style="background:#fcd34d"></i> Intermediate</span>
+        <span><i class="dot" style="background:#d8b4fe"></i> Professional / Advanced</span>
+        <span><i class="dot" style="background:#f9a8d4"></i> Specialty</span>
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="background:#5eead4"></i> High match: strong overlap with class labs</span>
+        <span><i class="dot" style="background:#fbbf24"></i> Medium: solid foundation, needs extra study</span>
+        <span><i class="dot" style="background:#c4b5fd"></i> Stretch: ambitious next step (or not covered in class)</span>
+        <span><i class="dot" style="background:#f59e0b"></i> Tarek's Recommendation: instructor shortlist for this cohort</span>
+      </div>
+      <div>TechCatalyst Data Engineering 2026 · Student career reference · Not an official vendor catalog</div>
+    </div>
+  </footer>
+
+  <script>
+    const VENDORS = {
+      aws: { id: "aws", name: "Amazon Web Services", color: "var(--aws)" },
+      gcp: { id: "gcp", name: "Google Cloud", color: "var(--gcp)" },
+      snowflake: { id: "snowflake", name: "Snowflake", color: "var(--snow)" },
+      databricks: { id: "databricks", name: "Databricks", color: "var(--dbx)" },
+      dbt: { id: "dbt", name: "dbt Labs", color: "var(--dbt)" },
+      tableau: { id: "tableau", name: "Tableau", color: "var(--bi)" },
+      astronomer: { id: "astronomer", name: "Astronomer", color: "var(--multi)" },
+    };
+
+    // Category = market bucket for roadmap sections (primary organization)
+    const CATEGORIES = {
+      "cloud-platform": {
+        id: "cloud-platform",
+        name: "Cloud Platforms",
+        blurb: "Hyperscaler credentials: broad cloud fluency and cloud-native data engineering.",
+        color: "var(--gcp)",
+      },
+      "data-platform": {
+        id: "data-platform",
+        name: "Data Platforms",
+        blurb: "Warehouse and lakehouse product certs: Snowflake, Databricks, and peers.",
+        color: "var(--snow)",
+      },
+      transformation: {
+        id: "transformation",
+        name: "Transformation Tools",
+        blurb: "Analytics engineering and modeling tools that sit on top of platforms.",
+        color: "var(--dbt)",
+      },
+      orchestration: {
+        id: "orchestration",
+        name: "Orchestration Tools",
+        blurb: "Workflow and pipeline scheduling credentials (often self-hosted or managed OSS).",
+        color: "var(--multi)",
+      },
+      genai: {
+        id: "genai",
+        name: "GenAI Credentials",
+        blurb: "Foundational and specialty GenAI certs across cloud and data platforms.",
+        color: "var(--genai)",
+      },
+      bi: {
+        id: "bi",
+        name: "BI & Analytics",
+        blurb: "Downstream consumption: dashboards, storytelling, and decision support.",
+        color: "var(--bi)",
+      },
+    };
+
+    // Function = stack layer tags (filter + card chips). A cert can have multiple.
+    const FUNCTIONS = {
+      infrastructure: "Infrastructure",
+      "data-engineering": "Data engineering",
+      "analytics-engineering": "Analytics engineering",
+      orchestration: "Orchestration",
+      genai: "GenAI / AI",
+      visualization: "Visualization",
+    };
+
+    /*
+      Bootcamp week mapping is grounded in git-tracked student materials.
+      Category = primary roadmap bucket. Vendor = issuer ecosystem.
+      Function tags = layer of the stack (can be multi-select filters).
+    */
+    const CERTS = [
+      {
+        id: "aws-clf",
+        name: "AWS Certified Cloud Practitioner",
+        code: "CLF-C02",
+        vendor: "aws",
+        category: "cloud-platform",
+        functions: ["infrastructure"],
+        issuer: "Amazon Web Services",
+        level: "foundational",
+        levelLabel: "Foundational",
+        match: "medium",
+        cost: "$100",
+        duration: "90 minutes",
+        questions: "65 questions",
+        validity: "3 years",
+        summary: "Entry-level AWS cloud fluency: services, billing, security, and architecture basics.",
+        why: "A clean first AWS badge if you want platform breadth before specializing in data or AI services.",
+        topics: ["Cloud concepts", "Security & compliance", "Cloud technology & services", "Billing & pricing"],
+        skills: ["AWS Cloud", "Cloud Computing", "Shared responsibility", "Pricing models"],
+        weeks: [1],
+        weekLabels: ["W1 Cloud fundamentals", "W1 S3 / Athena / Glue intro"],
+        bootcamp: "Week 1 covered cloud vocabulary, IAM ideas, object storage (S3 vs GCS), Athena query-in-place, and Glue Crawler. This cert deepens general AWS language more than pure DE depth.",
+        covered: true,
+        nextSteps: ["AWS Certified AI Practitioner", "AWS Certified Data Engineer - Associate"],
+        official: "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+        credly: "https://www.credly.com/org/amazon-web-services/badge/aws-certified-cloud-practitioner",
+      },
+      {
+        id: "aws-aif",
+        name: "AWS Certified AI Practitioner",
+        code: "AIF-C01",
+        vendor: "aws",
+        category: "genai",
+        functions: ["genai", "infrastructure"],
+        issuer: "Amazon Web Services",
+        level: "foundational",
+        levelLabel: "Foundational",
+        match: "high",
+        tarekPick: true,
+        cost: "$100",
+        duration: "90 minutes",
+        questions: "65 questions",
+        validity: "3 years",
+        summary: "Foundational AI, ML, and generative AI concepts, use cases, and responsible use on AWS.",
+        why: "Strong fast-win GenAI credential after Week 6. Credly tags this Foundational, same tier as Cloud Practitioner.",
+        topics: ["AI/ML fundamentals", "Generative AI use cases", "Responsible AI", "AWS AI services landscape"],
+        skills: ["Generative AI", "Foundation Models", "AI and ML on AWS", "Responsible AI"],
+        weeks: [6, 1],
+        weekLabels: ["W6 Text/Vision AI AWS vs GCP", "W6 tokens, embeddings, RAG", "W1 cloud foundations"],
+        bootcamp: "High match for concepts. Week 6 included AWS vs GCP text and vision AI labs, tokens/embeddings, prompt patterns, function calling, and RAG. You still need AWS-specific service names (for example Bedrock/SageMaker landscape) from the exam guide.",
+        covered: true,
+        nextSteps: ["AWS Certified Data Engineer - Associate", "Google Generative AI Leader"],
+        official: "https://aws.amazon.com/certification/certified-ai-practitioner/",
+        credly: "https://www.credly.com/org/amazon-web-services/badge/aws-certified-ai-practitioner",
+      },
+      {
+        id: "aws-dea",
+        name: "AWS Certified Data Engineer - Associate",
+        code: "DEA-C01",
+        vendor: "aws",
+        category: "cloud-platform",
+        functions: ["data-engineering", "infrastructure"],
+        issuer: "Amazon Web Services",
+        level: "intermediate",
+        levelLabel: "Intermediate",
+        match: "medium",
+        tarekPick: true,
+        cost: "$150",
+        duration: "130 minutes",
+        questions: "65 questions",
+        validity: "3 years",
+        summary: "Implement data pipelines on AWS and monitor, troubleshoot, and optimize cost and performance.",
+        why: "Core AWS DE role credential. Credly lists this as Intermediate (not Foundational).",
+        topics: ["Data ingestion & transformation", "Data store management", "Data operations & support", "Data security & governance"],
+        skills: ["Data Ingestion", "Data Transformation", "Data Storage Technologies", "Data Security", "AWS"],
+        weeks: [1, 3, 5],
+        weekLabels: ["W1 S3, Athena, Glue Crawler", "W3 AWS Glue ETL lab", "W5 NiFi S3 patterns"],
+        bootcamp: "Solid foundation from S3, Athena, Glue Crawler (W1) and Glue ETL (W3). Expect extra study for Redshift, Kinesis, Lake Formation, Step Functions, and deeper pipeline ops that the cohort did not center on.",
+        covered: true,
+        nextSteps: ["Hands-on lakehouse projects on S3", "AWS Security Specialty later"],
+        official: "https://aws.amazon.com/certification/certified-data-engineer-associate/",
+        credly: "https://www.credly.com/org/amazon-web-services/badge/aws-certified-data-engineer-associate",
+      },
+      {
+        id: "gcp-digital-leader",
+        name: "Google Cloud Digital Leader",
+        code: "Digital Leader",
+        vendor: "gcp",
+        category: "cloud-platform",
+        functions: ["infrastructure"],
+        issuer: "Google Cloud",
+        level: "foundational",
+        levelLabel: "Foundational",
+        match: "medium",
+        cost: "About $99",
+        duration: "90 minutes",
+        questions: "Multiple choice / multiple select",
+        validity: "3 years",
+        summary: "Business-level Google Cloud literacy: products, value propositions, and cloud transformation concepts.",
+        why: "Beginner-friendly GCP starter. Credly level: Foundational.",
+        topics: ["Digital transformation with Google Cloud", "Data & AI innovation", "Infrastructure modernization", "Security & operations"],
+        skills: ["Google Cloud Platform", "Cloud Computing", "Digital Transformation"],
+        weeks: [1, 6],
+        weekLabels: ["W1 GCP overview & BigQuery sandbox", "W6 GenAI / BQML context"],
+        bootcamp: "Helpful orientation cert. Less technical depth than PDE. Good confidence win if you want a Google Cloud badge before Associate or Professional exams.",
+        covered: true,
+        nextSteps: ["Associate Cloud Engineer", "Generative AI Leader", "Professional Data Engineer"],
+        official: "https://cloud.google.com/learn/certification/cloud-digital-leader",
+        credly: "https://www.credly.com/org/google-cloud/badge/cloud-digital-leader-certification",
+      },
+      {
+        id: "gcp-genai-leader",
+        name: "Google Cloud Generative AI Leader",
+        code: "Gen AI Leader",
+        vendor: "gcp",
+        category: "genai",
+        functions: ["genai"],
+        issuer: "Google Cloud",
+        level: "foundational",
+        levelLabel: "Foundational",
+        match: "high",
+        cost: "Confirm on Google Cloud (often ~$99)",
+        duration: "About 90 minutes",
+        questions: "50-60 multiple choice",
+        validity: "Confirm on vendor page",
+        summary: "Business-level GenAI leadership: how generative AI transforms organizations using Google Cloud offerings, responsibly.",
+        why: "Credly Foundational badge that pairs well with your Week 6 GenAI depth without requiring deep MLOps production time.",
+        topics: ["GenAI business value", "Google Cloud GenAI offerings", "Responsible AI", "Opportunity identification across functions"],
+        skills: ["Generative AI", "AI Ethics", "Business Acumen", "Google Cloud Platform"],
+        weeks: [6, 7],
+        weekLabels: ["W6 GenAI systems, RAG, evaluation", "W7 LLM narration stretch"],
+        bootcamp: "High conceptual match. You practiced tokens, embeddings, prompts, tools/function calling, RAG, evaluation, and multi-cloud AI services. This exam is more business/strategy oriented than pure engineering, so read the Google exam guide for product naming.",
+        covered: true,
+        nextSteps: ["AWS AI Practitioner", "Databricks GenAI Engineer Associate"],
+        official: "https://cloud.google.com/learn/certification/generative-ai-leader",
+        credly: "https://www.credly.com/org/google-cloud/badge/generative-ai-leader-certification",
+      },
+      {
+        id: "gcp-ace",
+        name: "Google Cloud Associate Cloud Engineer",
+        code: "ACE",
+        vendor: "gcp",
+        category: "cloud-platform",
+        functions: ["infrastructure"],
+        issuer: "Google Cloud",
+        level: "associate",
+        levelLabel: "Associate",
+        match: "medium",
+        cost: "$125",
+        duration: "2 hours",
+        questions: "Up to ~60 questions",
+        validity: "3 years",
+        summary: "Deploy, manage, and operate applications and infrastructure on Google Cloud with IAM, compute, storage, and networking basics.",
+        why: "Solid GCP operations bridge beyond pure data services.",
+        topics: ["Set up a cloud solution environment", "Plan and configure solutions", "Deploy and implement", "Ensure successful operation", "Configure access & security"],
+        skills: ["IAM", "Compute Engine", "Cloud Storage", "GCP operations"],
+        weeks: [1, 2, 3],
+        weekLabels: ["W1 GCP & GCS", "W2 GCS Python upload patterns", "W3 medallion landing on GCS"],
+        bootcamp: "Good overlap with GCP navigation, GCS, and IAM mental models. You will need extra practice on compute, networking, GKE/Cloud Run style deployment topics not centered in this DE cohort.",
+        covered: true,
+        nextSteps: ["Professional Data Engineer", "Professional Cloud Architect"],
+        official: "https://cloud.google.com/learn/certification/cloud-engineer",
+        credly: "https://www.credly.com/org/google-cloud/badge/associate-cloud-engineer",
+      },
+      {
+        id: "gcp-pde",
+        name: "Google Professional Data Engineer",
+        code: "PDE",
+        vendor: "gcp",
+        category: "cloud-platform",
+        functions: ["data-engineering", "infrastructure"],
+        issuer: "Google Cloud",
+        level: "professional",
+        levelLabel: "Advanced",
+        match: "high",
+        tarekPick: true,
+        cost: "$200",
+        duration: "2 hours",
+        questions: "40-50 questions (Credly often cites 50-60 style forms)",
+        validity: "2 years",
+        summary: "Design, build, operationalize, secure, and monitor data processing systems on Google Cloud.",
+        why: "Flagship GCP data engineering credential. Credly level: Advanced.",
+        topics: ["Design data processing systems", "Ingest and process data", "Store data", "Prepare data for analysis", "Maintain and automate workloads"],
+        skills: ["BigQuery", "Cloud Storage", "Data Pipelines", "Data Warehouses", "Data Security"],
+        weeks: [1, 4, 6],
+        weekLabels: ["W1 BigQuery sandbox & GCS", "W4 BigQuery SQL / CTEs", "W6 BigQuery ML"],
+        bootcamp: "Strong BigQuery and cloud-data foundation from class. Add deliberate study for services and design patterns that were not the center of this cohort's published labs (for example streaming pipelines, Composer/Airflow, Dataproc depth). Use the official exam guide as your gap list.",
+        covered: true,
+        nextSteps: ["Portfolio project on BigQuery + dbt-style transforms", "Generative AI Leader if AI path"],
+        official: "https://cloud.google.com/learn/certification/data-engineer",
+        credly: "https://www.credly.com/org/google-cloud/badge/professional-data-engineer-certification",
+      },
+      {
+        id: "snow-core",
+        name: "SnowPro Core Certification",
+        code: "COF-C03",
+        vendor: "snowflake",
+        category: "data-platform",
+        functions: ["data-engineering"],
+        issuer: "Snowflake",
+        level: "associate",
+        levelLabel: "Associate / Core",
+        match: "high",
+        tarekPick: true,
+        cost: "$175",
+        duration: "110 minutes",
+        questions: "100 questions",
+        validity: "2 years",
+        summary: "Foundational Snowflake fluency: architecture, warehouses, storage, security, loading, and performance basics.",
+        why: "Highest-ROI first Snowflake cert for this cohort. Weeks 4 and 5 map closely.",
+        topics: ["Snowflake architecture", "Account access & security", "Performance concepts", "Data loading & unloading", "Data protection & Time Travel"],
+        skills: ["Snowflake architecture", "Stages & COPY", "SQL", "RBAC", "Warehouses"],
+        weeks: [4, 5, 6],
+        weekLabels: ["W4 Snowflake objects & loads", "W5 stages, windows, security", "W6 Snowpark intro"],
+        bootcamp: "Excellent fit. You used Snowflake objects, stages, COPY patterns, window SQL, security/views, pandas-to-Snowflake flows, and Snowpark. Study the exam guide for breadth items you may not have drilled every day (sharing, deeper semi-structured patterns, account-level features).",
+        covered: true,
+        nextSteps: ["SnowPro Advanced: Data Engineer", "SnowPro Specialty: Gen AI"],
+        official: "https://learn.snowflake.com/en/certifications/snowpro-core/",
+        credly: "https://www.credly.com/org/snowflake/badge/snowpro-core-certification",
+      },
+      {
+        id: "snow-de",
+        name: "SnowPro Advanced: Data Engineer",
+        code: "DEA-C02",
+        vendor: "snowflake",
+        category: "data-platform",
+        functions: ["data-engineering"],
+        issuer: "Snowflake",
+        level: "professional",
+        levelLabel: "Advanced",
+        match: "stretch",
+        cost: "$375",
+        duration: "115 minutes",
+        questions: "65 questions",
+        validity: "2 years",
+        summary: "Advanced Snowflake data engineering: pipelines, performance, near-real-time patterns, and production data design.",
+        why: "Specialty path after SnowPro Core if Snowflake becomes your daily platform.",
+        topics: ["Data movement", "Performance optimization", "Storage & data protection", "Data transformation", "Data governance"],
+        skills: ["Advanced Snowflake DE", "Performance tuning", "Pipeline design"],
+        weeks: [4, 5],
+        weekLabels: ["W4-W5 Snowflake depth", "W5 dbt + NiFi adjacent patterns"],
+        bootcamp: "Requires an active SnowPro Core. Class gives the foundation; plan deeper practice with streams/tasks, performance tuning, and production pipeline patterns beyond the published labs.",
+        covered: true,
+        nextSteps: ["SnowPro Advanced: Architect", "Platform portfolio project"],
+        official: "https://learn.snowflake.com/en/certifications/snowpro-advanced-dataengineer/",
+        credly: "https://www.credly.com/org/snowflake/badge/snowpro-advanced-data-engineer",
+      },
+      {
+        id: "snow-genai",
+        name: "SnowPro Specialty: Gen AI",
+        code: "GES-C01 / GES-C02",
+        vendor: "snowflake",
+        category: "genai",
+        functions: ["genai", "data-engineering"],
+        issuer: "Snowflake",
+        level: "specialty",
+        levelLabel: "Specialty",
+        match: "medium",
+        cost: "About $225",
+        duration: "About 85 minutes",
+        questions: "About 55 questions (confirm current form)",
+        validity: "2 years",
+        summary: "Specialized Gen AI on Snowflake: Cortex-style capabilities, governance, and building GenAI solutions in the AI Data Cloud.",
+        why: "Natural GenAI specialty if you like Snowflake plus Week 6 LLM patterns.",
+        topics: ["Snowflake GenAI features", "Cortex / LLM SQL patterns", "Security & governance for AI", "Building GenAI solutions"],
+        skills: ["Generative AI", "Snowflake Cortex concepts", "AI governance"],
+        weeks: [5, 6],
+        weekLabels: ["W5-W6 Snowflake + Snowpark", "W6 GenAI systems thinking"],
+        bootcamp: "Medium match. You have Snowflake platform experience and strong GenAI systems practice (prompts, embeddings, RAG, evaluation). Plan extra hands-on with Snowflake-native GenAI features (Cortex and related services) because those product details go beyond the published cohort labs.",
+        covered: true,
+        nextSteps: ["SnowPro Core first if not already earned", "Databricks GenAI Associate for multi-platform AI"],
+        official: "https://learn.snowflake.com/en/certifications/",
+        credly: "https://www.credly.com/org/snowflake",
+      },
+      {
+        id: "dbx-dea",
+        name: "Databricks Certified Data Engineer Associate",
+        code: "DEA Associate",
+        vendor: "databricks",
+        category: "data-platform",
+        functions: ["data-engineering"],
+        issuer: "Databricks",
+        level: "associate",
+        levelLabel: "Associate",
+        match: "high",
+        tarekPick: true,
+        cost: "$200",
+        duration: "90 minutes",
+        questions: "45 scored questions",
+        validity: "2 years",
+        summary: "Foundational lakehouse engineering on Databricks: ingestion, PySpark/SQL transforms, Lakeflow Jobs, CI/CD, monitoring, and governance.",
+        why: "Best-aligned Databricks cert for Week 5 lakehouse work.",
+        topics: ["Databricks platform", "Data ingestion & loading", "Transformation & modeling", "Lakeflow Jobs", "CI/CD", "Monitoring", "Governance & security"],
+        skills: ["PySpark", "Delta Lake", "Lakeflow Jobs", "Lakehouse ETL", "Unity Catalog basics"],
+        weeks: [5, 6],
+        weekLabels: ["W5 PySpark, Delta, Lakeflow", "W6 Databricks mini-project presentations"],
+        bootcamp: "High match. Published labs cover SQL to PySpark, DataFrames/lazy evaluation, Delta Lake, medallion ETL, and Lakeflow Jobs orchestration. Study the latest exam guide for governance depth and any May 2026 syllabus updates.",
+        covered: true,
+        nextSteps: ["Databricks GenAI Engineer Associate", "Data Engineer Professional"],
+        official: "https://www.databricks.com/learn/certification/data-engineer-associate",
+        credly: "https://www.credly.com/org/databricks",
+      },
+      {
+        id: "dbx-genai",
+        name: "Databricks Certified Generative AI Engineer Associate",
+        code: "GenAI Associate",
+        vendor: "databricks",
+        category: "genai",
+        functions: ["genai", "data-engineering"],
+        issuer: "Databricks",
+        level: "associate",
+        levelLabel: "Associate",
+        match: "high",
+        cost: "$200",
+        duration: "90 minutes",
+        questions: "45 scored questions",
+        validity: "2 years",
+        summary: "Design and implement LLM-enabled solutions on Databricks: RAG, model serving concepts, MLflow lifecycle, and governance.",
+        why: "Direct extension of Week 6 RAG, embeddings, evaluation, and MLflow work into the Databricks stack.",
+        topics: ["Design GenAI apps", "Data preparation", "Application development", "Assembling & deploying apps", "Governance", "Evaluation & monitoring"],
+        skills: ["RAG", "LLM chains", "MLflow", "Vector search concepts", "Unity Catalog governance"],
+        weeks: [5, 6],
+        weekLabels: ["W5 Databricks platform comfort", "W6 RAG, MLflow, LLM evaluation"],
+        bootcamp: "High conceptual match from Week 6 (RAG from scratch to Chroma, MLflow tour, LLM-as-judge evaluation, embeddings). Expect extra study for Databricks-specific tooling (Model Serving, AI Search, Mosaic/AI product names in the current exam guide).",
+        covered: true,
+        nextSteps: ["Databricks Data Engineer Associate if not yet earned", "Production RAG portfolio project"],
+        official: "https://www.databricks.com/learn/certification/genai-engineer-associate",
+        credly: "https://www.credly.com/org/databricks",
+      },
+      {
+        id: "dbx-dep",
+        name: "Databricks Certified Data Engineer Professional",
+        code: "DEA Professional",
+        vendor: "databricks",
+        category: "data-platform",
+        functions: ["data-engineering"],
+        issuer: "Databricks",
+        level: "professional",
+        levelLabel: "Professional",
+        match: "stretch",
+        cost: "$200-$300 (confirm vendor)",
+        duration: "Varies by exam form",
+        questions: "Scenario-heavy advanced exam",
+        validity: "2 years",
+        summary: "Production-grade Databricks engineering: complex pipelines, optimization, reliability, and advanced lakehouse operations.",
+        why: "Natural second Databricks credential after Associate plus more production reps.",
+        topics: ["Advanced ETL design", "Streaming patterns", "Performance tuning", "Production operations", "Security at scale"],
+        skills: ["Production Spark", "Pipeline reliability", "Optimization", "Advanced lakehouse ops"],
+        weeks: [5],
+        weekLabels: ["W5 advanced PySpark & Lakeflow foundation"],
+        bootcamp: "Stretch goal. Associate plus deeper production experience (streaming, optimization, complex orchestration) is the realistic path after this cohort.",
+        covered: true,
+        nextSteps: ["Open-source Spark portfolio work", "Platform specialization paths"],
+        official: "https://www.databricks.com/learn/training/certification",
+        credly: "https://www.credly.com/org/databricks",
+      },
+      {
+        id: "dbt-ae",
+        name: "dbt Analytics Engineering Certification",
+        code: "dbt AE",
+        vendor: "dbt",
+        category: "transformation",
+        functions: ["analytics-engineering", "data-engineering"],
+        issuer: "dbt Labs",
+        level: "associate",
+        levelLabel: "Associate",
+        match: "high",
+        cost: "$200",
+        duration: "2 hours",
+        questions: "65 questions · 65% pass",
+        validity: "Confirm at registration",
+        summary: "Build, test, document, and maintain analytics models with engineering discipline using dbt.",
+        why: "The go-to transformation credential for modern analytics engineering roles.",
+        topics: ["Model development & optimization", "Materializations & incrementals", "Tests", "Model governance", "Debugging & state", "Exposures & freshness"],
+        skills: ["dbt models", "Tests", "Sources & seeds", "Snapshots", "Docs & packages"],
+        weeks: [5],
+        weekLabels: ["W5 dbt Core setup", "W5 models, materializations, tests, snapshots"],
+        bootcamp: "High match with Week 5 dbt activities: first models, materializations, sources/seeds/tests, snapshots, docs, and packages. Expect deeper exam coverage of contracts, state selection, and advanced testing patterns from the current dbt study guide.",
+        covered: true,
+        nextSteps: ["SnowPro Core (warehouse path)", "CI/CD + semantic-layer projects"],
+        official: "https://www.getdbt.com/certifications/analytics-engineer-certification-exam",
+        credly: "https://www.credly.com/org/dbt-labs",
+      },
+      {
+        id: "tableau-desktop",
+        name: "Tableau Desktop Specialist",
+        code: "Desktop Specialist",
+        vendor: "tableau",
+        category: "bi",
+        functions: ["visualization"],
+        issuer: "Salesforce / Tableau",
+        level: "foundational",
+        levelLabel: "Foundational",
+        match: "high",
+        cost: "About $100 (confirm vendor)",
+        duration: "60 minutes",
+        questions: "Multiple choice / hands-on style items",
+        validity: "Does not expire (confirm current policy)",
+        summary: "Foundational Tableau skills: connect data, build charts, calculate fields, and design simple dashboards.",
+        why: "Natural credential after Week 7 Tableau labs if you like analytics-facing work.",
+        topics: ["Connecting to data", "Exploring & analyzing", "Sharing insights", "Tableau concepts"],
+        skills: ["Dashboards", "Calculated fields", "LOD basics", "Data visualization"],
+        weeks: [7],
+        weekLabels: ["W7 Tableau labs", "W7 charts that argue", "W7 Looker Studio demo"],
+        bootcamp: "High match for fundamentals. Week 7 includes Tableau exploration, dashboards, groups/sets, calculations, parameters, and LOD practice. Drill exam-style scenarios and timing.",
+        covered: true,
+        nextSteps: ["Tableau Desktop Certified Associate", "Storytelling portfolio with real stakeholders"],
+        official: "https://www.tableau.com/learn/certification/desktop-specialist",
+        credly: "https://www.credly.com/org/tableau",
+      },
+      {
+        id: "airflow-fundamentals",
+        name: "Astronomer Certification for Apache Airflow",
+        code: "Airflow Fundamentals / DAG Authoring",
+        vendor: "astronomer",
+        category: "orchestration",
+        functions: ["orchestration", "data-engineering"],
+        issuer: "Astronomer (Apache Airflow ecosystem)",
+        level: "associate",
+        levelLabel: "Associate",
+        match: "stretch",
+        cost: "Varies by path (confirm vendor)",
+        duration: "Varies",
+        questions: "Role-based Airflow assessments",
+        validity: "Confirm on Astronomer site",
+        summary: "Validates practical Apache Airflow skills for authoring reliable DAGs and operating workflows.",
+        why: "Orchestration is a high-value DE skill. Worth pursuing even though this cohort did not teach Airflow hands-on.",
+        topics: ["DAG design", "Operators & sensors", "Scheduling", "Dependencies", "Testing & observability"],
+        skills: ["Apache Airflow", "DAG authoring", "Workflow orchestration"],
+        weeks: [3, 5],
+        weekLabels: ["W3 pipeline / medallion thinking", "W5 NiFi orchestration adjacent"],
+        bootcamp: "Not covered hands-on in this cohort (no Airflow/Composer lab in the published materials). Still recommended as a career follow-on: pipeline design habits, medallion ETL, and NiFi flow thinking give you adjacent instincts, but you will learn Airflow concepts from scratch for the exam.",
+        covered: false,
+        nextSteps: ["Local Airflow tutorial project", "Then GCP PDE or AWS DEA depending on cloud path"],
+        official: "https://www.astronomer.io/certification/",
+        credly: "https://www.credly.com/org/astronomer/badge/astronomer-certification-for-apache-airflow-2-funda",
+      },
+    ];
+
+    const logos = {
+      aws: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF9900" d="M6.8 17.3c.3.2.7.1 1-.1 1.5-1.3 2.6-2 3.8-2.5 1.9-.8 3.9-.9 5.7-.4.4.1.7-.1.8-.4.1-.4-.1-.7-.4-.8-2.1-.7-4.4-.6-6.6.4-1.4.6-2.7 1.5-4.2 3-.2.2-.3.6.0.8zm16-2.3c-.2-.2-.5-.3-.9-.1-2.5 1.1-5.2 1.5-7.7.8-1.4-.4-2.7-1.1-3.8-2-.3-.2-.7-.2-.9.1-.2.3-.1.7.2.9 1.3 1 2.8 1.8 4.5 2.2 2.9.8 6 .4 8.8-.9.3-.1.4-.5.2-.8.1 0-.1-.1-.4-.2zm-8.2-12c-1.2 0-2.3.3-3.2.9-.3.2-.3.6 0 .8l.2.1c.2.1.5 0 .7-.1.6-.4 1.4-.6 2.3-.6 1.7 0 3.2 1 3.7 2.5.1.3.4.5.7.4h.1c.3-.1.5-.4.4-.7C18.9 4.6 16.9 3 14.6 3zm.5 4.2c-1.8 0-3.3 1.4-3.3 3.2 0 .3.3.6.6.6s.6-.3.6-.6c0-1.1.9-2 2.1-2 1.1 0 2 .9 2 2 0 .3.3.6.6.6s.6-.3.6-.6c0-1.8-1.5-3.2-3.2-3.2z"/></svg>`,
+      gcp: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M12.1 11.4l3.5 6.1H5.1L1.6 11.4 5.1 5.3h6.9l-2 3.4H7.2l-1.7 2.7 1.7 2.7h4.9l2-3.4z"/><path fill="#EA4335" d="M12.1 11.4l2-3.4 2-3.4h3.5L22.4 11l-2.8 4.9-3.5-6.1-2 3.4-2-1.8z"/><path fill="#FBBC04" d="M15.6 17.5l-3.5-6.1 2-1.8 3.5 6.1-2 1.8z"/><path fill="#34A853" d="M5.1 17.5l3.5-6.1 2 3.4-1.5 2.7H5.1z"/></svg>`,
+      snowflake: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#29B5E8" d="M12 2l1.2 2.1 2.1-1.2-.4 2.4 2.4-.4-1.2 2.1L18 8l-2.1 1.2 1.2 2.1-2.4-.4.4 2.4-2.1-1.2L12 14.2l-1.2-2.1-2.1 1.2.4-2.4-2.4.4 1.2-2.1L6 8l2.1-1.2-1.2-2.1 2.4.4-.4-2.4 2.1 1.2L12 2zm0 5.2a4.8 4.8 0 100 9.6 4.8 4.8 0 000-9.6z"/><circle cx="12" cy="12" r="2.2" fill="#0b1020"/></svg>`,
+      databricks: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF3621" d="M3 7.5L12 3l9 4.5-9 4.5L3 7.5zm0 4.7l9 4.5 9-4.5v3.2L12 20l-9-4.6v-3.2z"/></svg>`,
+      dbt: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF694B" d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2zm0 3.1L6.2 8.5v7L12 18.9l5.8-3.4v-7L12 5.1zm0 2.4l3.6 2.1v4.2L12 16l-3.6-2.1V9.6L12 7.5z"/></svg>`,
+      tableau: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34D399" d="M11 2h2v4h4v2h-4v4h-2V8H7V6h4V2zm-7 9h2v2H4v-2zm16 0h2v2h-2v-2zM11 14h2v4h4v2h-4v2h-2v-2H7v-2h4v-4zM4 17h2v2H4v-2zm16 0h2v2h-2v-2z"/></svg>`,
+      astronomer: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#A78BFA" d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.8 7.2 16.9l.9-5.4L4.2 7.7l5.4-.8L12 2zm0 6.2a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6z"/></svg>`,
+      genai: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#E879F9" d="M12 2l2.2 4.6L19 8l-3.4 3.2.9 4.8L12 13.8 7.5 16l.9-4.8L5 8l4.8-1.4L12 2z"/></svg>`,
+      multi: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#A78BFA" d="M7 4h10a3 3 0 013 3v2H4V7a3 3 0 013-3zm-3 7h16v6a3 3 0 01-3 3H7a3 3 0 01-3-3v-6zm4 2v2h8v-2H8z"/></svg>`,
+      bi: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34D399" d="M4 19h16v2H4v-2zm2-7h2v6H6v-6zm5-5h2v11h-2V7zm5 3h2v8h-2v-8z"/></svg>`,
+    };
+
+    const state = {
+      category: "all",
+      function: "all",
+      vendor: "all",
+      week: "all",
+      level: "all",
+      match: "all",
+      compareMode: false,
+      compare: [],
+      quiz: { interest: null, experience: null, timeline: null },
+    };
+
+    function matchLabel(match) {
+      if (match === "high") return "High match";
+      if (match === "medium") return "Medium match";
+      return "Stretch";
+    }
+
+    function levelClass(level) {
+      return `level-pill level-${level}`;
+    }
+
+    function categoryLabel(id) {
+      return CATEGORIES[id]?.name || id;
+    }
+
+    function functionLabel(id) {
+      return FUNCTIONS[id] || id;
+    }
+
+    function filteredCerts() {
+      return CERTS.filter((c) => {
+        if (state.category !== "all" && c.category !== state.category) return false;
+        if (state.vendor !== "all" && c.vendor !== state.vendor) return false;
+        if (state.function !== "all" && !(c.functions || []).includes(state.function)) return false;
+        if (state.level !== "all" && c.level !== state.level) return false;
+        if (state.match === "tarek") {
+          if (!c.tarekPick) return false;
+        } else if (state.match !== "all" && c.match !== state.match) {
+          return false;
+        }
+        if (state.week !== "all") {
+          const w = Number(state.week);
+          if (!c.weeks.includes(w)) return false;
+        }
+        return true;
+      });
+    }
+
+    function renderCards() {
+      const list = filteredCerts();
+      const root = document.getElementById("mainContent");
+      const byCategory = {};
+      list.forEach((c) => {
+        (byCategory[c.category] ||= []).push(c);
+      });
+
+      document.getElementById("statCount").textContent = String(CERTS.length);
+      const meta =
+        list.length === CERTS.length
+          ? `Showing all ${CERTS.length} certifications`
+          : `Showing ${list.length} of ${CERTS.length} certifications`;
+      document.getElementById("resultsMeta").textContent = meta;
+      const contentMeta = document.getElementById("contentMeta");
+      if (contentMeta) contentMeta.textContent = meta;
+
+      if (!list.length) {
+        root.innerHTML = `<div class="empty-state"><strong>No certifications match those filters.</strong><br/>Try All categories or reset filters.</div>`;
+        return;
+      }
+
+      const categoryOrder = ["cloud-platform", "data-platform", "transformation", "orchestration", "genai", "bi"];
+      root.innerHTML = categoryOrder
+        .filter((id) => byCategory[id]?.length)
+        .map((categoryId) => {
+          const category = CATEGORIES[categoryId];
+          const cards = byCategory[categoryId]
+            .map((c) => {
+              const selected = state.compare.includes(c.id);
+              const vendor = VENDORS[c.vendor];
+              const logo = logos[c.vendor] || logos.multi;
+              return `
+                <button class="card ${selected ? "compare-selected" : ""} ${c.tarekPick ? "recommended" : ""}" type="button" data-id="${c.id}" style="--domain-color:${category.color}">
+                  <div class="card-top">
+                    <div class="logo-badge">${logo}</div>
+                    <div class="badge-stack">
+                      ${c.tarekPick ? `<span class="rec-pill">Tarek's pick</span>` : ""}
+                      <span class="${levelClass(c.level)}">${c.levelLabel}</span>
+                      <span class="match-pill match-${c.match}">${matchLabel(c.match)}</span>
+                    </div>
+                  </div>
+                  <h3>${c.name}</h3>
+                  <div class="issuer">${c.issuer}${c.code ? ` · ${c.code}` : ""} · ${vendor?.name || c.vendor}</div>
+                  <p class="summary">${c.summary}</p>
+                  <div class="card-meta">
+                    <span class="meta-chip">${c.cost}</span>
+                    <span class="meta-chip">${c.duration}</span>
+                  </div>
+                  <div class="week-tags">
+                    ${(c.functions || []).map((f) => `<span class="fn-tag">${functionLabel(f)}</span>`).join("")}
+                    ${c.weekLabels.slice(0, 2).map((w) => `<span class="week-tag">${w}</span>`).join("")}
+                  </div>
+                </button>`;
+            })
+            .join("");
+
+          return `
+            <section class="domain-section" id="category-${categoryId}">
+              <div class="domain-header">
+                <div class="domain-title">
+                  <div class="domain-icon" style="border-color: transparent; background: rgba(255,255,255,0.04);">${({
+                    "cloud-platform": logos.gcp,
+                    "data-platform": logos.snowflake,
+                    transformation: logos.dbt,
+                    orchestration: logos.astronomer,
+                    genai: logos.genai,
+                    bi: logos.bi,
+                  })[categoryId] || logos.multi}</div>
+                  <div>
+                    <h2>${category.name}</h2>
+                    <p>${category.blurb}</p>
+                  </div>
+                </div>
+                <span class="count-badge">${byCategory[categoryId].length} cert${byCategory[categoryId].length === 1 ? "" : "s"}</span>
+              </div>
+              <div class="cards">${cards}</div>
+            </section>`;
+        })
+        .join("");
+
+      root.querySelectorAll(".card").forEach((el) => {
+        el.addEventListener("click", () => {
+          const id = el.getAttribute("data-id");
+          if (state.compareMode) toggleCompare(id);
+          else openModal(id);
+        });
+      });
+    }
+
+    function openModal(id) {
+      const c = CERTS.find((x) => x.id === id);
+      if (!c) return;
+      const category = CATEGORIES[c.category];
+      const vendor = VENDORS[c.vendor];
+      document.getElementById("modalTitle").textContent = c.name;
+      document.getElementById("modalIssuer").textContent = `${c.issuer}${c.code ? ` · ${c.code}` : ""}`;
+      document.getElementById("modalBadges").innerHTML = `
+        ${c.tarekPick ? `<span class="rec-pill">Tarek's Recommendation</span>` : ""}
+        <span class="cat-pill cat-${c.category}">${category.name}</span>
+        <span class="${levelClass(c.level)}">${c.levelLabel}</span>
+        <span class="match-pill match-${c.match}">${matchLabel(c.match)}</span>
+        ${c.covered ? "" : `<span class="level-pill level-specialty">Not taught in cohort</span>`}
+      `;
+      document.getElementById("modalBody").innerHTML = `
+        <div class="detail-grid">
+          <div class="detail-box"><label>Exam code</label><strong>${c.code || "-"}</strong></div>
+          <div class="detail-box"><label>Cost</label><strong>${c.cost}</strong></div>
+          <div class="detail-box"><label>Duration</label><strong>${c.duration}</strong></div>
+          <div class="detail-box"><label>Questions</label><strong>${c.questions}</strong></div>
+          <div class="detail-box"><label>Category</label><strong>${category.name}</strong></div>
+          <div class="detail-box"><label>Vendor</label><strong>${vendor?.name || c.vendor}</strong></div>
+        </div>
+        <div class="section-block">
+          <h3>Function tags</h3>
+          <div class="tag-cloud">${(c.functions || []).map((f) => `<span class="fn-tag">${functionLabel(f)}</span>`).join("")}</div>
+        </div>
+        <div class="section-block">
+          <h3>What it validates</h3>
+          <p>${c.summary}</p>
+        </div>
+        <div class="section-block">
+          <h3>Why pursue it</h3>
+          <p>${c.why}</p>
+        </div>
+        <div class="section-block">
+          <h3>High-level topics</h3>
+          <div class="tag-cloud">${c.topics.map((t) => `<span class="topic-tag">${t}</span>`).join("")}</div>
+        </div>
+        <div class="section-block">
+          <h3>Skills (Credly-style tags)</h3>
+          <div class="tag-cloud">${c.skills.map((t) => `<span class="skill-tag">${t}</span>`).join("")}</div>
+        </div>
+        <div class="bootcamp-box section-block">
+          <h3>How it maps to TechCatalyst DE 2026</h3>
+          <p>${c.bootcamp}</p>
+          <div class="week-tags" style="margin-top:0.6rem">
+            ${c.weekLabels.map((w) => `<span class="week-tag">${w}</span>`).join("")}
+          </div>
+        </div>
+        ${
+          c.covered
+            ? ""
+            : `<div class="note-box"><h3>Honest coverage note</h3><p>This credential is recommended for career growth, but the hands-on tool was not part of the published labs for this cohort. Treat class experience as adjacent motivation, not exam prep credit.</p></div>`
+        }
+        <div class="section-block">
+          <h3>Natural next steps</h3>
+          <ul>${c.nextSteps.map((n) => `<li>${n}</li>`).join("")}</ul>
+        </div>
+        <div class="modal-actions">
+          <a class="btn btn-primary" href="${c.official}" target="_blank" rel="noopener noreferrer">Official page ↗</a>
+          ${c.credly ? `<a class="btn" href="${c.credly}" target="_blank" rel="noopener noreferrer">Credly badge ↗</a>` : ""}
+          <button class="btn" type="button" data-add-compare="${c.id}">${state.compare.includes(c.id) ? "In compare list" : "Add to compare"}</button>
+        </div>
+        <p style="margin:0;color:var(--text-soft);font-size:0.78rem;">
+          Details are a classroom planning snapshot. Always verify cost, format, and domains on the vendor site before you register.
+        </p>
+      `;
+      document.getElementById("modalBackdrop").classList.add("open");
+      document.getElementById("modalClose").focus();
+      document.body.style.overflow = "hidden";
+
+      const addBtn = document.querySelector("[data-add-compare]");
+      if (addBtn) {
+        addBtn.addEventListener("click", () => {
+          if (!state.compare.includes(c.id)) {
+            if (state.compare.length >= 3) {
+              alert("Compare list is full (max 3). Remove one first.");
+              return;
+            }
+            state.compare.push(c.id);
+            updateCompareBar();
+            renderCards();
+          }
+          addBtn.textContent = "In compare list";
+        });
+      }
+    }
+
+    function closeModal() {
+      document.getElementById("modalBackdrop").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function toggleCompare(id) {
+      const idx = state.compare.indexOf(id);
+      if (idx >= 0) state.compare.splice(idx, 1);
+      else {
+        if (state.compare.length >= 3) {
+          alert("You can compare up to 3 certifications. Remove one first.");
+          return;
+        }
+        state.compare.push(id);
+      }
+      updateCompareBar();
+      renderCards();
+    }
+
+    function updateCompareBar() {
+      const bar = document.getElementById("compareBar");
+      const chips = document.getElementById("compareChips");
+      const panel = document.getElementById("comparePanel");
+      if (!state.compare.length) {
+        bar.classList.remove("visible");
+        bar.hidden = true;
+        bar.setAttribute("aria-hidden", "true");
+        panel.classList.remove("open");
+        panel.innerHTML = "";
+        return;
+      }
+      bar.hidden = false;
+      bar.setAttribute("aria-hidden", "false");
+      // Force a paint so the slide-in transition still runs after removing [hidden]
+      requestAnimationFrame(() => bar.classList.add("visible"));
+      chips.innerHTML = state.compare
+        .map((id) => {
+          const c = CERTS.find((x) => x.id === id);
+          return `<span class="compare-chip">${c.name}<button type="button" data-remove="${id}" aria-label="Remove ${c.name}">×</button></span>`;
+        })
+        .join("");
+      chips.querySelectorAll("[data-remove]").forEach((btn) => {
+        btn.addEventListener("click", () => toggleCompare(btn.getAttribute("data-remove")));
+      });
+    }
+
+    function openCompare() {
+      const panel = document.getElementById("comparePanel");
+      if (state.compare.length < 2) {
+        alert("Select at least 2 certifications to compare.");
+        return;
+      }
+      const rows = [
+        ["Name", (c) => c.name],
+        ["Issuer", (c) => c.issuer],
+        ["Category", (c) => categoryLabel(c.category)],
+        ["Functions", (c) => (c.functions || []).map(functionLabel).join(", ")],
+        ["Level", (c) => c.levelLabel],
+        ["Bootcamp fit", (c) => matchLabel(c.match)],
+        ["Cost", (c) => c.cost],
+        ["Duration", (c) => c.duration],
+        ["Weeks", (c) => c.weeks.map((w) => `W${w}`).join(", ")],
+        ["Best first if…", (c) => c.why],
+      ];
+      const selected = state.compare.map((id) => CERTS.find((c) => c.id === id));
+      panel.innerHTML = `
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Attribute</th>
+              ${selected.map((c) => `<th>${c.name}</th>`).join("")}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows
+              .map(
+                ([label, fn]) => `
+              <tr>
+                <th>${label}</th>
+                ${selected.map((c) => `<td>${fn(c)}</td>`).join("")}
+              </tr>`
+              )
+              .join("")}
+          </tbody>
+        </table>`;
+      panel.classList.add("open");
+    }
+
+    function setActivePills(groupEl, attr, value) {
+      groupEl.querySelectorAll(`[${attr}]`).forEach((btn) => {
+        btn.classList.toggle("active", btn.getAttribute(attr) === value);
+      });
+    }
+
+    function resetQuiz() {
+      state.quiz = { interest: null, experience: null, timeline: null };
+      document.querySelectorAll("#quizInterest .chip, #quizExperience .chip, #quizTimeline .chip").forEach((c) => c.classList.remove("active"));
+      document.getElementById("quizResult").innerHTML =
+        `<div class="empty">Select all three to unlock recommendations.</div>`;
+    }
+
+    function setQuizOpen(open) {
+      const panel = document.getElementById("quizPanel");
+      const body = document.getElementById("quizBody");
+      const toggle = document.getElementById("quizToggle");
+      panel.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) body.removeAttribute("hidden");
+      else body.setAttribute("hidden", "");
+    }
+
+    function runQuiz() {
+      const { interest, experience, timeline } = state.quiz;
+      const box = document.getElementById("quizResult");
+      if (!interest || !experience || !timeline) {
+        const missing = [!interest && "interest", !experience && "experience", !timeline && "timeline"].filter(Boolean);
+        box.innerHTML = `<div class="empty">Select all three to unlock recommendations${missing.length ? ` (still need: ${missing.join(", ")})` : ""}.</div>`;
+        return;
+      }
+
+      const ranking = CERTS.map((c) => {
+        let score = 0;
+
+        // Interest
+        if (interest === "cloud") {
+          if (c.category === "cloud-platform") score += 5;
+          if (c.id === "gcp-pde" || c.id === "aws-dea") score += 2;
+        }
+        if (interest === "warehouse") {
+          if (c.category === "data-platform") score += 5;
+          if (c.id === "gcp-pde") score += 2;
+        }
+        if (interest === "transform") {
+          if (c.category === "transformation" || (c.functions || []).includes("analytics-engineering")) score += 6;
+          if (c.vendor === "snowflake") score += 2;
+        }
+        if (interest === "spark") {
+          if (c.vendor === "databricks" && c.category === "data-platform") score += 6;
+          if (c.id === "aws-dea") score += 1;
+        }
+        if (interest === "genai") {
+          if (c.category === "genai" || (c.functions || []).includes("genai")) score += 6;
+          if (c.tarekPick && c.category === "genai") score += 1;
+        }
+        if (interest === "analytics") {
+          if (c.category === "bi" || (c.functions || []).includes("visualization")) score += 5;
+          if (c.category === "transformation") score += 3;
+        }
+
+        // Experience: narrows vendor/level, especially under fast timelines
+        if (experience === "aws") {
+          if (c.vendor === "aws") score += 5;
+          if (c.vendor === "gcp") score -= 1;
+          if (timeline === "fast" && c.vendor === "aws" && c.level === "foundational") score += 3;
+          if (timeline === "fast" && c.vendor === "aws" && (c.level === "associate" || c.level === "intermediate") && c.match !== "stretch") score += 2;
+          if (timeline === "fast" && c.vendor !== "aws" && c.level === "professional") score -= 3;
+        }
+        if (experience === "gcp") {
+          if (c.vendor === "gcp") score += 5;
+          if (c.vendor === "aws") score -= 1;
+          if (timeline === "fast" && c.vendor === "gcp" && c.level === "foundational") score += 3;
+          if (timeline === "fast" && c.id === "gcp-pde") score += 1; // high bootcamp overlap even if advanced
+          if (timeline === "fast" && c.vendor !== "gcp" && c.level === "professional") score -= 3;
+        }
+        if (experience === "coding") {
+          if (c.category === "transformation" || c.category === "bi") score += 3;
+          if (c.vendor === "snowflake" || c.vendor === "dbt" || c.vendor === "databricks") score += 2;
+          if ((c.functions || []).includes("analytics-engineering") || (c.functions || []).includes("data-engineering")) score += 2;
+          if (timeline === "fast" && c.level === "foundational") score += 2;
+          if (timeline === "fast" && c.level === "professional" && c.match !== "high") score -= 2;
+        }
+        if (experience === "bootcamp") {
+          if (c.match === "high") score += 4;
+          if (c.tarekPick) score += 2;
+          if (timeline === "fast") {
+            if (c.level === "foundational" || c.match === "high") score += 3;
+            if (c.level === "professional" || c.level === "specialty") score -= 3;
+            if (c.match === "stretch") score -= 3;
+          }
+        }
+        if (experience === "multi") {
+          if (c.tarekPick) score += 2;
+          if (c.match === "high" || c.level === "professional" || c.level === "specialty") score += 2;
+          if (timeline === "stretch") score += 2;
+        }
+
+        // Timeline
+        if (timeline === "fast") {
+          if (c.level === "foundational") score += 4;
+          if (c.match === "high" && c.level !== "professional") score += 3;
+          if (c.level === "professional" || c.level === "specialty") score -= 2;
+          if (c.match === "stretch") score -= 3;
+          // Fast path prefers leverage of existing experience over brand-new stacks
+          if (experience === "aws" && c.vendor === "aws") score += 2;
+          if (experience === "gcp" && c.vendor === "gcp") score += 2;
+          if (experience === "coding" && (c.category === "transformation" || c.vendor === "snowflake")) score += 2;
+        }
+        if (timeline === "steady") {
+          if (c.match === "high") score += 3;
+          if (c.level === "associate" || c.level === "intermediate") score += 2;
+          if (c.tarekPick) score += 1;
+        }
+        if (timeline === "stretch") {
+          if (c.level === "professional" || c.level === "specialty") score += 3;
+          if (c.match === "stretch") score += 1;
+          if (c.match === "high") score += 2;
+          // More time: allow expanding beyond known vendor
+          if (experience === "aws" && c.vendor !== "aws") score += 1;
+          if (experience === "gcp" && c.vendor !== "gcp") score += 1;
+        }
+
+        if (c.match === "high") score += 1;
+        if (c.tarekPick) score += 1;
+        if (!c.covered) score -= 1;
+        return { c, score };
+      })
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3);
+
+      const why =
+        timeline === "fast"
+          ? "Fast path: leaning on what you already know plus high bootcamp fit."
+          : timeline === "stretch"
+            ? "Stretch path: room to expand into new platforms or advanced levels."
+            : "Steady path: balance of fit, level, and growth.";
+
+      box.innerHTML = `
+        <p class="empty" style="margin-bottom:0.55rem;color:var(--text-muted)">${why}</p>
+        <div class="recommend-list">
+          ${ranking
+            .map(
+              ({ c }, i) => `
+            <div class="recommend-item" data-open="${c.id}">
+              <strong>${i + 1}. ${c.name}</strong>
+              <span>${c.levelLabel} · ${matchLabel(c.match)}</span>
+            </div>`
+            )
+            .join("")}
+        </div>`;
+
+      box.querySelectorAll("[data-open]").forEach((el) => {
+        el.addEventListener("click", () => openModal(el.getAttribute("data-open")));
+      });
+    }
+
+    function wireFilters() {
+      document.getElementById("categoryFilters").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-category]");
+        if (!btn) return;
+        state.category = btn.getAttribute("data-category");
+        setActivePills(document.getElementById("categoryFilters"), "data-category", state.category);
+        renderCards();
+      });
+
+      document.getElementById("functionFilters").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-function]");
+        if (!btn) return;
+        state.function = btn.getAttribute("data-function");
+        setActivePills(document.getElementById("functionFilters"), "data-function", state.function);
+        renderCards();
+      });
+
+      document.getElementById("vendorFilters").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-vendor]");
+        if (!btn) return;
+        state.vendor = btn.getAttribute("data-vendor");
+        setActivePills(document.getElementById("vendorFilters"), "data-vendor", state.vendor);
+        renderCards();
+      });
+
+      document.getElementById("weekFilters").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-week]");
+        if (!btn) return;
+        state.week = btn.getAttribute("data-week");
+        setActivePills(document.getElementById("weekFilters"), "data-week", state.week);
+        renderCards();
+      });
+
+      document.getElementById("levelFilters").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-level]");
+        if (!btn) return;
+        state.level = btn.getAttribute("data-level");
+        setActivePills(document.getElementById("levelFilters"), "data-level", state.level);
+        renderCards();
+      });
+
+      document.getElementById("matchFilters").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-match]");
+        if (!btn) return;
+        state.match = btn.getAttribute("data-match");
+        setActivePills(document.getElementById("matchFilters"), "data-match", state.match);
+        renderCards();
+      });
+
+      document.getElementById("compareMode").addEventListener("change", (e) => {
+        state.compareMode = e.target.checked;
+      });
+
+      document.getElementById("btnClearCompare").addEventListener("click", () => {
+        state.compare = [];
+        updateCompareBar();
+        renderCards();
+      });
+
+      document.getElementById("btnOpenCompare").addEventListener("click", openCompare);
+
+      document.getElementById("btnReset").addEventListener("click", () => {
+        state.category = "all";
+        state.function = "all";
+        state.vendor = "all";
+        state.week = "all";
+        state.level = "all";
+        state.match = "all";
+        setActivePills(document.getElementById("categoryFilters"), "data-category", "all");
+        setActivePills(document.getElementById("functionFilters"), "data-function", "all");
+        setActivePills(document.getElementById("vendorFilters"), "data-vendor", "all");
+        setActivePills(document.getElementById("weekFilters"), "data-week", "all");
+        setActivePills(document.getElementById("levelFilters"), "data-level", "all");
+        setActivePills(document.getElementById("matchFilters"), "data-match", "all");
+        renderCards();
+      });
+
+      document.getElementById("btnQuizReset").addEventListener("click", resetQuiz);
+
+      document.getElementById("quizToggle").addEventListener("click", () => {
+        const open = document.getElementById("quizPanel").classList.contains("open");
+        setQuizOpen(!open);
+      });
+
+      document.getElementById("quizInterest").addEventListener("click", (e) => {
+        const chip = e.target.closest(".chip");
+        if (!chip) return;
+        document.querySelectorAll("#quizInterest .chip").forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+        state.quiz.interest = chip.getAttribute("data-value");
+        runQuiz();
+      });
+
+      document.getElementById("quizExperience").addEventListener("click", (e) => {
+        const chip = e.target.closest(".chip");
+        if (!chip) return;
+        document.querySelectorAll("#quizExperience .chip").forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+        state.quiz.experience = chip.getAttribute("data-value");
+        runQuiz();
+      });
+
+      document.getElementById("quizTimeline").addEventListener("click", (e) => {
+        const chip = e.target.closest(".chip");
+        if (!chip) return;
+        document.querySelectorAll("#quizTimeline .chip").forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+        state.quiz.timeline = chip.getAttribute("data-value");
+        runQuiz();
+      });
+
+      document.getElementById("modalClose").addEventListener("click", closeModal);
+      document.getElementById("modalBackdrop").addEventListener("click", (e) => {
+        if (e.target.id === "modalBackdrop") closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    }
+
+
+    function openFilters() {
+      const rail = document.getElementById("filterRail");
+      const backdrop = document.getElementById("filterBackdrop");
+      rail.classList.add("open");
+      backdrop.classList.add("open");
+      backdrop.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeFilters() {
+      const rail = document.getElementById("filterRail");
+      const backdrop = document.getElementById("filterBackdrop");
+      rail.classList.remove("open");
+      backdrop.classList.remove("open");
+      backdrop.hidden = true;
+      if (!document.getElementById("modalBackdrop").classList.contains("open")) {
+        document.body.style.overflow = "";
+      }
+    }
+
+    document.getElementById("btnOpenFilters")?.addEventListener("click", openFilters);
+    document.getElementById("btnCloseFilters")?.addEventListener("click", closeFilters);
+    document.getElementById("filterBackdrop")?.addEventListener("click", closeFilters);
+    // Close mobile drawer after applying a filter on small screens
+    ["categoryFilters","functionFilters","vendorFilters","weekFilters","levelFilters","matchFilters"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("click", (e) => {
+        if (!e.target.closest(".filter-pill")) return;
+        if (window.matchMedia("(max-width: 980px)").matches) {
+          // keep open for multi-filter browsing; only auto-close optional
+        }
+      });
+    });
+
+    wireFilters();
+    renderCards();
+
+  </script>
+</body>
+</html>
