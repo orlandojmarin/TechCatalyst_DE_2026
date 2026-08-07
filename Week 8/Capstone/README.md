@@ -7,6 +7,9 @@
 
 ---
 
+> [!Note]
+Starter files are there for help. You do not have to use them, you can use your own. They are meant to inspire only.
+
 ## The mission
 
 ![Four yellow Taxis lined behind each other](images/yellow-cab.png)
