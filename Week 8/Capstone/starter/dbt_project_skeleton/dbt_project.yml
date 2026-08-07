@@ -1,0 +1,32 @@
+name: 'capstone'
+version: '1.0.0'
+config-version: 2
+
+profile: 'capstone'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  capstone:
+    staging:
+      # Views by default: cheap, always current, no storage cost.
+      +materialized: view
+      +schema: staging
+    marts:
+      # Tables: the gold layer is queried repeatedly by your dashboard,
+      # so pay the build cost once instead of on every dashboard refresh.
+      +materialized: table
+      +schema: marts
+
+# Choose materializations deliberately and be ready to explain each one.
+# "It was the default" is not a reason. If a model is expensive to build and
+# rarely changes, or cheap to build and constantly queried, that should change
+# your answer.

@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_trips
+    description: >
+      Yellow and Green trips unioned into one grain, typed, with the zone
+      lookup joined and derived time columns added. One row per trip.
+
+    columns:
+      - name: taxi_type
+        description: yellow or green
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['yellow', 'green']
+
+      - name: payment_type
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6]
+              config:
+                # Values outside the documented set exist in the raw data.
+                # Warn rather than fail so the build does not stop, but DO
+                # investigate the failures and record them in your data
+                # quality report. A warning you ignore is worse than no test.
+                severity: warn
+
+      - name: pickup_zone_id
+        tests:
+          - relationships:
+              to: source('bronze', 'taxi_zone_lookup')
+              field: locationid
+              config:
+                severity: warn
+
+      - name: trip_duration_minutes
+        description: Dropoff minus pickup. Negative values indicate bad timestamps.
+
+# Test what would actually mislead you if it broke. A test on every column is
+# noise that teams learn to ignore. Three tests that would catch a real
+# analytical error are worth more than thirty that never fail.

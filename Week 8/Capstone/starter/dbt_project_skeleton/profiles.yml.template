@@ -1,0 +1,26 @@
+# Copy to ~/.dbt/profiles.yml, or keep it here and run dbt with
+#   dbt run --profiles-dir .
+#
+# Do NOT commit a profiles.yml containing your password.
+
+capstone:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: <your_account>
+      user: <your_user>
+      password: <your_password>
+      role: <your_role>
+      warehouse: <your_warehouse>
+      database: TECHCATALYST
+      schema: dbt_<your_name>
+      threads: 4
+      client_session_keep_alive: False
+
+# threads controls how many models dbt builds in parallel. 4 is a reasonable
+# start. Raising it makes builds faster and your warehouse work harder, which
+# is a cost trade-off worth a sentence in your rationale.
+#
+# Give each team member their own schema (dbt_alice, dbt_bob). You will
+# overwrite each other's models otherwise.
