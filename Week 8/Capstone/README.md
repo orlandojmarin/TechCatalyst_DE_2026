@@ -10,6 +10,9 @@
 > [!Note]
 Starter files are there for help. You do not have to use them, you can use your own. They are meant to inspire only.
 
+> [!Tip]
+If your team decides or wants to deviate from the plan, for example swap BigQuery for Snowflake, or wants to incorporate additional challenge/stretch goal, then please consult with your instructor __before proceeeding__. This ensure the change doens't increase overall scope beyond what's achievable in the allotted timeframe.
+
 ## The mission
 
 ![Four yellow Taxis lined behind each other](images/yellow-cab.png)
