@@ -1,5 +1,7 @@
 # Team Charter
 
+![icons](images/icons.jpeg)
+
 Fill this in Monday morning. Keep the decision log current all week. You will be asked about it at the Architecture Defense and again on Demo Day.
 
 ---
